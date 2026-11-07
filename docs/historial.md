@@ -14,5 +14,5 @@ Comprobar aquí antes de crear contenido: no repetir frases ni ideas casi iguale
 | 2026-11-07 | carrusel | Léelo despacio si últimamente nadie te pregunta cómo estás. → Hay silencios que dicen más que cualquier despedida. / Te acostumbraste a dar tanto que olvidaste lo que se siente recibir. / Madurar es entender que no todos merecen tu versión más sincera. / No eres difícil de querer, solo estabas con quien no sabía hacerlo. / Que alguien se vaya no significa que tú valgas menos. / Envíaselo a quien necesite leer esto hoy. | posts/2026-11-07/carrusel/ |
 | 2026-11-07 | story 18:00 | Si hoy te costó, también cuenta. No todo avance se nota. | posts/2026-11-07/story-1800.jpg |
 | 2026-11-07 | imagen 19:30 | A veces el cierre que esperas nunca llega, y aun así te toca seguir. | posts/2026-11-07/imagen-1930.jpg |
-| 2026-11-07 | reel 21:00 | Lo que no te dijeron con palabras, te lo dijeron con ausencias. | posts/2026-11-07/reel-2100.mp4 |
-| 2026-11-07 | story 22:30 | Descansa. Mañana no tienes que tenerlo todo resuelto. | posts/2026-11-07/story-2230.jpg |
+| 2026-11-07 | reel 20:35 | Lo que no te dijeron con palabras, te lo dijeron con ausencias. | posts/2026-11-07/reel-2035.mp4 |
+| 2026-11-07 | story 20:35 | Descansa. Mañana no tienes que tenerlo todo resuelto. | posts/2026-11-07/story-2035.jpg |

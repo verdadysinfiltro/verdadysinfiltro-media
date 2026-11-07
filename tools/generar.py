@@ -4,6 +4,8 @@
 Uso:
   python3 tools/generar.py salida.png "Frase del post."
   python3 tools/generar.py --carrusel carpeta/ "Gancho" "Frase 2" ... "Cierre"
+  python3 tools/generar.py --story salida.jpg "Frase"        (1080x1920)
+Instagram solo acepta JPEG por API: usar extensión .jpg para publicar.
 """
 import os
 import sys
@@ -47,8 +49,18 @@ def partir(texto, fuente, ancho):
     return lineas
 
 
-def render(texto, salida):
-    img = Image.open(PLANTILLA).convert("RGB")
+def lienzo(formato):
+    base = Image.open(PLANTILLA).convert("RGB")
+    if formato == "story":
+        img = Image.new("RGB", (1080, 1920), (0, 0, 0))
+        offset = (1920 - base.height) // 2
+        img.paste(base, (0, offset))
+        return img, offset
+    return base, 0
+
+
+def render(texto, salida, formato="post"):
+    img, offset = lienzo(formato)
     dibujo = ImageDraw.Draw(img)
     tam = TAM
     while True:
@@ -58,12 +70,15 @@ def render(texto, salida):
         if len(lineas) <= 5 or tam <= TAM_MIN:
             break
         tam -= 4
-    y = CENTRO_Y - (alto_linea * len(lineas)) // 2
+    y = offset + CENTRO_Y - (alto_linea * len(lineas)) // 2
     for linea in lineas:
         escribir(dibujo, (img.width - largo(linea, fuente)) / 2, y, linea, fuente)
         y += alto_linea
     os.makedirs(os.path.dirname(os.path.abspath(salida)), exist_ok=True)
-    img.save(salida, optimize=True)
+    if salida.lower().endswith((".jpg", ".jpeg")):
+        img.save(salida, quality=95)
+    else:
+        img.save(salida, optimize=True)
     return salida
 
 
@@ -74,6 +89,8 @@ if __name__ == "__main__":
     if args[0] == "--carrusel":
         carpeta, frases = args[1], args[2:]
         for i, frase in enumerate(frases, 1):
-            print(render(frase, os.path.join(carpeta, f"{i:02d}.png")))
+            print(render(frase, os.path.join(carpeta, f"{i:02d}.jpg")))
+    elif args[0] == "--story":
+        print(render(" ".join(args[2:]), args[1], "story"))
     else:
         print(render(" ".join(args[1:]), args[0]))

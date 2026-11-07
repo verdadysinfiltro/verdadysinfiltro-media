@@ -62,8 +62,12 @@ def main():
     elif tipo == "story":
         c = llamar("POST", f"{IG}/media", image_url=url_publica(ruta), media_type="STORIES")["id"]
     elif tipo == "reel":
+        extra = {}
+        portada = ruta[:-4] + "-cover.jpg"
+        if os.path.exists(portada):
+            extra["cover_url"] = url_publica(portada)
         c = llamar("POST", f"{IG}/media", video_url=url_publica(ruta), media_type="REELS",
-                   caption=caption, share_to_feed="true")["id"]
+                   caption=caption, share_to_feed="true", **extra)["id"]
     elif tipo == "carrusel":
         hijos = []
         for f in sorted(os.listdir(ruta)):

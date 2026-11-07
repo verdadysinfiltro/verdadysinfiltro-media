@@ -62,7 +62,7 @@ h2{font-family:var(--hand);font-weight:400;font-size:28px;line-height:1.05;margi
 .sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap}
 .sec-h p{margin:0;color:var(--muted);font-size:13px;font-weight:700}
 
-.flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.flow{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
 @media (max-width:820px){.flow{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:480px){.flow{grid-template-columns:1fr}}
 .step{background:var(--card);border-radius:18px;padding:12px 14px;border:2px solid var(--line);display:flex;flex-direction:column;gap:4px;min-width:0}
@@ -161,7 +161,7 @@ dialog::backdrop{background:rgba(5,4,8,.7)}
   </div>
 
   <div class="office" id="office">
-    <canvas id="cv" aria-label="Oficina 3D nocturna con seis muñequitos: Pluma, Tinta, Eco, Marco, Luna y Lupa en sus mesas"></canvas>
+    <canvas id="cv" aria-label="Oficina 3D nocturna ampliada con siete muñequitos: Pluma, Tinta, Eco, Clip, Luna, Lupa y Marco, con sala de montaje de reels"></canvas>
     <div class="ov" id="ov"></div>
     <div class="views" role="group" aria-label="Cámara">
       <button type="button" data-v="iso" aria-pressed="true">Isométrica</button>
@@ -208,28 +208,32 @@ dialog::backdrop{background:rgba(5,4,8,.7)}
 <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
 <script>
 const AGENTS=[
-  {id:'pluma',name:'Pluma',role:'Escritora · frases únicas',shirt:'#8b6cf0',pants:'#2e2840',skin:'#f3c9a2',hair:'#2a1b14',acc:'bun',desk:[-6.2,-3.8],
+  {id:'pluma',name:'Pluma',role:'Escritora · frases únicas',shirt:'#8b6cf0',pants:'#2e2840',skin:'#f3c9a2',hair:'#2a1b14',acc:'bun',desk:[-9,-5.5],
    does:['Cada domingo escribe el plan de la semana: 7 frases de reel, 4 carruseles, 1 imagen y 21 stories','Frases originales en segunda persona: desamor, amor propio, soltar, cansancio emocional','Las piensa para que se envíen por privado y se guarden','Comprueba el historial para no repetir nunca una frase ni una idea'],
    kpi:[['Plan','Domingo'],['Largo','≤ 20 palabras'],['Repetidas','0']],first:'Esperando el plan del domingo'},
-  {id:'tinta',name:'Tinta',role:'Diseñadora · la imagen de cada frase',shirt:'#e9e6f2',pants:'#2b2933',skin:'#c98d5e',hair:'#111014',acc:'glasses',desk:[-1.6,-3.8],
-   does:['Monta cada frase con la plantilla oficial: fondo negro, More Sugar Thin, estrellas y firma','Imágenes y carruseles a 1080×1350, stories a 1080×1920','Mientras no haya editor de vídeo, también monta los reels (7 s, zoom lento y piano original)','Sube todo al repo de GitHub para que tenga URL pública'],
+  {id:'tinta',name:'Tinta',role:'Diseñadora · la imagen de cada frase',shirt:'#e9e6f2',pants:'#2b2933',skin:'#c98d5e',hair:'#111014',acc:'glasses',desk:[-4,-5.5],
+   does:['Monta cada frase con la plantilla oficial: fondo negro, More Sugar Thin, estrellas y firma','Imágenes y carruseles a 1080×1350, stories a 1080×1920','Prepara la imagen base 1080×1920 de cada reel y se la pasa a Clip','Sube todo al repo de GitHub para que tenga URL pública'],
    kpi:[['Post','1080×1350'],['Story','1080×1920'],['Fuente','More Sugar']],first:'Esperando frases de Pluma'},
-  {id:'eco',name:'Eco',role:'Captions y publicación · Instagram',shirt:'#4a8fe7',pants:'#24304a',skin:'#ffe0c4',hair:'#c9a14a',acc:'pony',desk:[3,-3.8],
+  {id:'eco',name:'Eco',role:'Captions y publicación · Instagram',shirt:'#4a8fe7',pants:'#24304a',skin:'#ffe0c4',hair:'#c9a14a',acc:'pony',desk:[1,-5.5],
    does:['Escribe un caption de 1-3 líneas que pida enviar o guardar','Se inventa 8-15 hashtags según la frase, siempre con #verdadysinfiltro','Publica en Instagram a su hora: carrusel por la mañana, imagen a mediodía y reel por la noche','Apunta cada publicación en el historial y en esta oficina'],
    kpi:[['Reel','20:35'],['Carrusel','7:45'],['Hashtags','8-15']],first:'Esperando la imagen de Tinta'},
-  {id:'marco',name:'Marco',role:'Cuadros · en pausa hasta lanzar la colección',shirt:'#c48a45',pants:'#3a2c22',skin:'#a86b45',hair:'#1d1a24',acc:'cap',desk:[5.4,1.6],
+  {id:'clip',name:'Clip',role:'Editor de reels · vídeo y música',shirt:'#e2554f',pants:'#2a2230',skin:'#d9a27a',hair:'#3b2a20',acc:'band',desk:[7.5,-5.5],
+   does:['Monta el reel de cada día: 7 s en 1080×1920, la frase visible desde el primer fotograma','Varía el movimiento cada día (acercar, alejar o deslizar) con grano de película suave','Compone el piano original de cada reel (sin derechos, distinto cada día) y equilibra el volumen','Elige la portada del reel y revisa que nada se corte en la zona de la interfaz de Instagram'],
+   kpi:[['Duración','7 s'],['Formato','1080×1920'],['Música','Piano propio']],first:'Esperando la frase del reel'},
+  {id:'marco',name:'Marco',role:'Cuadros · en pausa hasta lanzar la colección',shirt:'#c48a45',pants:'#3a2c22',skin:'#a86b45',hair:'#1d1a24',acc:'cap',desk:[4,1.5],
    does:['En pausa: los cuadros y la serie 01 se lanzan más adelante','Mientras tanto apunta las frases con más guardados como candidatas a cuadro','Cuando se active: catálogo, mockups y pedidos por mensaje directo'],
    kpi:[['Estado','En pausa'],['Candidatas','Top guardados'],['Pedidos','Por DM']],first:'En pausa hasta lanzar los cuadros'},
-  {id:'luna',name:'Luna',role:'Stories y comunidad',shirt:'#d25aa4',pants:'#3f2b48',skin:'#f6d2b0',hair:'#6a3a22',acc:'phones',desk:[-5.2,1.6],
+  {id:'luna',name:'Luna',role:'Stories y comunidad',shirt:'#d25aa4',pants:'#3f2b48',skin:'#f6d2b0',hair:'#6a3a22',acc:'phones',desk:[-8,1.5],
    does:['Sube 3 stories al día: una por la mañana, otra a mediodía y otra por la noche','Stories de frase, de pregunta ("¿Te ha pasado?") y de recordatorio del post del día','Responde los comentarios nuevos cada noche, corto y cercano','Las encuestas y cajas de preguntas las pone Rodrigo a mano (la API no lo permite)'],
    kpi:[['Stories','3 al día'],['Comentarios','Cada noche'],['Encuestas','A mano']],first:'Preparando la story de hoy'},
-  {id:'lupa',name:'Lupa',role:'Analista · qué frases conectan',shirt:'#3fc8a4',pants:'#21423b',skin:'#e8b48a',hair:'#5a5a6e',acc:'beanie',desk:[0.1,1.6],
+  {id:'lupa',name:'Lupa',role:'Analista · qué frases conectan',shirt:'#3fc8a4',pants:'#21423b',skin:'#e8b48a',hair:'#5a5a6e',acc:'beanie',desk:[-2,1.5],
    does:['Cada noche actualiza seguidores y las métricas de cada post (alcance, guardados, envíos)','Cada domingo escribe los aprendizajes de la semana para Pluma','Repite lo que más se guarda y se envía; revisa a las 2 semanas antes de descartar nada','Sigue el crecimiento hacia la meta de seguidores'],
    kpi:[['Clave','Guardados + envíos'],['Informe','Domingo'],['Meta','100 seg.']],first:'Esperando datos de la semana'},
 ];
 const FLOW=[
   {b:'Escribir',s:'Plan semanal y frases pensadas para enviar y guardar',w:['pluma']},
-  {b:'Diseñar',s:'Plantilla negra, More Sugar, reels con piano',w:['tinta']},
+  {b:'Diseñar',s:'Plantilla negra, More Sugar, estrellas',w:['tinta']},
+  {b:'Montar reel',s:'7 s, movimiento, grano y piano original',w:['clip']},
   {b:'Publicar',s:'Caption, hashtags y publicación en Instagram a su hora',w:['eco']},
   {b:'Conversar',s:'3 stories al día y respuestas a comentarios',w:['luna']},
   {b:'Medir',s:'Guardados y envíos mandan; informe los domingos',w:['lupa']},
@@ -343,12 +347,12 @@ const starGeo=new THREE.ShapeGeometry(starShape);
 
 // luces: noche con lámparas cálidas
 scene.add(new THREE.HemisphereLight(0xd9d2ff,0x3a3050,.6));
-const sun=new THREE.DirectionalLight(0xd0c8ff,.45);sun.position.set(8,16,10);sun.castShadow=true;
-sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-14,right:14,top:14,bottom:-14,near:1,far:50});sun.shadow.bias=-0.0008;sun.shadow.normalBias=.03;scene.add(sun);
-[[-6,3.2,-2.4],[2,3.2,-2.4],[0,3.2,3.5],[6,3.2,3]].forEach(([x,y,z])=>{const l=new THREE.PointLight(0xffd9a0,.38,9);l.position.set(x,y,z);scene.add(l)});
+const sun=new THREE.DirectionalLight(0xd0c8ff,.45);sun.position.set(11,21,13);sun.castShadow=true;
+sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-19,right:19,top:19,bottom:-19,near:1,far:70});sun.shadow.bias=-0.0008;sun.shadow.normalBias=.03;scene.add(sun);
+[[-8,3.2,-3.5],[-1,3.2,-3.5],[6,3.2,-3.5],[-6,3.2,4],[2,3.2,5.5],[9,3.2,4]].forEach(([x,y,z])=>{const l=new THREE.PointLight(0xffd9a0,.38,9);l.position.set(x,y,z);scene.add(l)});
 
 // suelo y paredes
-const W=20,D=14;
+const W=28,D=20;
 mesh(RB(W+.6,.6,D+.6),'#2a2536',{y:-.36,recv:true,cast:false});
 for(let i=0;i<10;i++)mesh(box(W,.12,D/10-.04),['#4a4256','#433c4f','#4f475c'][i%3],{y:0,z:-D/2+D/20+i*D/10,recv:true,cast:false});
 mesh(box(W+.6,7,.5),'#1e1b26',{z:-D/2-.25,y:3.5,recv:true,cast:false});
@@ -357,13 +361,16 @@ mesh(box(W+.6,.5,.55),'#ece8f4',{z:-D/2-.2,y:.25,cast:false});mesh(box(.55,.5,D+
 mesh(box(W+.6,.2,.6),'#ece8f4',{z:-D/2-.25,y:7.1,cast:false});mesh(box(.6,.2,D+.6),'#ece8f4',{x:-W/2-.25,y:7.1,cast:false});
 // estrellitas dibujadas en las paredes
 const wallStars=[];
-for(let i=0;i<24;i++){const back=i<15;const s=mesh(starGeo,'#fff',{cast:false,mat:B(0xffffff)});s.scale.setScalar(.08+Math.random()*.1);
-  if(back)s.position.set(-9+Math.random()*18,5.9+Math.random()*1,-D/2+.02);else{s.position.set(-W/2+.02,6+Math.random()*.9,-6+Math.random()*12);s.rotation.y=Math.PI/2}
+for(let i=0;i<36;i++){const back=i<22;const s=mesh(starGeo,'#fff',{cast:false,mat:B(0xffffff)});s.scale.setScalar(.08+Math.random()*.1);
+  if(back)s.position.set(-13+Math.random()*26,5.9+Math.random()*1,-D/2+.02);else{s.position.set(-W/2+.02,6+Math.random()*.9,-9+Math.random()*18);s.rotation.y=Math.PI/2}
   s.userData.ph=Math.random()*6;wallStars.push(s)}
 
 // alfombra
-mesh(new THREE.CylinderGeometry(3.2,3.2,.05,40),'#0b0a0e',{x:1.2,y:.08,z:4.8,cast:false,recv:true});
-mesh(new THREE.TorusGeometry(2.8,.04,6,60),'#fff',{x:1.2,y:.12,z:4.8,cast:false,mat:B(0xeeeeee)}).rotation.x=Math.PI/2;
+mesh(new THREE.CylinderGeometry(3.8,3.8,.05,40),'#0b0a0e',{x:1.5,y:.08,z:6.6,cast:false,recv:true});
+mesh(new THREE.TorusGeometry(3.4,.04,6,60),'#fff',{x:1.5,y:.12,z:6.6,cast:false,mat:B(0xeeeeee)}).rotation.x=Math.PI/2;
+// mesa baja y pufs en la alfombra (zona de descanso)
+mesh(new THREE.CylinderGeometry(1,1,.12,32),'#ece8f4',{x:1.5,y:.62,z:6.6,out:1.04});mesh(new THREE.CylinderGeometry(.12,.18,.55,12),'#111015',{x:1.5,y:.3,z:6.6});
+[[-1,6],[4,6.4],[1.6,9]].forEach(([x,z],i)=>mesh(new THREE.SphereGeometry(.55,18,12),['#8b6cf0','#d25aa4','#3fc8a4'][i],{x,y:.38,z,out:1.05}).scale.set(1,.6,1));
 
 // ventana con noche y luna
 const win=new THREE.Group();win.position.set(-W/2+.02,3.9,-1.2);scene.add(win);
@@ -374,64 +381,85 @@ for(let i=0;i<7;i++){const s=mesh(starGeo,'#fff',{x:.15,y:-1+Math.random()*2.2,z
 mesh(box(.5,.12,4.4),'#ece8f4',{x:.25,y:-1.55,parent:win});
 
 // pared del fondo: el grid real del perfil
-const board=new THREE.Group();board.position.set(6.6,3.7,-D/2+.05);scene.add(board);
+const board=new THREE.Group();board.position.set(4,3.7,-D/2+.05);scene.add(board);
 mesh(box(3.5,4.3,.12),'#ece8f4',{parent:board});
 const FEED3D=[['Si estás pasando','por esto, léelo.'],['Te fuiste en','el peor momento'],['Empezamos','sin filtros'],['Nadie va a','salvarte'],['No cambiaste,','solo dejé de','justificarte'],['Aquí hablamos','con verdad'],['No te duele','lo que pasó'],['✦'],['✧']];
 FEED3D.forEach((l,i)=>{const fm=new THREE.MeshBasicMaterial({map:textTex(l,{w:256,h:320,size:26,sign:false})});const k=B(0x000000);
   const t=mesh(box(1.04,1.3,.1),'#000',{x:(i%3-1)*1.1,y:(1-Math.floor(i/3))*1.36,z:.08,parent:board,cast:false,mat:[k,k,k,k,fm,k]});t.userData.tile=i});
 
 // cartel redondo SIN FILTRO + corazón morado
-const logo=new THREE.Group();logo.position.set(-1.6,4.4,-D/2+.1);scene.add(logo);
+const logo=new THREE.Group();logo.position.set(-3.4,4.4,-D/2+.1);scene.add(logo);
 const lc=document.createElement('canvas');lc.width=lc.height=512;const lx=lc.getContext('2d');
 const drawLogo=()=>{lx.fillStyle='#000';lx.fillRect(0,0,512,512);lx.strokeStyle='#fff';lx.lineWidth=22;lx.beginPath();lx.arc(256,256,215,0,7);lx.stroke();lx.fillStyle='#fff';lx.textAlign='center';lx.textBaseline='middle';lx.font='900 100px Nunito, "Arial Black", sans-serif';lx.fillText('SIN',256,200);lx.fillText('FILTRO',256,316)};drawLogo();
 const logoTex=new THREE.CanvasTexture(lc);logoTex.encoding=THREE.sRGBEncoding;if(document.fonts)document.fonts.load('900 100px Nunito').then(()=>{drawLogo();logoTex.needsUpdate=true}).catch(()=>{});
 const logoM=new THREE.Mesh(new THREE.CircleGeometry(1.2,48),new THREE.MeshBasicMaterial({map:logoTex}));logoM.position.z=.07;logo.add(logoM);
 mesh(new THREE.CylinderGeometry(1.25,1.25,.12,48),'#000',{parent:logo,mat:B(0x000000)}).rotation.x=Math.PI/2;
 const hs=new THREE.Shape();hs.moveTo(0,-.9);hs.bezierCurveTo(-1.6,.1,-.9,1.2,0,.45);hs.bezierCurveTo(.9,1.2,1.6,.1,0,-.9);
-const heart=mesh(new THREE.ExtrudeGeometry(hs,{depth:.15,bevelEnabled:true,bevelSize:.05,bevelThickness:.05,bevelSegments:2}),'#9b6cff',{x:2.6,y:4.9,z:-D/2+.1,mat:B(0xa77bff)});heart.scale.setScalar(.6);
-const neonLight=new THREE.PointLight(0xa77bff,.7,6);neonLight.position.set(2.6,4.8,-D/2+.9);scene.add(neonLight);
+const heart=mesh(new THREE.ExtrudeGeometry(hs,{depth:.15,bevelEnabled:true,bevelSize:.05,bevelThickness:.05,bevelSegments:2}),'#9b6cff',{x:-.6,y:4.9,z:-D/2+.1,mat:B(0xa77bff)});heart.scale.setScalar(.6);
+const neonLight=new THREE.PointLight(0xa77bff,.7,6);neonLight.position.set(-.6,4.8,-D/2+.9);scene.add(neonLight);
 
 // pared izquierda: cuadros a la venta (Colección Sin Filtro)
 const CUADROS=[['No te duele','lo que pasó,','te duele lo','que esperabas.'],['Nadie va a','salvarte.'],['Sin filtros,','con verdad.']];
-const gallery=new THREE.Group();gallery.position.set(-W/2+.08,3.7,3.6);gallery.rotation.y=Math.PI/2;scene.add(gallery);
+const gallery=new THREE.Group();gallery.position.set(-W/2+.08,3.7,5);gallery.rotation.y=Math.PI/2;scene.add(gallery);
 CUADROS.forEach((l,i)=>{const f=new THREE.Group();f.position.set((i-1)*1.75,i===1?.35:0,0);gallery.add(f);
   mesh(box(1.4,1.75,.1),'#c48a45',{parent:f,out:1.03});
   mesh(new THREE.PlaneGeometry(1.2,1.5),'#000',{z:.06,parent:f,cast:false,mat:new THREE.MeshBasicMaterial({map:textTex(l,{w:256,h:320,size:28,sign:false})})})});
-const gLight=new THREE.PointLight(0xffe2b0,.5,5);gLight.position.set(-W/2+1.4,5.4,3.6);scene.add(gLight);
+const gLight=new THREE.PointLight(0xffe2b0,.5,5);gLight.position.set(-W/2+1.4,5.4,5);scene.add(gLight);
 mesh(new THREE.PlaneGeometry(1.8,.4),'#fff',{y:-1.35,z:.02,parent:gallery,cast:false,mat:new THREE.MeshBasicMaterial({map:textTex(['Colección Sin Filtro'],{w:400,h:90,size:40,bg:'#ece8f4',fg:'#111',stars:false,sign:false})})});
 
 // estante con libretas y velas
-const shelf=new THREE.Group();shelf.position.set(-6.2,4.6,-D/2+.25);scene.add(shelf);
+const shelf=new THREE.Group();shelf.position.set(-9,4.6,-D/2+.25);scene.add(shelf);
 mesh(box(3,.12,.45),'#ece8f4',{parent:shelf});['#111015','#8b6cf0','#ece8f4','#111015','#d25aa4'].forEach((c,i)=>mesh(box(.22,.6+(i%2)*.15,.35),c,{x:-1.2+i*.27,y:.36+(i%2)*.07,parent:shelf}));
 const flames=[];[.5,.95].forEach(x=>{mesh(new THREE.CylinderGeometry(.12,.12,.3,14),'#ece8f4',{x,y:.21,parent:shelf});flames.push(mesh(new THREE.SphereGeometry(.06,10,8),'#ffd28a',{x,y:.42,parent:shelf,cast:false,mat:B(0xffc46b)}))});
 
 // banco de frases (corcho con notas)
-const cork=new THREE.Group();cork.position.set(-W/2+.1,3.9,-4.6);scene.add(cork);
+const cork=new THREE.Group();cork.position.set(-W/2+.1,3.9,-6);scene.add(cork);
 mesh(box(.12,2,2.4),'#8a6a4a',{parent:cork});for(let i=0;i<6;i++){const n=mesh(box(.06,.5,.5),'#fff',{x:.08,y:.5-Math.floor(i/3)*.9,z:-.75+(i%3)*.75,parent:cork,cast:false,mat:B(i===4?0xd8c6ff:0xf4f2f8)});n.rotation.x=(i%2?.12:-.1)}
 
 function plant(x,z,s=1){const g=new THREE.Group();g.position.set(x,0,z);g.scale.setScalar(s);scene.add(g);
   mesh(new THREE.CylinderGeometry(.45,.35,.8,20),'#111015',{y:.46,parent:g,out:1.06});
   [[0,1.4,0,.55],[.35,1.15,.2,.42],[-.35,1.2,-.1,.45],[.1,1.85,-.1,.38]].forEach(([a,b,c,r])=>mesh(new THREE.SphereGeometry(r,16,12),'#4c9f68',{x:a,y:b,z:c,parent:g,out:1.05}));}
-plant(-9.1,-6.1);plant(9.1,-6.1,.9);plant(9.1,6.1,1.1);plant(-9.1,6.1,.8);
+plant(-13.1,-9.1);plant(13.1,-9.1,.9);plant(13.1,9.1,1.1);plant(-13.1,9.1,.8);plant(-.6,-8.8,.7);plant(13.1,0,.8);
 
 // cafetera
-const cafe=new THREE.Group();cafe.position.set(-8.6,0,-4.2);scene.add(cafe);
+const cafe=new THREE.Group();cafe.position.set(-12.6,0,-3.2);scene.add(cafe);
 mesh(RB(1.4,1.1,1.1),'#ece8f4',{y:.6,parent:cafe,out:1.04});
 mesh(RB(.8,.9,.6),'#111015',{y:1.6,parent:cafe,out:1.05});mesh(new THREE.CylinderGeometry(.13,.11,.22,14),'#ece8f4',{y:1.28,z:.2,parent:cafe});
 const steam=[];for(let i=0;i<3;i++)steam.push(mesh(new THREE.SphereGeometry(.09,10,8),'#fff',{y:1.6,z:.25,parent:cafe,cast:false,mat:new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:.7})}));
 
 // sofá
-const sofa=new THREE.Group();sofa.position.set(-6,0,5.2);scene.add(sofa);
+const sofa=new THREE.Group();sofa.position.set(-8.5,0,7.4);scene.add(sofa);
 mesh(RB(3.6,.6,1.3),'#ece8f4',{y:.45,parent:sofa,out:1.03});mesh(RB(3.6,1,.4),'#d9d4e6',{y:1.05,z:-.5,parent:sofa,out:1.03});
 mesh(RB(.4,.9,1.3),'#d9d4e6',{x:-1.8,y:.7,parent:sofa});mesh(RB(.4,.9,1.3),'#d9d4e6',{x:1.8,y:.7,parent:sofa});
 mesh(RB(.7,.5,.25),'#111015',{x:-1.1,y:1,z:-.25,parent:sofa}).rotation.x=-.25;mesh(RB(.7,.5,.25),'#8b6cf0',{x:1.1,y:1,z:-.25,parent:sofa}).rotation.x=-.25;
 
 // zona de embalaje de cuadros (Marco)
-const pack=new THREE.Group();pack.position.set(8.2,0,2.4);scene.add(pack);
+const pack=new THREE.Group();pack.position.set(7.6,0,3.4);scene.add(pack);
 mesh(RB(1.1,.8,.9),'#c9a06d',{y:.42,parent:pack,out:1.04});mesh(RB(.9,.6,.7),'#d8b07c',{y:1.15,parent:pack,out:1.04});
 const ease=new THREE.Group();ease.position.set(-.2,1.05,1.1);ease.rotation.x=-.15;pack.add(ease);
 mesh(box(.9,1.15,.08),'#c48a45',{parent:ease,out:1.04});
 mesh(new THREE.PlaneGeometry(.75,1),'#000',{z:.05,parent:ease,cast:false,mat:new THREE.MeshBasicMaterial({map:textTex(['Sin filtro.'],{w:200,h:260,size:30,sign:false})})});
+
+// sala de montaje de reels (Clip)
+const edit=new THREE.Group();edit.position.set(10.2,3.7,-D/2+.08);scene.add(edit);
+mesh(box(5.2,3,.14),'#111015',{parent:edit,out:1.02});
+const ec=document.createElement('canvas');ec.width=1024;ec.height=576;const ex=ec.getContext('2d');
+const drawEdit=()=>{ex.fillStyle='#0a090d';ex.fillRect(0,0,1024,576);ex.fillStyle='#000';ex.fillRect(372,30,280,380);ex.strokeStyle='#333';ex.strokeRect(372,30,280,380);
+  ex.fillStyle='#fff';ex.textAlign='center';ex.textBaseline='middle';ex.font='30px "Gochi Hand", cursive';['Lo que no','te dijeron','con palabras…'].forEach((l,i)=>ex.fillText(l,512,180+i*40));
+  ex.font='14px sans-serif';ex.fillText('✧✦',400,50);ex.fillText('✦✧',624,390);ex.textAlign='left';ex.fillStyle='#9d97b0';ex.font='bold 20px sans-serif';ex.fillText('REEL · 00:07 · 1080×1920',30,50);
+  [['#e2554f',440,120],['#b794f6',440,260],['#4a8fe7',500,180]].forEach(([c,y,w],i)=>{ex.fillStyle=c;for(let k=0;k<6;k++)ex.fillRect(30+k*(w+12)+i*30,440+i*36,w,26)});
+  ex.fillStyle='#fff';ex.fillRect(300,430,3,120)};
+drawEdit();const editTex=new THREE.CanvasTexture(ec);editTex.encoding=THREE.sRGBEncoding;if(document.fonts)document.fonts.load('30px "Gochi Hand"').then(()=>{drawEdit();editTex.needsUpdate=true}).catch(()=>{});
+mesh(new THREE.PlaneGeometry(5,2.8),'#000',{z:.08,parent:edit,cast:false,mat:new THREE.MeshBasicMaterial({map:editTex})});
+const rec=mesh(new THREE.SphereGeometry(.16,14,10),'#f00',{x:2.95,y:1.75,z:.1,parent:edit,cast:false,mat:new THREE.MeshBasicMaterial({color:0xff3b3b})});
+mesh(new THREE.PlaneGeometry(1.2,.36),'#fff',{x:2.15,y:1.75,z:.09,parent:edit,cast:false,mat:new THREE.MeshBasicMaterial({map:textTex(['SALA DE MONTAJE'],{w:360,h:108,size:34,bg:'#111015',fg:'#fff',stars:false,sign:false})})});
+const recLight=new THREE.PointLight(0xff4a4a,.5,5);recLight.position.set(10.2,4.6,-D/2+1.2);scene.add(recLight);
+const tri=new THREE.Group();tri.position.set(11.6,0,-1.6);tri.rotation.y=-.6;scene.add(tri);
+[0,1,2].forEach(i=>{const l=mesh(new THREE.CylinderGeometry(.03,.03,2.1,6),'#111015',{parent:tri});const a=i/3*Math.PI*2;l.position.set(Math.cos(a)*.35,1,Math.sin(a)*.35);l.rotation.set(Math.sin(a)*.17,0,-Math.cos(a)*.17)});
+mesh(new THREE.CylinderGeometry(.03,.03,.9,6),'#111015',{y:2.4,parent:tri});
+const ring=mesh(new THREE.TorusGeometry(.45,.06,10,32),'#fff',{y:2.9,parent:tri,cast:false,mat:new THREE.MeshBasicMaterial({color:0xfff6e8})});
+mesh(box(.22,.42,.03),'#111015',{y:2.9,z:.02,parent:tri});
+const ringLight=new THREE.PointLight(0xfff1dc,.35,4);ringLight.position.set(11.3,2.9,-1.1);scene.add(ringLight);
 
 /* ---------- mesas ---------- */
 const SCREEN={};
@@ -457,6 +485,9 @@ function desk(a){
     mesh(new THREE.CylinderGeometry(.03,.02,.4,6),'#fff',{x:-.5,y:1.26,z:.1,parent:g}).rotation.z=1.5}
   if(a.id==='eco'){mesh(box(.24,.04,.44),'#111015',{x:-.85,y:1.22,z:-.1,parent:g}).rotation.y=.3;[['#d25aa4',0],['#4a8fe7',1],['#f3f1f8',2]].forEach(([c,i])=>mesh(new THREE.CylinderGeometry(.08,.08,.05,16),c,{x:-.95+i*.2,y:1.23,z:.4,parent:g}))}
   if(a.id==='marco'){const f=mesh(box(.6,.75,.06),'#c48a45',{x:-.85,y:1.6,z:.3,parent:g,out:1.05});f.rotation.y=.3;mesh(new THREE.PlaneGeometry(.48,.6),'#000',{z:.04,parent:f,cast:false,mat:B(0x000000)});mesh(box(.5,.3,.4),'#c9a06d',{x:.55,y:1.34,z:.3,parent:g})}
+  if(a.id==='clip'){[-1,1].forEach(sd=>{const m=mesh(box(.95,.6,.05),'#111015',{x:sd*.62-.05,y:1.62,z:.42,parent:g,out:1.04});m.rotation.y=-sd*.18;
+      mesh(new THREE.PlaneGeometry(.85,.5),'#000',{z:-.03,parent:m,cast:false,mat:new THREE.MeshBasicMaterial({color:sd<0?0x2a1f3d:0x3a1a1a})}).rotation.y=Math.PI});
+    const clap=new THREE.Group();clap.position.set(-.95,1.25,-.25);clap.rotation.y=.4;g.add(clap);mesh(box(.42,.05,.32),'#111015',{parent:clap});const top=mesh(box(.42,.04,.08),'#f3f1f8',{y:.06,z:-.14,parent:clap});top.rotation.x=-.4}
   if(a.id==='luna'){mesh(box(.24,.04,.44),'#111015',{x:-.85,y:1.22,z:-.1,parent:g}).rotation.y=.4}
   if(a.id==='lupa'){[.25,.45,.35,.6].forEach((h,i)=>mesh(box(.12,h,.12),i===3?'#b794f6':'#ece8f4',{x:-1.1+i*.17,y:1.19+h/2,z:.25,parent:g}))}
   mesh(new THREE.CylinderGeometry(.15,.15,.04,14),'#111015',{x:1.05,y:1.21,z:.35,parent:g});mesh(new THREE.CylinderGeometry(.02,.02,.6,6),'#111015',{x:1.05,y:1.5,z:.35,parent:g});
@@ -489,13 +520,15 @@ function character(a){
   if(a.acc==='glasses'){[-1,1].forEach(s=>mesh(new THREE.TorusGeometry(.14,.025,8,20),'#000',{x:s*.22,y:-.02,z:.62,parent:head,cast:false,mat:B(0x111111)}));mesh(box(.12,.025,.02),'#000',{z:.64,parent:head,cast:false,mat:B(0x111111)})}
   if(a.acc==='cap'){mesh(new THREE.SphereGeometry(.7,24,14,0,Math.PI*2,0,Math.PI*.42),'#111015',{y:.06,parent:head,out:1.03}).rotation.x=-.1;mesh(new THREE.CylinderGeometry(.42,.42,.05,20,1,false,-Math.PI/2,Math.PI),'#111015',{y:.32,z:.38,parent:head}).rotation.x=.15}
   if(a.acc==='beanie'){mesh(new THREE.SphereGeometry(.7,24,14,0,Math.PI*2,0,Math.PI*.45),'#111015',{y:.08,parent:head,out:1.03});mesh(new THREE.TorusGeometry(.62,.08,8,28),'#2b2933',{y:.25,parent:head}).rotation.x=Math.PI/2;mesh(new THREE.SphereGeometry(.14,12,10),'#f3f1f8',{y:.82,parent:head})}
+  if(a.acc==='band'){mesh(new THREE.TorusGeometry(.66,.05,8,30,Math.PI),'#e2554f',{y:.08,parent:head,cast:false});[-1,1].forEach(s=>mesh(new THREE.CylinderGeometry(.15,.15,.12,16),'#111015',{x:s*.64,y:-.02,parent:head,out:1.08}).rotation.z=Math.PI/2);
+    const mic=mesh(new THREE.CylinderGeometry(.02,.02,.5,6),'#111015',{x:-.5,y:-.25,z:.3,parent:head});mic.rotation.set(1.1,0,.5);mesh(new THREE.SphereGeometry(.06,10,8),'#111015',{x:-.3,y:-.36,z:.55,parent:head})}
   if(a.acc==='phones'){mesh(new THREE.TorusGeometry(.68,.05,8,30,Math.PI),'#111015',{y:.05,parent:head,cast:false});[-1,1].forEach(s=>mesh(new THREE.CylinderGeometry(.17,.17,.14,16),'#b794f6',{x:s*.66,y:-.02,parent:head,out:1.08}).rotation.z=Math.PI/2)}
   root.traverse(o=>{if(o.isMesh)o.userData.agent=a.id});
   return {root,body,head,legL,legR,armL,armR,eyes};
 }
 
 /* ---------- comportamiento ---------- */
-const SPOTS=[{p:[-7.6,-3.2],face:-2.2},{p:[-6,4.6],sit:true,face:0},{p:[-8.2,3.6],face:-Math.PI/2},{p:[6.6,-5.4],face:Math.PI},{p:[-8.3,-.8],face:-Math.PI/2},{p:[1.2,4.8],face:.4},{p:[-8.3,-4.6],face:-Math.PI/2},{p:[7.2,4],face:-1.2}];
+const SPOTS=[{p:[-11.4,-2.4],face:-2.2},{p:[-8.5,6.8],sit:true,face:0},{p:[-12.2,5],face:-Math.PI/2},{p:[4,-8.3],face:Math.PI},{p:[-12.3,-1.2],face:-Math.PI/2},{p:[1.5,4.4],face:.4},{p:[-12.3,-6],face:-Math.PI/2},{p:[6.6,4.4],face:-1.2},{p:[10.2,-8.3],face:Math.PI},{p:[10.8,-.8],face:-2.4},{p:[4,7.4],face:-1.4}];
 AGENTS.forEach(a=>{desk(a);const c=character(a);const[x,z]=a.desk;
   chars[a.id]=Object.assign(c,{a,mode:'sit',pos:new THREE.Vector3(x,0,z-1),path:[],face:0,until:2+Math.random()*6,spot:null});c.root.position.copy(chars[a.id].pos)});
 
@@ -534,7 +567,7 @@ function tick(c,t,dt){
 }
 
 /* ---------- cámara ---------- */
-const VIEWS={iso:[[15,13,16],[0,1,0]],front:[[0,9,19],[0,1.5,0]],top:[[0.01,26,3],[0,0,0]]};
+const VIEWS={iso:[[20,17.5,21.5],[0,1,0]],front:[[0,12,25.5],[0,1.5,0]],top:[[0.01,35,4],[0,0,0]]};
 let camGoal=null;
 const controls=new THREE.OrbitControls(camera,cv);controls.enableDamping=true;controls.enablePan=false;controls.minZoom=.8;controls.maxZoom=2.6;controls.maxPolarAngle=1.25;
 const coarse=matchMedia('(pointer:coarse)').matches;
@@ -545,7 +578,7 @@ document.querySelectorAll('.views button').forEach(b=>b.onclick=()=>setView(b.da
 focusAgent=id=>{const c=chars[id];if(!c)return;const off=camera.position.clone().sub(controls.target);const t=new THREE.Vector3(c.pos.x,1.5,c.pos.z);camGoal={p:t.clone().add(off),t,z:1.7}};
 controls.addEventListener('start',()=>{camGoal=null});
 setView('iso',true);
-function resize(){const w=office.clientWidth,h=office.clientHeight;renderer.setSize(w,h,false);const asp=w/h,s=asp<1?9.6:8.4;
+function resize(){const w=office.clientWidth,h=office.clientHeight;renderer.setSize(w,h,false);const asp=w/h,s=asp<1?12.8:11.2;
   camera.left=-s*asp;camera.right=s*asp;camera.top=s;camera.bottom=-s;camera.updateProjectionMatrix()}
 new ResizeObserver(resize).observe(office);resize();
 
@@ -570,7 +603,7 @@ function loop(){
   for(let i=fx.length-1;i>=0;i--){const f=fx[i];f.t+=dt;f.m.position.y+=dt*.9;f.m.position.x+=f.vx*dt;f.m.material.opacity=1-f.t/1.8;f.m.lookAt(camera.position);if(f.t>1.8){scene.remove(f.m);f.m.material.dispose();fx.splice(i,1)}}
   steam.forEach((s,i)=>{const p=(t*.6+i/3)%1;s.position.y=1.7+p*1.2;s.position.x=Math.sin(t*2+i)*.08;s.material.opacity=.7*(1-p);s.scale.setScalar(.6+p)});
   if(!RM){wallStars.forEach(s=>s.material.color.setScalar(.55+.45*Math.sin(t*1.5+s.userData.ph)));flames.forEach((f,i)=>f.scale.set(1,1+Math.sin(t*12+i*2)*.25,1))}
-  heart.scale.setScalar(.6+Math.sin(t*3)*.03);neonLight.intensity=.6+Math.sin(t*3)*.15;
+  heart.scale.setScalar(.6+Math.sin(t*3)*.03);{const on=(t%1.4)<.8;rec.material.color.set(on?0xff3b3b:0x401010);recLight.intensity=on?.5:.05}neonLight.intensity=.6+Math.sin(t*3)*.15;
   board.children.forEach(m=>{if(m.userData.spin){m.userData.spin=Math.max(0,m.userData.spin-dt*1.5);m.rotation.y=(1-m.userData.spin)*Math.PI*2;if(!m.userData.spin)m.rotation.y=0}});
   if(camGoal){camera.position.lerp(camGoal.p,.08);controls.target.lerp(camGoal.t,.08);camera.zoom+=(camGoal.z-camera.zoom)*.08;camera.updateProjectionMatrix();if(camera.position.distanceTo(camGoal.p)<.02)camGoal=null}
   controls.update();renderer.render(scene,camera);placeTags();requestAnimationFrame(loop);

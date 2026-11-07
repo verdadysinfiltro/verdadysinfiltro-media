@@ -7,7 +7,8 @@ Copia del HTML: `oficina/index.html`.
 | Agente | Rol | Cuándo trabaja |
 |---|---|---|
 | Pluma | Frases. Plan semanal en `plan/actual` (domingo) y frases nuevas si faltan. Nunca repite (mira `docs/historial.md`). | Domingo y cada mañana |
-| Tinta | Imágenes (`tools/generar.py`) y reels (`tools/piano.py` + `tools/reel.sh`) hasta que exista un editor de vídeo. | Cada mañana |
+| Tinta | Imágenes, carruseles y stories (`tools/generar.py`); prepara la imagen base 1080×1920 de cada reel. | Cada mañana |
+| Clip | Editor de reels: 7 s, frase visible desde el primer fotograma, movimiento distinto cada día (`in`/`out`/`pan`, por semilla), grano suave, piano original (`tools/piano.py` semilla = fecha) y portada (`-cover.jpg`). `tools/reel.sh base.jpg salida.mp4 audio.wav auto $HOY`. Revisa primer y último fotograma. | Cada mañana |
 | Eco | Caption de 1–3 líneas + llamada a la acción + 8–15 hashtags inventados según la frase. Publica con `tools/publicar.py`. | 7:45, 13:35 y 20:35 |
 | Luna | 3 stories al día y respuesta a comentarios nuevos (cada noche). Encuestas y cajas de preguntas: a mano (la API no lo permite). | 7:45, 13:35 y 20:35 |
 | Lupa | Métricas: seguidores en `cuenta/perfil`, alcance, guardados y envíos de cada post; aprendizajes en `cerebro/aprendizajes`. | Cada noche + informe del domingo |
@@ -37,5 +38,5 @@ Semana: 7 reels, 4 carruseles, 1 imagen, 21 stories (≈ 58% / 33% / 8% del feed
 - `posts/<id>`: {titulo, tipo: carrusel|imagen|reel|story, fecha (ISO UTC), estado: programado|publicado|error, orden, archivo, url, permalink, metricas}. `orden`: fijadas 1–3; nuevos = 2000000000 − epoch(segundos) (lo más nuevo sale primero en el muro).
 - `cuenta/perfil`: {seguidores, publicaciones, cuadros, meta}.
 - `log/<id>`: {t (ISO UTC), agente, msg}; id = hora.
-- `cerebro/marca`, `cerebro/estrategia`, `cerebro/publicar`, `cerebro/aprendizajes`: reglas (mandan sobre lo demás si chocan; `aprendizajes` lo actualiza Lupa).
+- `cerebro/marca`, `cerebro/estrategia`, `cerebro/publicar`, `cerebro/reels`, `cerebro/aprendizajes`: reglas (mandan sobre lo demás si chocan; `aprendizajes` lo actualiza Lupa).
 - `plan/actual`: {week (lunes AAAA-MM-DD), dias: {lun..dom: {carrusel?: [frases], imagen?: frase, reel: frase, stories: [3 frases]}}, done por pieza}.

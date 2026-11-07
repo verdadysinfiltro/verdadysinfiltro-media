@@ -21,8 +21,12 @@
 - Lo que más pesa: envíos por privado y guardados.
 - Revisar estadísticas a las 2 semanas y repetir lo que tenga más guardados y envíos antes de borrar nada.
 
+## Calendario aplicado
+Ver `docs/oficina.md` (calendario semanal, agentes y rutinas en la nube).
+
 ## Flujo de trabajo
 1. Claude crea las frases (comprobando `docs/historial.md` para no repetir) y genera las imágenes con `tools/generar.py`.
 2. Las imágenes se suben a `posts/AAAA-MM-DD/` de este repo (público).
 3. URL pública: `https://raw.githubusercontent.com/verdadysinfiltro/verdadysinfiltro-media/main/posts/AAAA-MM-DD/<archivo>`.
-4. Claude publica en Instagram usando esas URLs y apunta cada post en `docs/historial.md`.
+4. Claude publica en Instagram usando esas URLs y apunta cada post en `docs/historial.md` y en la oficina (`posts`, `log`, `agents`).
+5. Reels: 7 s, frase visible desde el primer fotograma, zoom lento y piano original (`tools/piano.py`, semilla distinta cada día). Mientras no haya clips de vídeo, fondo de la plantilla.

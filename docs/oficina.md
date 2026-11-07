@@ -8,13 +8,13 @@ Copia del HTML: `oficina/index.html`.
 |---|---|---|
 | Pluma | Frases. Plan semanal en `plan/actual` (domingo) y frases nuevas si faltan. Nunca repite (mira `docs/historial.md`). | Domingo y cada mañana |
 | Tinta | Imágenes (`tools/generar.py`) y reels (`tools/piano.py` + `tools/reel.sh`) hasta que exista un editor de vídeo. | Cada mañana |
-| Eco | Caption de 1–3 líneas + llamada a la acción + 8–15 hashtags inventados según la frase. Publica con `tools/publicar.py`. | 7:45, 13:30 y 20:30 |
-| Luna | 3 stories al día y respuesta a comentarios nuevos (cada noche). Encuestas y cajas de preguntas: a mano (la API no lo permite). | 7:45, 13:30 y 20:30 |
+| Eco | Caption de 1–3 líneas + llamada a la acción + 8–15 hashtags inventados según la frase. Publica con `tools/publicar.py`. | 7:45, 13:35 y 20:35 |
+| Luna | 3 stories al día y respuesta a comentarios nuevos (cada noche). Encuestas y cajas de preguntas: a mano (la API no lo permite). | 7:45, 13:35 y 20:35 |
 | Lupa | Métricas: seguidores en `cuenta/perfil`, alcance, guardados y envíos de cada post; aprendizajes en `cerebro/aprendizajes`. | Cada noche + informe del domingo |
 | Marco | En pausa hasta lanzar los cuadros (y la serie 01). Solo apunta candidatas a cuadro. | — |
 
 ## Calendario (hora de Madrid)
-| Día | 7:45 | 13:30 | 20:30 |
+| Día | 7:45 | 13:35 | 20:35 |
 |---|---|---|---|
 | Lunes | Carrusel + story | Story | Reel + story |
 | Martes | Story | Imagen + story | Reel + story |
@@ -28,8 +28,8 @@ Semana: 7 reels, 4 carruseles, 1 imagen, 21 stories (≈ 58% / 33% / 8% del feed
 
 ## Rutinas en la nube (tareas programadas)
 - **Sin Filtro · mañana** (diaria 7:45): crea TODO el contenido del día, lo sube a `posts/AAAA-MM-DD/`, publica carrusel (si toca) y story de la mañana.
-- **Sin Filtro · mediodía** (diaria 13:30): imagen (martes) y story de mediodía.
-- **Sin Filtro · noche** (diaria 20:30): reel, story de noche, respuestas a comentarios y métricas.
+- **Sin Filtro · mediodía** (diaria 13:35): imagen (martes) y story de mediodía.
+- **Sin Filtro · noche** (diaria 20:35): reel, story de noche, respuestas a comentarios y métricas.
 - **Sin Filtro · semanal** (domingo 7:15, antes de la de mañana): informe, aprendizajes y plan de la semana siguiente.
 
 ## Base de datos de la oficina

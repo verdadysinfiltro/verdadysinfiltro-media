@@ -16,3 +16,8 @@ Comprobar aquí antes de crear contenido: no repetir frases ni ideas casi iguale
 | 2026-11-07 | imagen 19:30 | A veces el cierre que esperas nunca llega, y aun así te toca seguir. | posts/2026-11-07/imagen-1930.jpg |
 | 2026-11-07 | reel 20:35 | Lo que no te dijeron con palabras, te lo dijeron con ausencias. | posts/2026-11-07/reel-2035.mp4 |
 | 2026-11-07 | story 20:35 | Descansa. Mañana no tienes que tenerlo todo resuelto. | posts/2026-11-07/story-2035.jpg |
+| 2026-11-08 | carrusel 7:45 | Si sigues esperando una disculpa, léelo hasta el final. → Hay personas que piden perdón sin cambiar nada, y eso no es arrepentirse. / Tu paciencia no es una obligación, es un regalo que ya gastaste. / Perdonar no significa volver a abrirle la puerta. / Dejar de esperar a alguien también es una forma de sanar. / El cierre que buscas fuera, empieza a dártelo tú dentro. / Envíaselo a quien aún espera un perdón que no va a llegar. | posts/2026-11-08/carrusel/ |
+| 2026-11-08 | story 7:45 | Buenos días. Hoy no le debes explicaciones a nadie. | posts/2026-11-08/story-0745.jpg |
+| 2026-11-08 | story 13:35 | Si hoy no tuviste fuerzas, tampoco pasa nada. Mañana se vuelve a empezar. | posts/2026-11-08/story-1335.jpg |
+| 2026-11-08 | reel 20:35 | Dejaste de esperar mensajes y empezaste a esperar más de ti. | posts/2026-11-08/reel-2035.mp4 |
+| 2026-11-08 | story 20:35 | Esta noche suelta una conversación que ya no existe. | posts/2026-11-08/story-2035.jpg |

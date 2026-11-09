@@ -21,3 +21,8 @@ Comprobar aquí antes de crear contenido: no repetir frases ni ideas casi iguale
 | 2026-11-08 | story 13:35 | Si hoy no tuviste fuerzas, tampoco pasa nada. Mañana se vuelve a empezar. | posts/2026-11-08/story-1335.jpg |
 | 2026-11-08 | reel 20:35 | Dejaste de esperar mensajes y empezaste a esperar más de ti. | posts/2026-11-08/reel-2035.mp4 |
 | 2026-11-08 | story 20:35 | Esta noche suelta una conversación que ya no existe. | posts/2026-11-08/story-2035.jpg |
+| 2026-11-09 | carrusel 7:45 | Para quien da más de lo que recibe, esto es para ti. → Cuando eres el único que se esfuerza, no es una relación, es un trabajo. / Querer a alguien no debería costarte la paz. / Si tienes que pedir lo mínimo, ya te están diciendo lo que valen sus promesas. / No te quedes por lo que pudo ser, quédate solo por lo que es. / Mereces a alguien que te busque sin que tengas que avisarle. / Guárdalo para el día que dudes si te estás pidiendo demasiado. Envíaselo a quien lo necesite. | posts/2026-11-09/carrusel/ |
+| 2026-11-09 | story 7:45 | Lunes. Empieza la semana sin cargar con lo de otros. | posts/2026-11-09/story-0745.jpg |
+| 2026-11-09 | story 13:35 | Descansar a mitad del día no es rendirse. | posts/2026-11-09/story-1335.jpg |
+| 2026-11-09 | reel 20:35 | Mereces a alguien que no te haga dudar de lo que sientes. | posts/2026-11-09/reel-2035.mp4 |
+| 2026-11-09 | story 20:35 | Hoy cuídate como cuidas a quien más quieres. | posts/2026-11-09/story-2035.jpg |

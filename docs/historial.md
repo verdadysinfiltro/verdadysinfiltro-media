@@ -26,3 +26,8 @@ Comprobar aquí antes de crear contenido: no repetir frases ni ideas casi iguale
 | 2026-11-09 | story 13:35 | Descansar a mitad del día no es rendirse. | posts/2026-11-09/story-1335.jpg |
 | 2026-11-09 | reel 20:35 | Mereces a alguien que no te haga dudar de lo que sientes. | posts/2026-11-09/reel-2035.mp4 |
 | 2026-11-09 | story 20:35 | Hoy cuídate como cuidas a quien más quieres. | posts/2026-11-09/story-2035.jpg |
+| 2026-11-10 | story 7:45 | Martes. Respira antes de contestar ese mensaje. | posts/2026-11-10/story-0745.jpg |
+| 2026-11-10 | imagen 13:35 | Tu peor error fue quedarte donde ya te habían dejado ir. | posts/2026-11-10/imagen-1335.jpg |
+| 2026-11-10 | story 13:35 | Lo que te duele hoy ya te está enseñando a elegirte. | posts/2026-11-10/story-1335.jpg |
+| 2026-11-10 | reel 20:35 | No eras demasiado intenso, ellos eran poco para tanto. | posts/2026-11-10/reel-2035.mp4 |
+| 2026-11-10 | story 20:35 | Esta noche, mejor tú en paz que ellos con razón. | posts/2026-11-10/story-2035.jpg |

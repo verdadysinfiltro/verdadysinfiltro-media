@@ -2,6 +2,8 @@
 
 Repo de la cuenta de Instagram @verdadysinfiltro: marca, estrategia, generador de imágenes e imágenes publicadas (URLs públicas raw).
 
+**Rutina de la mañana: seguir `docs/rutina-manana.md` (manda sobre cualquier lista de pasos anterior).**
+
 Antes de crear contenido, leer:
 - `docs/marca.md`: estética, voz, hashtags y caption.
 - `docs/estrategia.md`: frecuencia, horarios, formatos y flujo de trabajo.

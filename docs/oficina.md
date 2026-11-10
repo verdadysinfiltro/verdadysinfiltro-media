@@ -44,3 +44,6 @@ Semana: 7 reels, 4 carruseles, 1 imagen, 21 stories (≈ 58% / 33% / 8% del feed
 ## Sesión de trabajo
 - **Sin Filtro · mañana** se ejecuta en la sesión fija "Sin Filtro · oficina (no borrar)" (`session_01THrf6QwLmYWXKRir16LpNz`), la única con permiso de push a `main` (lo necesita para subir las imágenes del día y que tengan URL pública). No borrar ni archivar esa sesión.
 - Mediodía, noche y semanal abren una sesión nueva cada vez: clonan el repo (público), publican con lo ya subido y escriben en la oficina; no necesitan push.
+
+## Preferencia de Rodrigo
+Las rutinas trabajan en silencio: no responder con resúmenes, avisos ni mensajes finales (gastan tokens). Solo ejecutar y dejar el registro en la oficina (`log`, `agents`, `posts`).

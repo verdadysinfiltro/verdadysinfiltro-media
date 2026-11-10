@@ -149,15 +149,15 @@ dialog::backdrop{background:rgba(5,4,8,.7)}
       </div>
     </div>
     <div class="stats">
-      <div class="stat"><small>Seguidores</small><b id="sSeg">4</b></div>
-      <div class="stat"><small>Publicaciones</small><b id="sPub">7</b></div>
+      <div class="stat"><small>Seguidores</small><b id="sSeg">6</b></div>
+      <div class="stat"><small>Publicaciones</small><b id="sPub">16</b></div>
       <div class="stat"><small>Cuadros</small><b id="sCua">0</b></div>
     </div>
   </header>
 
   <div class="goal" aria-label="Meta de seguidores">
-    <div class="gt"><span>Meta · <b id="gGoal">100 seguidores</b></span><span id="gLeft">Faltan 96</span></div>
-    <div class="bar"><i id="gBar" style="width:4%"></i></div>
+    <div class="gt"><span>Meta · <b id="gGoal">100 seguidores</b></span><span id="gLeft">Faltan 94</span></div>
+    <div class="bar"><i id="gBar" style="width:6%"></i></div>
   </div>
 
   <div class="office" id="office">
@@ -191,9 +191,9 @@ dialog::backdrop{background:rgba(5,4,8,.7)}
       <div class="sec-h"><h2>Programadas</h2><p id="progN"></p></div>
       <ul class="list" id="posts"><li><span class="empty" style="grid-column:1/-1">No hay nada en cola. Cada mañana Pluma y Tinta preparan lo del día y aparece aquí con su hora.</span></li></ul>
       <div class="week" aria-label="Ritmo semanal propuesto">
-        <span class="x">L<small>Reel+Carr.</small></span><span>M<small>Reel+Img</small></span><span class="x">X<small>Reel+Carr.</small></span><span class="x">J<small>Reel+Carr.</small></span><span>V<small>Reel</small></span><span>S<small>Reel</small></span><span class="x">D<small>Reel+Carr.</small></span>
+        <span class="x">L<small>2 reels+Carr.</small></span><span>M<small>2 reels</small></span><span class="x">X<small>2 reels+Carr.</small></span><span>J<small>2 reels</small></span><span>V<small>2 reels</small></span><span>S<small>2 reels</small></span><span class="x">D<small>2 reels+Carr.</small></span>
       </div>
-      <p class="note">Ritmo: reel cada noche a las 20:35, carrusel a las 7:45 (lunes, miércoles, jueves y domingo), imagen el martes a las 13:35 y 3 stories al día (7:45, 13:35 y 20:35). Feed: ~55% reels, 35% carruseles, 10% imágenes. Hora de Madrid.</p>
+      <p class="note">Ritmo desde el 11 de noviembre: reel a las 13:35 y a las 20:35 todos los días, carrusel a las 7:45 (lunes, miércoles y domingo) y una story cada noche. Hora de Madrid. Próxima revisión de la estrategia: 10 de diciembre.</p>
     </section>
     <section class="panel">
       <h2>Actividad</h2>
@@ -209,34 +209,34 @@ dialog::backdrop{background:rgba(5,4,8,.7)}
 <script>
 const AGENTS=[
   {id:'pluma',name:'Pluma',role:'Escritora · frases únicas',shirt:'#8b6cf0',pants:'#2e2840',skin:'#f3c9a2',hair:'#2a1b14',acc:'bun',desk:[-9,-5.5],
-   does:['Cada domingo escribe el plan de la semana: 7 frases de reel, 4 carruseles, 1 imagen y 21 stories','Frases originales en segunda persona: desamor, amor propio, soltar, cansancio emocional','Las piensa para que se envíen por privado y se guarden','Comprueba el historial para no repetir nunca una frase ni una idea'],
-   kpi:[['Plan','Domingo'],['Largo','≤ 20 palabras'],['Repetidas','0']],first:'Esperando el plan del domingo'},
+   does:['Cada domingo escribe el plan de la semana: 14 reels, 3 carruseles y 7 stories','Cada reel es una frase en dos golpes: el primero deja la pregunta abierta y el segundo remata','Parte de escenas concretas (mirar si está en línea, escribir y borrar) y descarta la frase que nadie enviaría','Español de España, sin moldes repetidos y sin repetir nunca una frase del historial'],
+   kpi:[['Plan','Domingo'],['Largo','7 + 8 palabras'],['Repetidas','0']],first:'Esperando el plan del domingo'},
   {id:'tinta',name:'Tinta',role:'Diseñadora · la imagen de cada frase',shirt:'#e9e6f2',pants:'#2b2933',skin:'#c98d5e',hair:'#111014',acc:'glasses',desk:[-4,-5.5],
-   does:['Monta cada frase con la plantilla oficial: fondo negro, More Sugar Thin, estrellas y firma','Imágenes y carruseles a 1080×1350, stories a 1080×1920','Prepara la imagen base 1080×1920 de cada reel y se la pasa a Clip','Sube todo al repo de GitHub para que tenga URL pública'],
+   does:['Monta cada frase con la plantilla oficial: fondo negro, More Sugar Thin, estrellas y firma','Carruseles a 1080×1350, story y reels a 1080×1920','Prepara las dos imágenes de cada reel (golpe 1 solo y frase entera con el cierre) y se las pasa a Clip','Sube todo al repo de GitHub para que tenga URL pública'],
    kpi:[['Post','1080×1350'],['Story','1080×1920'],['Fuente','More Sugar']],first:'Esperando frases de Pluma'},
-  {id:'eco',name:'Eco',role:'Captions y publicación · Instagram',shirt:'#4a8fe7',pants:'#24304a',skin:'#ffe0c4',hair:'#c9a14a',acc:'pony',desk:[1,-5.5],
-   does:['Escribe un caption de 1-3 líneas que pida enviar o guardar','Se inventa 8-15 hashtags según la frase, siempre con #verdadysinfiltro','Publica en Instagram a su hora: carrusel por la mañana, imagen a mediodía y reel por la noche','Apunta cada publicación en el historial y en esta oficina'],
-   kpi:[['Reel','20:35'],['Carrusel','7:45'],['Hashtags','8-15']],first:'Esperando la imagen de Tinta'},
+  {id:'eco',name:'Eco',role:'Textos y publicación · Instagram',shirt:'#4a8fe7',pants:'#24304a',skin:'#ffe0c4',hair:'#c9a14a',acc:'pony',desk:[1,-5.5],
+   does:['Escribe un texto corto que dice a quién enviarle la frase','Pone de 3 a 5 hashtags del tema, nunca más','Publica en Instagram a su hora: carrusel a las 7:45 (lunes, miércoles y domingo) y reel a las 13:35 y a las 20:35','Apunta cada publicación en el historial y en esta oficina'],
+   kpi:[['Reels','13:35 y 20:35'],['Carrusel','7:45'],['Hashtags','3-5']],first:'Esperando la imagen de Tinta'},
   {id:'clip',name:'Clip',role:'Editor de reels · vídeo y música',shirt:'#e2554f',pants:'#2a2230',skin:'#d9a27a',hair:'#3b2a20',acc:'band',desk:[7.5,-5.5],
-   does:['Monta el reel de cada día: 7 s en 1080×1920, la frase visible desde el primer fotograma','Varía el movimiento cada día (acercar, alejar o deslizar) con grano de película suave','Compone el piano original de cada reel (sin derechos, distinto cada día) y equilibra el volumen','Elige la portada del reel y revisa que nada se corte en la zona de la interfaz de Instagram'],
-   kpi:[['Duración','7 s'],['Formato','1080×1920'],['Música','Piano propio']],first:'Esperando la frase del reel'},
+   does:['Monta los 2 reels de cada día: 6,5 s, el primer golpe se ve desde el inicio y el remate aparece al segundo y medio','Cierra cada reel con "Una frase cada noche. Sígueme."','Varía el movimiento cada día (acercar, alejar o deslizar) con grano de película suave','Compone el piano original de cada reel (sin derechos, distinto cada día) y equilibra el volumen','Elige la portada del reel y revisa que nada se corte en la zona de la interfaz de Instagram'],
+   kpi:[['Duración','6,5 s'],['Reels','2 al día'],['Música','Piano propio']],first:'Esperando las frases de mañana'},
   {id:'marco',name:'Marco',role:'Cuadros · en pausa hasta lanzar la colección',shirt:'#c48a45',pants:'#3a2c22',skin:'#a86b45',hair:'#1d1a24',acc:'cap',desk:[4,1.5],
-   does:['En pausa: los cuadros y la serie 01 se lanzan más adelante','Mientras tanto apunta las frases con más guardados como candidatas a cuadro','Cuando se active: catálogo, mockups y pedidos por mensaje directo'],
+   does:['En pausa hasta unos 5.000 seguidores o hasta que alguien pregunte dónde comprar una frase','Mientras tanto apunta las frases con más guardados como candidatas a cuadro','Cuando se active: 3 láminas de las frases más guardadas, impresas bajo demanda y con envío a España'],
    kpi:[['Estado','En pausa'],['Candidatas','Top guardados'],['Pedidos','Por DM']],first:'En pausa hasta lanzar los cuadros'},
   {id:'luna',name:'Luna',role:'Stories y comunidad',shirt:'#d25aa4',pants:'#3f2b48',skin:'#f6d2b0',hair:'#6a3a22',acc:'phones',desk:[-8,1.5],
-   does:['Sube 3 stories al día: una por la mañana, otra a mediodía y otra por la noche','Stories de frase, de pregunta ("¿Te ha pasado?") y de recordatorio del post del día','Responde los comentarios nuevos cada noche, corto y cercano','Las encuestas y cajas de preguntas las pone Rodrigo a mano (la API no lo permite)'],
-   kpi:[['Stories','3 al día'],['Comentarios','Cada noche'],['Encuestas','A mano']],first:'Preparando la story de hoy'},
+   does:['Sube 1 story cada noche a las 20:35, con la frase que acompaña al reel','Subirá a 3 al día cuando haya más de 500 seguidores que las vean','Responde los comentarios nuevos cada noche, corto y cercano','Las encuestas y cajas de preguntas las pone Rodrigo a mano (la API no lo permite)'],
+   kpi:[['Stories','1 al día'],['Comentarios','Cada noche'],['Encuestas','A mano']],first:'Preparando la story de hoy'},
   {id:'lupa',name:'Lupa',role:'Analista · qué frases conectan',shirt:'#3fc8a4',pants:'#21423b',skin:'#e8b48a',hair:'#5a5a6e',acc:'beanie',desk:[-2,1.5],
-   does:['Cada noche actualiza seguidores y las métricas de cada post (alcance, guardados, envíos)','Cada domingo escribe los aprendizajes de la semana para Pluma','Repite lo que más se guarda y se envía; revisa a las 2 semanas antes de descartar nada','Sigue el crecimiento hacia la meta de seguidores'],
-   kpi:[['Clave','Guardados + envíos'],['Informe','Domingo'],['Meta','100 seg.']],first:'Esperando datos de la semana'},
+   does:['Cada noche mide cada pieza: alcance, envíos, guardados y cuánto tiempo se ve cada reel','Pone nota a cada frase: (2 × envíos + guardados) / alcance','Cada domingo le dice a Pluma qué temas y qué comienzos funcionan, con ejemplos','Sigue el crecimiento hacia la meta de seguidores'],
+   kpi:[['Clave','Envíos y guardados'],['Informe','Domingo'],['Meta','100 seg.']],first:'Esperando datos de la semana'},
 ];
 const FLOW=[
-  {b:'Escribir',s:'Plan semanal y frases pensadas para enviar y guardar',w:['pluma']},
+  {b:'Escribir',s:'Frases en dos golpes, pensadas para enviarse',w:['pluma']},
   {b:'Diseñar',s:'Plantilla negra, More Sugar, estrellas',w:['tinta']},
-  {b:'Montar reel',s:'7 s, movimiento, grano y piano original',w:['clip']},
-  {b:'Publicar',s:'Caption, hashtags y publicación en Instagram a su hora',w:['eco']},
-  {b:'Conversar',s:'3 stories al día y respuestas a comentarios',w:['luna']},
-  {b:'Medir',s:'Guardados y envíos mandan; informe los domingos',w:['lupa']},
+  {b:'Montar reel',s:'6,5 s: primer golpe, remate y cierre',w:['clip']},
+  {b:'Publicar',s:'2 reels al día, texto corto y 3-5 hashtags',w:['eco']},
+  {b:'Conversar',s:'Story de noche y respuestas a comentarios',w:['luna']},
+  {b:'Medir',s:'Nota por frase; lo que se envía se repite',w:['lupa']},
 ];
 // Lo publicado en el perfil (captura del usuario); se sustituye por la base de datos cuando hay datos
 const FEED=[
@@ -446,7 +446,7 @@ mesh(box(5.2,3,.14),'#111015',{parent:edit,out:1.02});
 const ec=document.createElement('canvas');ec.width=1024;ec.height=576;const ex=ec.getContext('2d');
 const drawEdit=()=>{ex.fillStyle='#0a090d';ex.fillRect(0,0,1024,576);ex.fillStyle='#000';ex.fillRect(372,30,280,380);ex.strokeStyle='#333';ex.strokeRect(372,30,280,380);
   ex.fillStyle='#fff';ex.textAlign='center';ex.textBaseline='middle';ex.font='30px "Gochi Hand", cursive';['Lo que no','te dijeron','con palabras…'].forEach((l,i)=>ex.fillText(l,512,180+i*40));
-  ex.font='14px sans-serif';ex.fillText('✧✦',400,50);ex.fillText('✦✧',624,390);ex.textAlign='left';ex.fillStyle='#9d97b0';ex.font='bold 20px sans-serif';ex.fillText('REEL · 00:07 · 1080×1920',30,50);
+  ex.font='14px sans-serif';ex.fillText('✧✦',400,50);ex.fillText('✦✧',624,390);ex.textAlign='left';ex.fillStyle='#9d97b0';ex.font='bold 20px sans-serif';ex.fillText('REEL · 00:06,5 · 1080×1920',30,50);
   [['#e2554f',440,120],['#b794f6',440,260],['#4a8fe7',500,180]].forEach(([c,y,w],i)=>{ex.fillStyle=c;for(let k=0;k<6;k++)ex.fillRect(30+k*(w+12)+i*30,440+i*36,w,26)});
   ex.fillStyle='#fff';ex.fillRect(300,430,3,120)};
 drawEdit();const editTex=new THREE.CanvasTexture(ec);editTex.encoding=THREE.sRGBEncoding;if(document.fonts)document.fonts.load('30px "Gochi Hand"').then(()=>{drawEdit();editTex.needsUpdate=true}).catch(()=>{});

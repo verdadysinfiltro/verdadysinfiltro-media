@@ -6,40 +6,50 @@ Copia del HTML: `oficina/index.html`.
 ## Agentes y qué hace cada uno
 | Agente | Rol | Cuándo trabaja |
 |---|---|---|
-| Pluma | Frases. Plan semanal en `plan/actual` (domingo) y frases nuevas si faltan. Nunca repite (mira `docs/historial.md`). | Domingo y cada mañana |
-| Tinta | Imágenes, carruseles y stories (`tools/generar.py`); prepara la imagen base 1080×1920 de cada reel. | Cada mañana |
-| Clip | Editor de reels: 7 s, frase visible desde el primer fotograma, movimiento distinto cada día (`in`/`out`/`pan`, por semilla), grano suave, piano original (`tools/piano.py` semilla = fecha) y portada (`-cover.jpg`). `tools/reel.sh base.jpg salida.mp4 audio.wav auto $HOY`. Revisa primer y último fotograma. | Cada mañana |
-| Eco | Caption de 1–3 líneas + llamada a la acción + 8–15 hashtags inventados según la frase. Publica con `tools/publicar.py`. | 7:45, 13:35 y 20:35 |
-| Luna | 3 stories al día y respuesta a comentarios nuevos (cada noche). Encuestas y cajas de preguntas: a mano (la API no lo permite). | 7:45, 13:35 y 20:35 |
-| Lupa | Métricas: seguidores en `cuenta/perfil`, alcance, guardados y envíos de cada post; aprendizajes en `cerebro/aprendizajes`. | Cada noche + informe del domingo |
-| Marco | En pausa hasta lanzar los cuadros (y la serie 01). Solo apunta candidatas a cuadro. | — |
+| Pluma | Frases en dos golpes siguiendo `docs/marca.md`. Plan semanal en `plan/actual` (domingo) y frases nuevas si faltan. Nunca repite (mira `docs/historial.md`). | Domingo y cada mañana |
+| Tinta | Carruseles y story (`tools/generar.py`) y las dos imágenes base de cada reel (`--reel`). | Cada mañana |
+| Clip | Editor de reels: 6,5 s en dos golpes, movimiento distinto por semilla, piano original y portada. Revisa primer fotograma (solo golpe 1) y último (frase entera + cierre). | Cada mañana |
+| Eco | Caption (a quién enviarlo + 3–5 hashtags) y publicación con `tools/publicar.py`. | 7:45, 13:35 y 20:35 |
+| Luna | Story de la noche y respuesta a comentarios nuevos. | 20:35 |
+| Lupa | Métricas de cada pieza y seguidores cada noche; informe y aprendizajes el domingo. | Cada noche + domingo |
+| Marco | En pausa hasta lanzar los cuadros. Solo apunta candidatas a cuadro. | — |
 
 ## Calendario (hora de Madrid)
 | Día | 7:45 | 13:35 | 20:35 |
 |---|---|---|---|
-| Lunes | Carrusel + story | Story | Reel + story |
-| Martes | Story | Imagen + story | Reel + story |
-| Miércoles | Carrusel + story | Story | Reel + story |
-| Jueves | Carrusel + story | Story | Reel + story |
-| Viernes | Story | Story | Reel + story |
-| Sábado | Story | Story | Reel + story |
-| Domingo | Carrusel + story | Story | Reel + story |
+| Lunes | Carrusel | Reel | Reel + story |
+| Martes | — | Reel | Reel + story |
+| Miércoles | Carrusel | Reel | Reel + story |
+| Jueves | — | Reel | Reel + story |
+| Viernes | — | Reel | Reel + story |
+| Sábado | — | Reel | Reel + story |
+| Domingo | Carrusel | Reel | Reel + story |
 
-Semana: 7 reels, 4 carruseles, 1 imagen, 21 stories (≈ 58% / 33% / 8% del feed).
+Semana: 14 reels, 3 carruseles, 7 stories.
 
-## Rutinas en la nube (tareas programadas)
-- **Sin Filtro · mañana** (diaria 7:45): crea TODO el contenido del día, lo sube a `posts/AAAA-MM-DD/`, publica carrusel (si toca) y story de la mañana.
-- **Sin Filtro · mediodía** (diaria 13:35): imagen (martes) y story de mediodía.
-- **Sin Filtro · noche** (diaria 20:35): reel, story de noche, respuestas a comentarios y métricas.
+## Archivos de cada día (`posts/AAAA-MM-DD/`)
+`reel-1335.mp4`, `reel-2035.mp4` (cada uno con `-cover.jpg` y `.txt` de caption), `story-2035.jpg` y, si toca, `carrusel/01.jpg…07.jpg` + `carrusel.txt`.
+
+## Cómo se monta un reel
+```
+python3 tools/generar.py --reel /tmp/r1 "Golpe 1" "Golpe 2"      # crea /tmp/r1-a.jpg y /tmp/r1-b.jpg
+python3 tools/piano.py /tmp/p1.wav 7 $HOY-1335                    # semilla distinta por reel
+tools/reel.sh /tmp/r1-a.jpg posts/$HOY/reel-1335.mp4 /tmp/p1.wav auto $HOY-1335 /tmp/r1-b.jpg
+```
+
+## Rutinas en la nube (tareas programadas, todas con Sonnet)
+- **Sin Filtro · mañana** (diaria 7:45): crea TODO el contenido del día, lo sube a `posts/AAAA-MM-DD/` y publica el carrusel si toca.
+- **Sin Filtro · mediodía** (diaria 13:35): publica `reel-1335`.
+- **Sin Filtro · noche** (diaria 20:35): publica `reel-2035` y la story, responde comentarios y guarda métricas.
 - **Sin Filtro · semanal** (domingo 7:15, antes de la de mañana): informe, aprendizajes y plan de la semana siguiente.
 
 ## Base de datos de la oficina
 - `agents/<id>`: {status: working|done|idle, task, updated (ISO UTC)}.
-- `posts/<id>`: {titulo, tipo: carrusel|imagen|reel|story, fecha (ISO UTC), estado: programado|publicado|error, orden, archivo, url, permalink, metricas}. `orden`: fijadas 1–3; nuevos = 2000000000 − epoch(segundos) (lo más nuevo sale primero en el muro).
+- `posts/<id>`: {titulo, tipo: carrusel|reel|story, tema, fecha (ISO UTC), estado: programado|publicado|emitida|error, orden, archivo, permalink, metricas: {reach, views, shares, saved, likes, comments, avg_watch_ms, nota, medido}}. En reels, `titulo` = "Golpe 1 Golpe 2". `orden`: fijadas 1–3; nuevos = 2000000000 − epoch(segundos) (lo más nuevo sale primero en el muro).
 - `cuenta/perfil`: {seguidores, publicaciones, cuadros, meta}.
 - `log/<id>`: {t (ISO UTC), agente, msg}; id = hora.
 - `cerebro/marca`, `cerebro/estrategia`, `cerebro/publicar`, `cerebro/reels`, `cerebro/aprendizajes`: reglas (mandan sobre lo demás si chocan; `aprendizajes` lo actualiza Lupa).
-- `plan/actual`: {week (lunes AAAA-MM-DD), dias: {lun..dom: {carrusel?: [frases], imagen?: frase, reel: frase, stories: [3 frases]}}, done por pieza}.
+- `plan/actual`: {week (domingo AAAA-MM-DD), dias: {AAAA-MM-DD: {carrusel?: [7 frases], reels: [{g1, g2, tema}, {g1, g2, tema}] (mediodía, noche), story: frase, done: []}}}.
 
 ## Sesión de trabajo
 - **Sin Filtro · mañana** se ejecuta en la sesión fija "Sin Filtro · oficina (no borrar)" (`session_01THrf6QwLmYWXKRir16LpNz`), la única con permiso de push a `main` (lo necesita para subir las imágenes del día y que tengan URL pública). No borrar ni archivar esa sesión.

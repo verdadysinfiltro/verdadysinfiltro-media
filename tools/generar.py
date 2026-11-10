@@ -5,6 +5,8 @@ Uso:
   python3 tools/generar.py salida.png "Frase del post."
   python3 tools/generar.py --carrusel carpeta/ "Gancho" "Frase 2" ... "Cierre"
   python3 tools/generar.py --story salida.jpg "Frase"        (1080x1920)
+  python3 tools/generar.py --reel prefijo "Golpe 1" "Golpe 2"  (1080x1920, dos imágenes:
+      prefijo-a.jpg solo con el golpe 1 y prefijo-b.jpg con la frase entera y el cierre)
 Instagram solo acepta JPEG por API: usar extensión .jpg para publicar.
 """
 import os
@@ -82,6 +84,48 @@ def render(texto, salida, formato="post"):
     return salida
 
 
+CIERRE = "Una frase cada noche. Sígueme."
+TAM_CIERRE = 46
+COLOR_CIERRE = (150, 150, 150)
+HUECO = 0.45         # separación entre los dos golpes (en alturas de línea)
+
+
+def render_reel(golpe1, golpe2, prefijo):
+    """Reel en dos golpes: -a.jpg muestra solo el primero (mismo sitio que en -b.jpg)."""
+    tam = TAM
+    while True:
+        fuente = ImageFont.truetype(FUENTE, tam)
+        l1, l2 = partir(golpe1, fuente, ANCHO_MAX), partir(golpe2, fuente, ANCHO_MAX)
+        alto_linea = int(tam * INTERLINEADO)
+        if len(l1) + len(l2) <= 6 or tam <= TAM_MIN:
+            break
+        tam -= 4
+    hueco = int(alto_linea * HUECO)
+    alto = alto_linea * (len(l1) + len(l2)) + hueco
+    salidas = []
+    for sufijo, completo in (("a", False), ("b", True)):
+        img, offset = lienzo("story")
+        dibujo = ImageDraw.Draw(img)
+        y = offset + CENTRO_Y - alto // 2
+        for linea in l1:
+            escribir(dibujo, (img.width - largo(linea, fuente)) / 2, y, linea, fuente)
+            y += alto_linea
+        y += hueco
+        if completo:
+            for linea in l2:
+                escribir(dibujo, (img.width - largo(linea, fuente)) / 2, y, linea, fuente)
+                y += alto_linea
+            chica = ImageFont.truetype(FUENTE, TAM_CIERRE)
+            ancho = chica.getlength(CIERRE)
+            dibujo.text(((img.width - ancho) / 2, offset + CENTRO_Y + alto // 2 + 110), CIERRE,
+                        font=chica, fill=COLOR_CIERRE)
+        salida = f"{prefijo}-{sufijo}.jpg"
+        os.makedirs(os.path.dirname(os.path.abspath(salida)), exist_ok=True)
+        img.save(salida, quality=95)
+        salidas.append(salida)
+    return salidas
+
+
 if __name__ == "__main__":
     args = sys.argv[1:]
     if not args:
@@ -90,6 +134,10 @@ if __name__ == "__main__":
         carpeta, frases = args[1], args[2:]
         for i, frase in enumerate(frases, 1):
             print(render(frase, os.path.join(carpeta, f"{i:02d}.jpg")))
+    elif args[0] == "--reel":
+        if len(args) != 4:
+            sys.exit('Uso: generar.py --reel prefijo "Golpe 1" "Golpe 2"')
+        print("\n".join(render_reel(args[2], args[3], args[1])))
     elif args[0] == "--story":
         print(render(" ".join(args[2:]), args[1], "story"))
     else:

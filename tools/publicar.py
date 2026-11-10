@@ -32,6 +32,24 @@ def llamar(metodo, ruta, **params):
         sys.exit(f"Error {e.code}: {e.read().decode()}")
 
 
+MAX_HASHTAGS = 5
+
+
+def limpiar_caption(texto):
+    """Deja como máximo 5 hashtags y quita #verdadysinfiltro (nadie lo busca)."""
+    vistos, salida = 0, []
+    for linea in texto.splitlines():
+        palabras = []
+        for palabra in linea.split(" "):
+            if palabra.startswith("#"):
+                if palabra.lower().rstrip(".,") == "#verdadysinfiltro" or vistos >= MAX_HASHTAGS:
+                    continue
+                vistos += 1
+            palabras.append(palabra)
+        salida.append(" ".join(palabras).rstrip())
+    return "\n".join(salida).strip()
+
+
 def url_publica(ruta):
     return RAW + ruta.lstrip("./")
 
@@ -56,7 +74,7 @@ def publicar(contenedor):
 
 def main():
     tipo, ruta = sys.argv[1], sys.argv[2]
-    caption = open(sys.argv[3], encoding="utf-8").read().strip() if len(sys.argv) > 3 else ""
+    caption = limpiar_caption(open(sys.argv[3], encoding="utf-8").read()) if len(sys.argv) > 3 else ""
     if tipo == "imagen":
         c = llamar("POST", f"{IG}/media", image_url=url_publica(ruta), caption=caption)["id"]
     elif tipo == "story":

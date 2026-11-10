@@ -1,32 +1,28 @@
 # Estrategia de publicación
 
-## Frecuencia
-- **Reels:** 1 al día (lo que más alcance da a cuentas nuevas). Prueba inicial: 2 al día durante 30 días.
-- **Carruseles:** 3–4 por semana (se guardan y comparten).
-- **Imagen única:** 1–2 por semana como mucho.
-- **Stories:** 3–7 al día (vínculo con seguidores, no traen nuevos).
-- Reparto del feed: 55% reels · 35% carruseles · 10% posts sueltos.
+Decidida el 2026-11-10 con los datos reales de la cuenta (6 seguidores): los reels llegan a 130–200 personas que no siguen la cuenta; fotos y carruseles, a 0–3. Casi nadie envía ni guarda y solo 5 de 664 personas visitaron el perfil. Objetivo: reels que se vean enteros, se envíen y den motivo para seguir.
 
-## Horarios (hora local del público, España)
-- Reels: 19:00–22:00.
-- Carruseles: 7:00–9:00 o 13:00–14:00.
-- Stories: repartidas; una a primera hora y otra por la noche.
-- Mejores días: domingo a jueves por la noche. Viernes y sábado rinden menos.
+## Frecuencia (hora de Madrid)
+- **Reels:** 2 al día, 13:35 y 20:35.
+- **Carruseles:** 3 por semana (lunes, miércoles y domingo, 7:45).
+- **Imágenes sueltas:** ninguna.
+- **Stories:** 1 al día, 20:35 (solo las ven los seguidores; subir a 3 cuando haya más de 500).
 
-## Claves por formato
-- **Reels:** la frase visible en el primer segundo, texto grande sobre vídeo estético (lluvia, ciudad de noche, mar), audio en tendencia o piano triste, 5–9 s para que se repita.
-- **Carruseles:** diapositiva 1 = gancho; 3–6 de desarrollo; la última pide guardar o enviar ("Envíaselo a quien necesite leer esto").
-- **Stories:** encuestas ("¿Te ha pasado?"), cajas de preguntas, compartir los propios posts.
-- Misma tipografía y paleta siempre.
-- Lo que más pesa: envíos por privado y guardados.
-- Revisar estadísticas a las 2 semanas y repetir lo que tenga más guardados y envíos antes de borrar nada.
+## Reel (Clip)
+- 6,5 s, 1080×1920, frase en dos golpes: el golpe 1 se ve desde el primer fotograma; a los 1,5 s aparece el golpe 2 y, debajo, "Una frase cada noche. Sígueme.".
+- `tools/generar.py --reel` + `tools/piano.py` + `tools/reel.sh` (ver `docs/oficina.md`).
+- Portada: la frase entera (`-cover.jpg`).
 
-## Calendario aplicado
-Ver `docs/oficina.md` (calendario semanal, agentes y rutinas en la nube).
+## Qué se mide (Lupa)
+- Por pieza: alcance, visualizaciones, envíos, guardados, likes, comentarios y, en reels, tiempo medio de visionado.
+- **Nota de una pieza = (2 × envíos + guardados) / alcance.** Es lo que decide qué se repite.
+- Señales de que va bien: tiempo medio ≥ 5 s en reels de 6,5 s; 1–2 envíos por cada 100 de alcance; algún reel por encima de 1.000 de alcance.
+- Revisión de la estrategia: 2026-12-10 (30 días). No descartar tema ni formato con menos de 2 semanas de datos.
 
-## Flujo de trabajo
-1. Claude crea las frases (comprobando `docs/historial.md` para no repetir) y genera las imágenes con `tools/generar.py`.
-2. Las imágenes se suben a `posts/AAAA-MM-DD/` de este repo (público).
-3. URL pública: `https://raw.githubusercontent.com/verdadysinfiltro/verdadysinfiltro-media/main/posts/AAAA-MM-DD/<archivo>`.
-4. Claude publica en Instagram usando esas URLs y apunta cada post en `docs/historial.md` y en la oficina (`posts`, `log`, `agents`).
-5. Reels: 7 s, frase visible desde el primer fotograma, zoom lento y piano original (`tools/piano.py`, semilla distinta cada día). Mientras no haya clips de vídeo, fondo de la plantilla.
+## Publicación
+- Archivos en `posts/AAAA-MM-DD/`; URL pública `https://raw.githubusercontent.com/verdadysinfiltro/verdadysinfiltro-media/main/<ruta>`. Hacer `git push` ANTES de publicar.
+- `python3 tools/publicar.py carrusel|story|reel <ruta> [caption.txt]` (token inyectado por el proxy en graph.facebook.com; `IG_USER_ID`; nunca mostrar tokens).
+- Si falla, reintentar una vez y anotar el error en `log` y en `posts` (estado "error").
+
+## Cuadros
+En pausa. Se retoma con ~5.000 seguidores o cuando alguien pregunte dónde comprar una frase: 3 láminas de las frases más guardadas, impresión bajo demanda, envío solo a España.

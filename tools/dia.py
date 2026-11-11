@@ -22,6 +22,9 @@ from zoneinfo import ZoneInfo
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TMP = "/tmp/dia"
 MAD = ZoneInfo("Europe/Madrid")
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from estilo import estilo  # noqa: E402
+
 VOZ_LINEA = "Voz generada con IA."
 
 
@@ -74,7 +77,7 @@ def preparar(plan, hoy):
     out = os.path.join("posts", hoy)
     os.makedirs(os.path.join(RAIZ, out), exist_ok=True)
     os.makedirs(TMP, exist_ok=True)
-    res = {"dia": hoy, "voz": {}, "errores": [], "archivos": []}
+    res = {"dia": hoy, "voz": {}, "estilo": {}, "errores": [], "archivos": []}
     if lleva_carrusel(hoy, dia):
         sh(["python3", "tools/generar.py", "--carrusel", f"{out}/carrusel", *dia["carrusel"]])
         open(os.path.join(RAIZ, out, "carrusel.txt"), "w", encoding="utf-8").write(
@@ -96,7 +99,18 @@ def preparar(plan, hoy):
                 err = str(e)
         if not con_voz:
             res["errores"].append(f"voz del reel {hora} ({voz}): {err[-200:]}")
-        sh(["tools/reel.sh", f"{base}-a.jpg", f"{out}/reel-{hora}.mp4", f"{TMP}/p{n}.wav", "auto", f"{hoy}-{hora}", f"{base}-b.jpg"], env=env)
+        est = estilo(hoy, hora)
+        if est == "cine":
+            # Mitad de los reels: palabra a palabra sobre fondo en movimiento. Si falla, sale el clásico.
+            try:
+                sh(["python3", "tools/cine.py", f"{out}/reel-{hora}.mp4", f"{TMP}/p{n}.wav", f"{hoy}-{hora}", r["g1"], r["g2"], base], env=env)
+            except Exception as e:  # noqa: BLE001
+                res["errores"].append(f"reel cine {hora}: {str(e)[-200:]} (se montó el clásico)")
+                sh(["python3", "tools/generar.py", "--reel", base, r["g1"], r["g2"]])
+                est = "clasico"
+        if est == "clasico":
+            sh(["tools/reel.sh", f"{base}-a.jpg", f"{out}/reel-{hora}.mp4", f"{TMP}/p{n}.wav", "auto", f"{hoy}-{hora}", f"{base}-b.jpg"], env=env)
+        res["estilo"][hora] = est
         open(os.path.join(RAIZ, out, f"reel-{hora}.txt"), "w", encoding="utf-8").write(
             caption(r["caption"], r["hashtags"], con_voz))
         res["voz"][hora] = voz if con_voz else "no"
@@ -139,8 +153,9 @@ def publicar(plan, hoy):
     res = json.load(open(f"{TMP}/resumen.json"))
     out = f"posts/{hoy}"
     reels = dia["reels"]
-    hist = [(f"reel 13:35 ({res['voz'].get('1335')})", f"{reels[0]['g1']} / {reels[0]['g2']}", f"{out}/reel-1335.mp4"),
-            (f"reel 20:35 ({res['voz'].get('2035')})", f"{reels[1]['g1']} / {reels[1]['g2']}", f"{out}/reel-2035.mp4"),
+    est = res.get("estilo", {})
+    hist = [(f"reel 13:35 ({res['voz'].get('1335')}, {est.get('1335', 'clasico')})", f"{reels[0]['g1']} / {reels[0]['g2']}", f"{out}/reel-1335.mp4"),
+            (f"reel 20:35 ({res['voz'].get('2035')}, {est.get('2035', 'clasico')})", f"{reels[1]['g1']} / {reels[1]['g2']}", f"{out}/reel-2035.mp4"),
             ("story 20:35", dia["story"], f"{out}/story-2035.jpg")]
     car = lleva_carrusel(hoy, dia)
     if car:
@@ -183,6 +198,8 @@ def publicar(plan, hoy):
                "estado": estado, "archivo": archivo, "orden": 2000000000 - int(f.timestamp())}
         if voz:
             doc["voz"] = voz
+        if tipo == "reel":
+            doc["estilo"] = res.get("estilo", {}).get(sufijo[-4:], "clasico")
         if enlace:
             doc["permalink"] = enlace
         ruta = f"{TMP}/batch/post-{hoy}-{sufijo}.json"

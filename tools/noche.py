@@ -13,7 +13,13 @@ Uso:
   python3 tools/noche.py metricas PERFIL.json METRICAS.json AAAA-MM-DD
       PERFIL.json y METRICAS.json son cuenta/perfil y metricas/actual guardados con out_dir
       (METRICAS.json puede no existir). Deja en /tmp/noche/batch/ metricas.json, perfil.json y
-      serie.json para un "set", e imprime seguidores, mejor reel de 7 días e hitos.
+      serie.json para un "set", e imprime seguidores, mejor reel de 7 días, embudo e hitos.
+      metricas.json lleva además:
+        dias:   [{fecha, reach, visitas, seguidores?}] de 14 días (alcance y visitas al perfil de la
+                cuenta por día; Instagram no da visitas ni seguidores por reel).
+        embudo: {reach, visitas, visitas_por_1000, seguidores_ganados, seguidores_por_1000, dias}:
+                cuánta gente pasa de ver un reel a entrar al perfil y a seguir.
+      Cada reel lleva "estilo" (cine o clasico, ver tools/estilo.py).
 """
 import datetime
 import json
@@ -25,6 +31,8 @@ import urllib.parse
 import urllib.request
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from estilo import MAD, estilo_de_fecha  # noqa: E402
 API = "https://graph.facebook.com/v21.0"
 IG = os.environ.get("IG_USER_ID", "")
 CUENTA = "verdadysinfiltro"
@@ -115,6 +123,35 @@ def insights(m):
     return {d["name"]: (d.get("values") or [{}])[0].get("value", d.get("total_value", {}).get("value", 0)) for d in datos}
 
 
+def embudo(prev, seg, hoy):
+    """Alcance y visitas al perfil de la cuenta por día (14 días) y seguidores de cada noche."""
+    antes = {d["fecha"]: d for d in prev.get("dias", [])}
+    fin = datetime.date.fromisoformat(hoy)
+    dias = []
+    for k in range(13, -1, -1):
+        f = fin - datetime.timedelta(days=k)
+        ini = datetime.datetime.combine(f, datetime.time(0), MAD)
+        d = dict(antes.get(f.isoformat(), {}), fecha=f.isoformat())
+        try:
+            r = api(f"{IG}/insights", metric="reach,profile_views", period="day", metric_type="total_value",
+                    since=int(ini.timestamp()), until=int((ini + datetime.timedelta(days=1)).timestamp()))
+            v = {x["name"]: int(x.get("total_value", {}).get("value") or 0) for x in r.get("data", [])}
+            # Instagram tarda en cerrar el día: no se pisa un dato bueno con un cero.
+            d["reach"] = max(v.get("reach", 0), d.get("reach", 0))
+            d["visitas"] = max(v.get("profile_views", 0), d.get("visitas", 0))
+        except RuntimeError:
+            d.setdefault("reach", 0)
+            d.setdefault("visitas", 0)
+        dias.append(d)
+    dias[-1]["seguidores"] = seg
+    reach, vis = sum(d["reach"] for d in dias), sum(d["visitas"] for d in dias)
+    con = [d["seguidores"] for d in dias if "seguidores" in d]
+    gan = con[-1] - con[0] if len(con) > 1 else 0
+    por = lambda n: round(1000 * n / reach, 1) if reach else 0  # noqa: E731
+    return dias, {"reach": reach, "visitas": vis, "visitas_por_1000": por(vis), "seguidores_ganados": gan,
+                  "seguidores_por_1000": por(gan), "dias": len(con)}
+
+
 def leer(f):
     if not f or not os.path.exists(f):
         return {}
@@ -124,7 +161,7 @@ def leer(f):
 
 def metricas(perfil_f, metr_f, hoy):
     perfil, prev = leer(perfil_f), leer(metr_f)
-    yo = api(IG, fields="followers_count,media_count")
+    yo = api(IG, fields="followers_count,follows_count,media_count")
     seg, pubs = yo.get("followers_count", 0), yo.get("media_count", 0)
     lim = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=14)
     items = []
@@ -141,6 +178,8 @@ def metricas(perfil_f, metr_f, hoy):
                       "reach": reach, "views": int(i.get("views") or 0), "shares": sh, "saved": sv, "likes": int(i.get("likes") or 0),
                       "comments": int(i.get("comments") or 0), "avg_watch_ms": int(i.get("ig_reels_avg_watch_time") or 0),
                       "nota": round((2 * sh + sv) / reach, 4) if reach else 0})
+        if items[-1]["tipo"] == "reel":
+            items[-1]["estilo"] = estilo_de_fecha(m["timestamp"])
     rec = prev.get("records", {"reach": 0, "shares": 0})
     for it in prev.get("items", []):
         rec["reach"] = max(rec.get("reach", 0), it.get("reach", 0))
@@ -160,14 +199,17 @@ def metricas(perfil_f, metr_f, hoy):
         if antes < u <= seg:
             hitos.append(f"Seguidores: {seg} (has pasado de {u})" + (f" · empieza la fase {FASES[u]} de la hoja de ruta" if u in FASES else ""))
     os.makedirs(OUT, exist_ok=True)
-    json.dump({"items": items, "records": rec, "medido": ahora()}, open(f"{OUT}/metricas.json", "w"), ensure_ascii=False)
-    perfil.update({"seguidores": seg, "publicaciones": pubs, "updated": ahora()})
+    dias, emb = embudo(prev, seg, hoy)
+    json.dump({"items": items, "records": rec, "dias": dias, "embudo": emb, "medido": ahora()},
+              open(f"{OUT}/metricas.json", "w"), ensure_ascii=False)
+    perfil.update({"seguidores": seg, "seguidos": yo.get("follows_count", perfil.get("seguidos", 0)),
+                   "publicaciones": pubs, "updated": ahora()})
     json.dump(perfil, open(f"{OUT}/perfil.json", "w"), ensure_ascii=False)
     json.dump({"seguidores": seg, "publicaciones": pubs}, open(f"{OUT}/serie.json", "w"))
     semana = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=7)
     rec7 = [x for x in reels if x["fecha"] >= semana.strftime("%Y-%m-%dT%H:%M:%S")]
     mejor = max(rec7, key=lambda x: x["nota"]) if rec7 else None
-    print(json.dumps({"seguidores": seg, "antes": antes, "piezas_medidas": len(items), "hitos": hitos,
+    print(json.dumps({"seguidores": seg, "antes": antes, "piezas_medidas": len(items), "hitos": hitos, "embudo": emb,
                       "mejor_reel_7d": mejor and {k: mejor[k] for k in ("titulo", "reach", "shares", "saved", "nota")}}, ensure_ascii=False))
 
 

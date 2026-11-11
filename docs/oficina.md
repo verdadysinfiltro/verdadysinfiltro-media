@@ -10,7 +10,7 @@ Copia del HTML: `oficina/index.html`.
 |---|---|---|
 | Pluma | Frases en dos golpes siguiendo `docs/marca.md`. Plan semanal en `plan/actual` (domingo) y frases nuevas si faltan. Nunca repite (mira `docs/historial.md`). | Domingo y cada mañana |
 | Tinta | Carruseles y story (`tools/generar.py`) y las dos imágenes base de cada reel (`--reel`). | Cada mañana |
-| Clip | Editor de reels: 6,5 s en dos golpes, movimiento distinto por semilla, piano original y portada. Revisa primer fotograma (solo golpe 1) y último (frase entera + cierre). | Cada mañana |
+| Clip | Editor de reels: cada día uno clásico (6,5 s en dos golpes, movimiento distinto por semilla) y otro "cine" (palabra a palabra sobre fondo en movimiento, `tools/cine.py`; el reparto lo da `tools/estilo.py`), piano original y portada. Revisa primer fotograma (solo golpe 1) y último (frase entera + cierre). | Cada mañana |
 | Eco | Caption (a quién enviarlo + 3–5 hashtags) y publicación con `tools/publicar.py`. | 7:45, 13:35 y 20:35 |
 | Luna | Story de la noche y respuesta a comentarios nuevos. | 20:35 |
 | Lupa | Métricas de cada pieza y seguidores cada noche; informe y aprendizajes el domingo. | Cada noche + domingo |
@@ -47,14 +47,14 @@ tools/reel.sh /tmp/r1-a.jpg posts/$HOY/reel-1335.mp4 /tmp/p1.wav auto $HOY-1335 
 
 ## Base de datos de la oficina
 - `agents/<id>`: {status: working|done|idle, task, updated (ISO UTC)}.
-- `posts/<id>`: {titulo, tipo: carrusel|reel|story, tema, fecha (ISO UTC), estado: programado|publicado|emitida|error, orden, archivo, permalink, metricas: {reach, views, shares, saved, likes, comments, avg_watch_ms, nota, medido}}. En reels, `titulo` = "Golpe 1 Golpe 2". `orden`: fijadas 1–3; nuevos = 2000000000 − epoch(segundos) (lo más nuevo sale primero en el muro).
-- `cuenta/perfil`: {seguidores, publicaciones, cuadros, meta}.
+- `posts/<id>`: {titulo, tipo: carrusel|reel|story, tema, fecha (ISO UTC), estado: programado|publicado|emitida|error, orden, archivo, permalink, voz (reels: F5|M5|no), estilo (reels: cine|clasico), metricas: {reach, views, shares, saved, likes, comments, avg_watch_ms, nota, medido}}. En reels, `titulo` = "Golpe 1 Golpe 2". `orden`: fijadas 1–3; nuevos = 2000000000 − epoch(segundos) (lo más nuevo sale primero en el muro).
+- `cuenta/perfil`: {seguidores, seguidos, publicaciones, cuadros, meta (objetivo de la fase: 1.000)}. Lo reescribe la rutina de la noche.
 - `log/<id>`: {t (ISO UTC), agente, msg}; id = hora.
 - `cerebro/marca`, `cerebro/estrategia`, `cerebro/publicar`, `cerebro/reels`, `cerebro/aprendizajes`: reglas (mandan sobre lo demás si chocan; `aprendizajes` lo actualiza Lupa).
 - `yt/estado`: copia de solo lectura de la oficina de YouTube (https://claude.ai/artifact/AuYQ4RurWfo27vi7K6vSSE): {agentes: {organizador|guionista|miniaturista|analista: {status, task, updated}}, runs: [últimas 10 tandas {date, label, shorts: [{title, tipo, format, privacy, url, topic}]}], updated, fuente}. La reescribe con "set" la rutina de la noche (`tools/ytcopia.py`). Nunca se escribe en la oficina de YouTube.
 - `correo/<hora-con-guiones>-<palabra>`: {t, de (id del agente), tipo: error|hito|informe|tarea, asunto, texto, leido}. Lo escriben las rutinas solo cuando hay algo importante (errores, hitos, informe del domingo, tareas para Rodrigo); la página marca `leido`.
 - `rutinas/{manana|mediodia|noche|semanal}`: {ultima (ISO UTC), estado: ok|error, resumen}. Cada rutina lo reescribe al terminar; la salud de YouTube se deduce de `yt/estado`.
-- `metricas/actual`: {items: [{id, permalink, tipo, titulo, fecha, reach, views, shares, saved, likes, comments, avg_watch_ms, nota}] de las piezas de 14 días, records: {reach, shares}, medido}. Lo reescribe `tools/noche.py metricas` cada noche (sustituye a guardar métricas post por post).
+- `metricas/actual`: {items: [{id, permalink, tipo, titulo, fecha, reach, views, shares, saved, likes, comments, avg_watch_ms, nota, estilo (reels)}] de las piezas de 14 días, records: {reach, shares}, dias: [{fecha, reach, visitas, seguidores?}] (cuenta, 14 días), embudo: {reach, visitas, visitas_por_1000, seguidores_ganados, seguidores_por_1000, dias}, medido}. Lo reescribe `tools/noche.py metricas` cada noche (sustituye a guardar métricas post por post).
 - `serie/AAAA-MM-DD`: {seguidores, publicaciones}; un punto por noche (rutina de noche) para la gráfica de seguidores.
 - `ordenes/<id>`: {t, texto, estado: pendiente|en curso|hecha, origen: web|chat, en_pausa, asignaciones: [{a, tarea, estado, nota?}]}. Las escribe la página (panel «Orden al CEO» y chat de cada ficha) y las atienden las rutinas (`docs/ordenes.md`, `tools/ordenes.py`).
 - `flujo/actual`: {items: [últimos 30 movimientos {id, t, de, a, tipo: correo|sobre|papeles|portatil|caja|reunion|directo, asunto, origen: orden|real|sim, con?, sala?}]}. La página los anima (sobre volando entre pantallas, personas que llevan cosas, reuniones). Un solo documento, se reescribe entero con "set".

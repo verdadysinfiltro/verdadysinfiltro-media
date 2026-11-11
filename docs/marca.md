@@ -45,7 +45,7 @@ El ánimo sale de una verdad, no de un eslogan. La frase reconoce primero lo que
 - En el carrusel: el del **lunes** es siempre una colección que levanta ("Frases para empezar la semana con otra cara", "Siete cosas que ya has hecho bien"); en los demás, al menos 2 de las 5 frases levantan y la última siempre deja esperanza.
 - Story de noche: alterna, un día consuelo y otro día ánimo.
 
-## Carrusel (3 por semana): una colección con título
+## Carrusel (en pausa hasta ~300 seguidores; luego 3 por semana): una colección con título
 7 diapositivas:
 1. **Título de colección ligado al momento o a una situación**, como hacen las cuentas grandes del nicho: "Frases para el domingo por la noche", "Frases para empezar noviembre", "Frases para cuando te deja en visto", "Siete cosas que nadie te dijo sobre echar de menos". Nada de "léelo si…" a secas.
 2. a 6. **Cinco frases que se sostienen solas**: cada diapositiva debe poder guardarse o enviarse por separado. No son cinco sinónimos: cada una mira el tema desde otro lado.

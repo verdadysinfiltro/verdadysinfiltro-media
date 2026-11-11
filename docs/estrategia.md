@@ -4,7 +4,7 @@ Decidida el 2026-11-10 con los datos reales de la cuenta (6 seguidores): los ree
 
 ## Frecuencia (hora de Madrid)
 - **Reels:** 2 al día, 13:35 y 20:35.
-- **Carruseles:** 3 por semana (lunes, miércoles y domingo, 7:45).
+- **Carruseles:** en pausa desde el 2026-11-11 (llegaban a 0–1 personas). Vuelven con ~300 seguidores: 3 por semana (lunes, miércoles y domingo, 7:45); se activan con `CARRUSELES = True` en `tools/dia.py`.
 - **Imágenes sueltas:** ninguna.
 - **Stories:** 1 al día, 20:35 (solo las ven los seguidores; subir a 3 cuando haya más de 500).
 

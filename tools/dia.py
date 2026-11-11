@@ -5,6 +5,8 @@ Uso:
   python3 tools/dia.py preparar PLAN.json AAAA-MM-DD
       Imágenes (carrusel si toca, story, bases de reel), voz de Vera (F5), piano, reels y captions
       en posts/AAAA-MM-DD/, y un mosaico /tmp/dia/mosaico.jpg para revisar. Imprime un resumen JSON.
+  python3 tools/dia.py validar PLAN.json
+      Comprueba que ningún golpe de reel del plan pasa de 7 + 8 palabras (sale con código 1 si alguno pasa).
   python3 tools/dia.py publicar PLAN.json AAAA-MM-DD
       Añade las piezas a docs/historial.md, hace commit y push, publica el carrusel si toca y
       deja en /tmp/dia/batch/ los documentos para la oficina (posts y plan con done).
@@ -59,8 +61,34 @@ def caption(texto, hashtags, con_voz):
     return "\n\n".join(partes) + "\n"
 
 
+# Carruseles en pausa desde el 2026-11-11: llegaban a 0-1 personas. Se reactivan con ~300 seguidores
+# (poner CARRUSELES = True y volver a pedirlos en docs/rutina-semanal.md).
+CARRUSELES = False
+MAX_G1, MAX_G2 = 7, 8  # docs/marca.md: dos golpes, máx. 7 + 8 palabras
+
+
 def lleva_carrusel(hoy, dia):
-    return bool(dia.get("carrusel")) and datetime.date.fromisoformat(hoy).isoweekday() in (1, 3, 7)
+    return CARRUSELES and bool(dia.get("carrusel")) and datetime.date.fromisoformat(hoy).isoweekday() in (1, 3, 7)
+
+
+def largas(dia, fecha=""):
+    """Golpes de reel que pasan del límite de palabras de docs/marca.md."""
+    out = []
+    for i, r in enumerate(dia.get("reels") or []):
+        for k, tope in (("g1", MAX_G1), ("g2", MAX_G2)):
+            n = len((r.get(k) or "").split())
+            if n > tope:
+                out.append(f"{fecha + ' ' if fecha else ''}reels[{i}].{k} tiene {n} palabras (máx. {tope}): {r[k]}")
+    return out
+
+
+def validar(plan):
+    """Comprueba el límite de palabras en todos los días del plan (para la rutina semanal)."""
+    d = json.load(open(plan, encoding="utf-8"))
+    d = d.get("data", d)
+    mal = [x for f, dia in sorted(d.get("dias", {}).items()) for x in largas(dia, f)]
+    print(json.dumps({"ok": not mal, "largas": mal}, ensure_ascii=False))
+    sys.exit(1 if mal else 0)
 
 
 def preparar(plan, hoy):
@@ -75,6 +103,9 @@ def preparar(plan, hoy):
         faltan.append("carrusel_caption")
     if faltan:
         sys.exit(json.dumps({"error": "Faltan campos en el plan: " + ", ".join(faltan)}, ensure_ascii=False))
+    mal = largas(dia)
+    if mal:
+        sys.exit(json.dumps({"error": "Frases largas: acórtalas en el plan y repite", "largas": mal}, ensure_ascii=False))
     out = os.path.join("posts", hoy)
     medios.asegurar()
     dest = medios.local(out)        # los archivos del día van a assets-vs (público)
@@ -217,6 +248,8 @@ def publicar(plan, hoy):
 
 
 if __name__ == "__main__":
+    if len(sys.argv) == 3 and sys.argv[1] == "validar":
+        validar(sys.argv[2])
     if len(sys.argv) != 4 or sys.argv[1] not in ("preparar", "publicar"):
         sys.exit(__doc__)
     {"preparar": preparar, "publicar": publicar}[sys.argv[1]](sys.argv[2], sys.argv[3])

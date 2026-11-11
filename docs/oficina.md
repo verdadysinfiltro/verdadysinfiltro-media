@@ -20,15 +20,15 @@ Repos: este (privado: código, marca, documentos) y `verdadysinfiltro/assets-vs`
 ## Calendario (hora de Madrid)
 | Día | 7:45 | 13:35 | 20:35 |
 |---|---|---|---|
-| Lunes | Carrusel | Reel | Reel + story |
+| Lunes | — | Reel | Reel + story |
 | Martes | — | Reel | Reel + story |
-| Miércoles | Carrusel | Reel | Reel + story |
+| Miércoles | — | Reel | Reel + story |
 | Jueves | — | Reel | Reel + story |
 | Viernes | — | Reel | Reel + story |
 | Sábado | — | Reel | Reel + story |
-| Domingo | Carrusel | Reel | Reel + story |
+| Domingo | — | Reel | Reel + story |
 
-Semana: 14 reels, 3 carruseles, 7 stories.
+Semana: 14 reels y 7 stories. Carruseles en pausa hasta ~300 seguidores (ver `docs/estrategia.md`).
 
 ## Archivos de cada día (`posts/AAAA-MM-DD/`)
 `reel-1335.mp4`, `reel-2035.mp4` (cada uno con `-cover.jpg` y `.txt` de caption), `story-2035.jpg` y, si toca, `carrusel/01.jpg…07.jpg` + `carrusel.txt`.
@@ -41,7 +41,7 @@ tools/reel.sh /tmp/r1-a.jpg posts/$HOY/reel-1335.mp4 /tmp/p1.wav auto $HOY-1335 
 ```
 
 ## Rutinas en la nube (tareas programadas, todas con Sonnet)
-- **Sin Filtro · mañana** (diaria 7:45): crea TODO el contenido del día, lo sube a `posts/AAAA-MM-DD/` y publica el carrusel si toca.
+- **Sin Filtro · mañana** (diaria 7:45): crea TODO el contenido del día, lo sube a `posts/AAAA-MM-DD/` (carruseles en pausa).
 - **Sin Filtro · mediodía** (diaria 13:35): publica `reel-1335`.
 - **Sin Filtro · noche** (diaria 20:35): publica `reel-2035` y la story, responde comentarios y guarda métricas.
 - **Sin Filtro · semanal** (domingo 7:15, antes de la de mañana): informe, aprendizajes y plan de la semana siguiente.

@@ -2,7 +2,7 @@
 
 Repo de la cuenta de Instagram @verdadysinfiltro: marca, estrategia, generador de imágenes e imágenes publicadas (URLs públicas raw).
 
-**Rutina de la mañana: seguir `docs/rutina-manana.md` (manda sobre cualquier lista de pasos anterior).**
+**Una sola fuente de reglas.** Cada rutina tiene su procedimiento completo en `docs/`: `rutina-manana.md`, `rutina-mediodia.md`, `rutina-noche.md` y `rutina-semanal.md`. Las tareas programadas solo dicen "clona el repo y sigue tu documento"; si algo cambia, se cambia en el documento, no en la tarea. Lo que debe cumplirse siempre (límite de palabras, carruseles en pausa) lo hace cumplir el código (`tools/dia.py`).
 
 Antes de crear contenido, leer:
 - `docs/marca.md`: estética, voz, hashtags y caption.

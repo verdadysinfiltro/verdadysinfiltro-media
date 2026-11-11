@@ -3,7 +3,7 @@
 
 Uso:
   python3 tools/dia.py preparar PLAN.json AAAA-MM-DD
-      Imágenes (carrusel si toca, story, bases de reel), voces alternas, piano, reels y captions
+      Imágenes (carrusel si toca, story, bases de reel), voz de Vera (F5), piano, reels y captions
       en posts/AAAA-MM-DD/, y un mosaico /tmp/dia/mosaico.jpg para revisar. Imprime un resumen JSON.
   python3 tools/dia.py publicar PLAN.json AAAA-MM-DD
       Añade las piezas a docs/historial.md, hace commit y push, publica el carrusel si toca y
@@ -45,8 +45,8 @@ def leer_plan(ruta, hoy):
 
 
 def voces(hoy):
-    par = datetime.date.fromisoformat(hoy).timetuple().tm_yday % 2 == 0
-    return ("M5", "F5") if par else ("F5", "M5")
+    # Desde el 2026-11-12 la cuenta tiene autora (Vera): todos los reels con voz de mujer.
+    return ("F5", "F5")
 
 
 def caption(texto, hashtags, con_voz):

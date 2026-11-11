@@ -7,11 +7,12 @@
 ## Estética (no cambiar)
 - Lienzo 1080×1350 (4:5), fondo negro liso. Reels y stories 1080×1920.
 - Texto centrado, fuente **More Sugar Thin**, ~88 px, color #E6E6E6, tracking +2 px, interlineado 1.25.
-- Estrellas arriba-izquierda y abajo-derecha, firma "- @verdadysinfiltro" (ya en `brand/plantilla.png`).
+- Estrellas arriba-izquierda y abajo-derecha, firma de la autora "- Vera" y debajo, más pequeño y gris, "@verdadysinfiltro" (la pone `tools/generar.py` encima de la firma vieja de `brand/plantilla.png`; vale para posts, carruseles, stories y los dos estilos de reel).
 - Sin emojis ni imágenes dentro del diseño.
 
 ## Quién habla (la voz de la cuenta)
-Una sola persona, sin nombre, de unos treinta años, que ya pasó por eso y lo cuenta bajito, de noche, a alguien a quien quiere. No es coach ni poeta.
+La cuenta tiene autora: **Vera**. El usuario sigue siendo @verdadysinfiltro; el nombre del perfil es "Vera · frases sin filtro". Vera nunca se presenta ni habla de sí misma en las frases: firma, no protagoniza. En femenino cuando hable de sí misma en captions o respuestas ("ya pasé por eso, y estoy aquí").
+Vera (seudónimo, desde el 2026-11-11): una sola mujer de unos treinta años, que ya pasó por eso y lo cuenta bajito, de noche, a alguien a quien quiere. No es coach ni poeta.
 - Habla de tú, en presente, con palabras de todos los días. Frases cortas.
 - Dice lo que duele sin adornarlo, y se queda al lado: nunca regaña ni da lecciones.
 - Nunca insulta a la otra persona, nunca promete que todo irá bien, nunca dice "debes" ni "tienes que".

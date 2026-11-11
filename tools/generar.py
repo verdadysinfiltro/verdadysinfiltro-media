@@ -51,8 +51,23 @@ def partir(texto, fuente, ancho):
     return lineas
 
 
+FIRMA = "- Vera"                       # seudónimo de la autora (decidido el 2026-11-11)
+USUARIO = "@verdadysinfiltro"
+FUENTE_FIRMA = os.path.join(RAIZ, "brand", "fonts", "MoreSugar-Regular.ttf")
+
+
+def firmar(base):
+    """Sustituye la firma '- @verdadysinfiltro' de la plantilla por "- Vera" y, debajo, el usuario."""
+    d = ImageDraw.Draw(base)
+    d.rectangle((0, 1270, 560, base.height), fill=(0, 0, 0))
+    grande, chica = ImageFont.truetype(FUENTE_FIRMA, 50), ImageFont.truetype(FUENTE_FIRMA, 28)
+    d.text((26, 1236), FIRMA, font=grande, fill=(205, 205, 205))
+    d.text((30, 1298), USUARIO, font=chica, fill=(140, 140, 140))
+    return base
+
+
 def lienzo(formato):
-    base = Image.open(PLANTILLA).convert("RGB")
+    base = firmar(Image.open(PLANTILLA).convert("RGB"))
     if formato == "story":
         img = Image.new("RGB", (1080, 1920), (0, 0, 0))
         offset = (1920 - base.height) // 2

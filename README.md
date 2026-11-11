@@ -1,3 +1,3 @@
 # verdadysinfiltro-media
 
-Marca, estrategia e imágenes públicas de @verdadysinfiltro. Ver `CLAUDE.md`.
+Repo privado: código, marca y documentos. Los archivos que se publican están en verdadysinfiltro/assets-vs.

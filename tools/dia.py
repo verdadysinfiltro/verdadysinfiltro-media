@@ -24,6 +24,7 @@ TMP = "/tmp/dia"
 MAD = ZoneInfo("Europe/Madrid")
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from estilo import estilo  # noqa: E402
+import medios  # noqa: E402
 
 VOZ_LINEA = "Voz generada con IA."
 
@@ -75,15 +76,17 @@ def preparar(plan, hoy):
     if faltan:
         sys.exit(json.dumps({"error": "Faltan campos en el plan: " + ", ".join(faltan)}, ensure_ascii=False))
     out = os.path.join("posts", hoy)
-    os.makedirs(os.path.join(RAIZ, out), exist_ok=True)
+    medios.asegurar()
+    dest = medios.local(out)        # los archivos del día van a assets-vs (público)
+    os.makedirs(dest, exist_ok=True)
     os.makedirs(TMP, exist_ok=True)
     res = {"dia": hoy, "voz": {}, "estilo": {}, "errores": [], "archivos": []}
     if lleva_carrusel(hoy, dia):
-        sh(["python3", "tools/generar.py", "--carrusel", f"{out}/carrusel", *dia["carrusel"]])
-        open(os.path.join(RAIZ, out, "carrusel.txt"), "w", encoding="utf-8").write(
+        sh(["python3", "tools/generar.py", "--carrusel", f"{dest}/carrusel", *dia["carrusel"]])
+        open(os.path.join(dest, "carrusel.txt"), "w", encoding="utf-8").write(
             caption(dia["carrusel_caption"], dia.get("carrusel_hashtags", ""), False))
         res["archivos"].append(f"{out}/carrusel/")
-    sh(["python3", "tools/generar.py", "--story", f"{out}/story-2035.jpg", dia["story"]])
+    sh(["python3", "tools/generar.py", "--story", f"{dest}/story-2035.jpg", dia["story"]])
     res["archivos"].append(f"{out}/story-2035.jpg")
     for n, (r, hora, voz, seg) in enumerate(zip(reels[:2], ("1335", "2035"), voces(hoy), (7, 11)), 1):
         base = f"{TMP}/r{n}"
@@ -103,15 +106,15 @@ def preparar(plan, hoy):
         if est == "cine":
             # Mitad de los reels: palabra a palabra sobre fondo en movimiento. Si falla, sale el clásico.
             try:
-                sh(["python3", "tools/cine.py", f"{out}/reel-{hora}.mp4", f"{TMP}/p{n}.wav", f"{hoy}-{hora}", r["g1"], r["g2"], base], env=env)
+                sh(["python3", "tools/cine.py", f"{dest}/reel-{hora}.mp4", f"{TMP}/p{n}.wav", f"{hoy}-{hora}", r["g1"], r["g2"], base], env=env)
             except Exception as e:  # noqa: BLE001
                 res["errores"].append(f"reel cine {hora}: {str(e)[-200:]} (se montó el clásico)")
                 sh(["python3", "tools/generar.py", "--reel", base, r["g1"], r["g2"]])
                 est = "clasico"
         if est == "clasico":
-            sh(["tools/reel.sh", f"{base}-a.jpg", f"{out}/reel-{hora}.mp4", f"{TMP}/p{n}.wav", "auto", f"{hoy}-{hora}", f"{base}-b.jpg"], env=env)
+            sh(["tools/reel.sh", f"{base}-a.jpg", f"{dest}/reel-{hora}.mp4", f"{TMP}/p{n}.wav", "auto", f"{hoy}-{hora}", f"{base}-b.jpg"], env=env)
         res["estilo"][hora] = est
-        open(os.path.join(RAIZ, out, f"reel-{hora}.txt"), "w", encoding="utf-8").write(
+        open(os.path.join(dest, f"reel-{hora}.txt"), "w", encoding="utf-8").write(
             caption(r["caption"], r["hashtags"], con_voz))
         res["voz"][hora] = voz if con_voz else "no"
         res["archivos"].append(f"{out}/reel-{hora}.mp4")
@@ -119,7 +122,7 @@ def preparar(plan, hoy):
     rep = sh(["python3", "tools/historial.py", "check", *frases])
     if rep:
         res["repetidas"] = rep.splitlines()
-    mosaico(out, hoy, dia)
+    mosaico(dest, hoy, dia)
     res["mosaico"] = f"{TMP}/mosaico.jpg"
     json.dump(res, open(f"{TMP}/resumen.json", "w"), ensure_ascii=False)
     print(json.dumps(res, ensure_ascii=False))
@@ -127,8 +130,8 @@ def preparar(plan, hoy):
 
 def mosaico(out, hoy, dia):
     from PIL import Image
-    fotos = [f"{TMP}/r1-a.jpg", f"{TMP}/r1-b.jpg", f"{TMP}/r2-a.jpg", f"{TMP}/r2-b.jpg", os.path.join(RAIZ, out, "story-2035.jpg")]
-    car = os.path.join(RAIZ, out, "carrusel")
+    fotos = [f"{TMP}/r1-a.jpg", f"{TMP}/r1-b.jpg", f"{TMP}/r2-a.jpg", f"{TMP}/r2-b.jpg", os.path.join(out, "story-2035.jpg")]
+    car = os.path.join(out, "carrusel")
     if lleva_carrusel(hoy, dia) and os.path.isdir(car):
         fotos += [os.path.join(car, f) for f in sorted(os.listdir(car)) if f.endswith(".jpg")]
     w, h = 216, 384
@@ -162,15 +165,17 @@ def publicar(plan, hoy):
         hist.insert(0, ("carrusel 7:45", f"{dia['carrusel'][0]} → " + " / ".join(dia["carrusel"][1:]), f"{out}/carrusel/"))
     for formato, frase, archivo in hist:
         sh(["python3", "tools/historial.py", "add", hoy, formato, frase.replace("|", "/"), archivo])
-    sh(["git", "add", out, "docs/historial.md"])
-    sh(["git", "commit", "-q", "-m", f"Contenido del {hoy}"], check=False)
-    for i in range(4):
-        if subprocess.run(["git", "push", "-q", "origin", "HEAD:main"], cwd=RAIZ).returncode == 0:
-            break
-        subprocess.run(["git", "pull", "-q", "--rebase", "origin", "main"], cwd=RAIZ)
-        time.sleep(2 ** (i + 1))
-    else:
-        res["errores"].append("git push falló 4 veces")
+    # 1) archivos del día → assets-vs (público: Instagram los descarga de ahí); 2) historial → este repo
+    for nombre, cmd_dir, rutas in (("assets-vs", medios.ASSETS, [out]), ("historial", RAIZ, ["docs/historial.md"])):
+        subprocess.run(["git", "-C", cmd_dir, "add", *rutas], capture_output=True)
+        subprocess.run(["git", "-C", cmd_dir, "commit", "-q", "-m", f"Contenido del {hoy}"], capture_output=True)
+        for i in range(4):
+            if subprocess.run(["git", "-C", cmd_dir, "push", "-q", "origin", "HEAD:main"], capture_output=True).returncode == 0:
+                break
+            subprocess.run(["git", "-C", cmd_dir, "pull", "-q", "--rebase", "origin", "main"], capture_output=True)
+            time.sleep(2 ** (i + 1))
+        else:
+            res["errores"].append(f"git push de {nombre} falló 4 veces")
     piezas = []
     if car:
         time.sleep(20)

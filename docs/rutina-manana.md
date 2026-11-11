@@ -4,7 +4,7 @@ Vigente desde el 2026-11-12. Sustituye a cualquier lista anterior. Nadie mira: d
 
 Las frases, captions y hashtags de la semana los escribe Pluma el domingo en `plan/actual`. Esta rutina solo produce, revisa y publica.
 
-1. `cd /home/user/verdadysinfiltro-media && git checkout -q main && git pull -q --rebase origin main`; `HOY=$(TZ=Europe/Madrid date +%F)`.
+1. `cd /home/user/verdadysinfiltro-media && git checkout -q main && git pull -q --rebase origin main`; los archivos del día van a `/home/user/assets-vs` (repo público aparte; `tools/dia.py` lo clona o actualiza solo, y necesita permiso de push: si falla el push, añádelo con add_repo {owner: verdadysinfiltro, repo: assets-vs, access: push}); `HOY=$(TZ=Europe/Madrid date +%F)`.
 2. Oficina (ArtifactData, https://claude.ai/artifact/MsamUDTLQzWhcwz7qg2d2x), a la vez y con `out_dir: "/tmp/of"`: "get" de `plan/actual` y de `rutinas/manana`, y "list" de `agents` y de `ordenes`, y "get" de `flujo/actual`. Apunta las versiones que da el listado (sirven para `if_version`).
 3. `python3 tools/dia.py preparar /tmp/of/plan/actual.json $HOY | tail -1` (unos 3 min: imágenes, voces alternas, piano, un reel clásico y otro "cine", y captions en `posts/$HOY/`).
    - Si dice "Faltan campos": escribe solo lo que falta en `/tmp/of/plan/actual.json` siguiendo `docs/marca.md` (lee solo las secciones necesarias) y repite.

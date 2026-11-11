@@ -4,6 +4,7 @@ Oficina 3D dentro de una nave espacial oscura en órbita de la Tierra (cámara e
 
 Oficina: https://claude.ai/artifact/MsamUDTLQzWhcwz7qg2d2x (se lee y escribe con la herramienta ArtifactData, url de arriba).
 Copia del HTML: `oficina/index.html`.
+Repos: este (privado: código, marca, documentos) y `verdadysinfiltro/assets-vs` (público: solo imágenes y vídeos del día, porque Instagram los descarga por URL pública; ver `tools/medios.py`).
 
 ## Agentes y qué hace cada uno
 | Agente | Rol | Cuándo trabaja |
@@ -62,8 +63,8 @@ tools/reel.sh /tmp/r1-a.jpg posts/$HOY/reel-1335.mp4 /tmp/p1.wav auto $HOY-1335 
 - `plan/actual`: {week (domingo AAAA-MM-DD), dias: {AAAA-MM-DD: {carrusel?: [7 frases], reels: [{g1, g2, tema}, {g1, g2, tema}] (mediodía, noche), story: frase, done: []}}}.
 
 ## Sesión de trabajo
-- **Sin Filtro · mañana** se ejecuta en la sesión fija "Sin Filtro · oficina (no borrar)" (`session_01THrf6QwLmYWXKRir16LpNz`), la única con permiso de push a `main` (lo necesita para subir las imágenes del día y que tengan URL pública). No borrar ni archivar esa sesión.
-- Mediodía, noche y semanal abren una sesión nueva cada vez: clonan el repo (público), publican con lo ya subido y escriben en la oficina; no necesitan push.
+- **Sin Filtro · mañana** se ejecuta en la sesión fija "Sin Filtro · oficina (no borrar)" (`session_01THrf6QwLmYWXKRir16LpNz`), la única con permiso de push a `main` de este repo y de `assets-vs` (lo necesita para subir las imágenes del día y que tengan URL pública). No borrar ni archivar esa sesión.
+- Mediodía, noche y semanal abren una sesión nueva cada vez: clonan este repo y `tools/noche.py` clona `assets-vs` (público) por su cuenta; publican con lo ya subido y escriben en la oficina; no necesitan push.
 
 ## Preferencia de Rodrigo
 Las rutinas trabajan en silencio: no responder con resúmenes, avisos ni mensajes finales (gastan tokens). Solo ejecutar y dejar el registro en la oficina (`log`, `agents`, `posts`).

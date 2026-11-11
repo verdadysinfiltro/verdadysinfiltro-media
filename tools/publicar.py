@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Publica en Instagram (Graph API) usando las URLs raw públicas de este repo.
+"""Publica en Instagram (Graph API) usando las URLs raw públicas de assets-vs (ver tools/medios.py).
 
 El token lo inyecta el proxy del entorno en graph.facebook.com; solo hace falta IG_USER_ID.
 
@@ -16,8 +16,11 @@ import time
 import urllib.parse
 import urllib.request
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import medios  # noqa: E402
+
 API = "https://graph.facebook.com/v21.0"
-RAW = "https://raw.githubusercontent.com/verdadysinfiltro/verdadysinfiltro-media/main/"
+RAW = medios.RAW
 IG = os.environ["IG_USER_ID"]
 
 
@@ -74,7 +77,7 @@ def publicar(contenedor):
 
 def main():
     tipo, ruta = sys.argv[1], sys.argv[2]
-    caption = limpiar_caption(open(sys.argv[3], encoding="utf-8").read()) if len(sys.argv) > 3 else ""
+    caption = limpiar_caption(open(medios.local(sys.argv[3]), encoding="utf-8").read()) if len(sys.argv) > 3 else ""
     if tipo == "imagen":
         c = llamar("POST", f"{IG}/media", image_url=url_publica(ruta), caption=caption)["id"]
     elif tipo == "story":
@@ -82,13 +85,13 @@ def main():
     elif tipo == "reel":
         extra = {}
         portada = ruta[:-4] + "-cover.jpg"
-        if os.path.exists(portada):
+        if os.path.exists(medios.local(portada)):
             extra["cover_url"] = url_publica(portada)
         c = llamar("POST", f"{IG}/media", video_url=url_publica(ruta), media_type="REELS",
                    caption=caption, share_to_feed="true", **extra)["id"]
     elif tipo == "carrusel":
         hijos = []
-        for f in sorted(os.listdir(ruta)):
+        for f in sorted(os.listdir(medios.local(ruta))):
             if f.lower().endswith((".jpg", ".jpeg")):
                 h = llamar("POST", f"{IG}/media", image_url=url_publica(os.path.join(ruta, f)),
                            is_carousel_item="true")["id"]

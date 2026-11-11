@@ -24,8 +24,8 @@ Decidida el 2026-11-10 con los datos reales de la cuenta (6 seguidores): los ree
 - Revisión de la estrategia: 2026-12-10 (30 días). No descartar tema ni formato con menos de 2 semanas de datos.
 
 ## Publicación
-- Archivos en `posts/AAAA-MM-DD/`; URL pública `https://raw.githubusercontent.com/verdadysinfiltro/verdadysinfiltro-media/main/<ruta>`. Hacer `git push` ANTES de publicar.
-- `python3 tools/publicar.py carrusel|story|reel <ruta> [caption.txt]` (token inyectado por el proxy en graph.facebook.com; `IG_USER_ID`; nunca mostrar tokens).
+- Los archivos del día (`posts/AAAA-MM-DD/…`) NO viven en este repo sino en el repositorio público **verdadysinfiltro/assets-vs** (junto a este, en `../assets-vs`; los scripts lo clonan solos: `tools/medios.py`). Este repo es privado: código, marca y documentos. URL pública: `https://raw.githubusercontent.com/verdadysinfiltro/assets-vs/main/<ruta>`. `tools/dia.py publicar` hace el `git push` a assets-vs ANTES de publicar.
+- `python3 tools/publicar.py carrusel|story|reel <ruta> [caption.txt]` (las rutas `posts/…` se buscan en assets-vs) (token inyectado por el proxy en graph.facebook.com; `IG_USER_ID`; nunca mostrar tokens).
 - Si falla, reintentar una vez y anotar el error en `log` y en `posts` (estado "error").
 
 ## Cuadros

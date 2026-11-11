@@ -33,6 +33,7 @@ import urllib.request
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from estilo import MAD, estilo_de_fecha  # noqa: E402
+import medios  # noqa: E402
 API = "https://graph.facebook.com/v21.0"
 IG = os.environ.get("IG_USER_ID", "")
 CUENTA = "verdadysinfiltro"
@@ -67,12 +68,13 @@ def pub(tipo, ruta, cap=None):
 
 
 def publicar(hoy, solo1335=False):
+    medios.asegurar()   # los archivos del día están en assets-vs
     d = f"posts/{hoy}"
     res = {}
     piezas = [("reel-1335", "reel", f"{d}/reel-1335.mp4", f"{d}/reel-1335.txt")] if solo1335 else [
         ("reel-2035", "reel", f"{d}/reel-2035.mp4", f"{d}/reel-2035.txt"), ("story-2035", "story", f"{d}/story-2035.jpg", None)]
     for clave, tipo, ruta, cap in piezas:
-        if not os.path.exists(os.path.join(RAIZ, ruta)):
+        if not os.path.exists(medios.local(ruta)):
             res[clave] = {"error": f"falta {ruta}"}
             continue
         res[clave] = pub(tipo, ruta, cap)

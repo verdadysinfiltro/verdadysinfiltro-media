@@ -251,6 +251,80 @@ dialog::backdrop{background:rgba(3,2,8,.65)}
 .chf input{flex:1;min-width:0;font:600 13px var(--body);color:var(--ink);background:var(--bg-2);border:1.5px solid var(--line);border-radius:10px;padding:7px 10px}
 .chf input:focus{outline:0;border-color:var(--c)}
 .chf button{font:800 12px var(--body);color:#08140d;background:var(--c);border:0;border-radius:10px;padding:6px 12px;cursor:pointer}
+/* dashboard: informes, salud de rutinas, rendimiento */
+.ops{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) minmax(0,1fr);gap:12px;align-items:start}
+@media (max-width:1100px){.ops{grid-template-columns:minmax(0,1fr)}}
+.ops .panel{border-top:4px solid var(--c)}
+.ops .panel h3{font-size:13.5px}
+.legend{margin:0;font-size:12px;color:var(--muted);line-height:1.5}
+.hl{gap:8px}
+.hl .hrow{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;background:var(--bg-2);border:1.5px solid var(--line);border-radius:14px;padding:9px 12px}
+.hl .hrow .hdot{width:12px;height:12px;border-radius:50%;background:var(--idle);box-shadow:0 0 0 3px rgba(255,255,255,.04)}
+.hl .hrow.ok .hdot{background:var(--ok);box-shadow:0 0 10px rgba(95,211,148,.55)}.hl .hrow.error .hdot,.hl .hrow.none .hdot{background:var(--bad);box-shadow:0 0 10px rgba(255,107,107,.55)}.hl .hrow.run .hdot{background:var(--warn)}.hl .hrow.off{opacity:.6}
+.hl .hrow.error,.hl .hrow.none{border-color:#5a2a2e}
+.hl .hmid b{display:block;font-size:14px;font-weight:800}
+.hl .hmid small{display:block;font-size:12px;color:var(--muted);font-weight:700;overflow-wrap:anywhere}
+.wk-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.wk-t{background:var(--bg-2);border:1.5px solid var(--line);border-radius:14px;padding:8px 12px;display:flex;flex-direction:column;min-width:0}
+.wk-t small{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.wk-t b{font-size:24px;font-weight:900;line-height:1.15;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.wk-t b.t2{font-size:15px;line-height:1.25}
+.wk-t span{font-size:12px;color:var(--muted);font-weight:700}
+.up{color:var(--ok)!important}.down{color:var(--bad)!important}
+.wk-empty{border:2px dashed var(--line);border-radius:14px;padding:16px;text-align:center;color:var(--muted);font-size:13.5px}
+.wk-empty b{display:block;color:var(--ink);font-size:15px;margin-bottom:2px}
+.rep-box{display:flex;flex-direction:column;gap:12px}
+.rep-meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:12.5px;font-weight:700;color:var(--muted)}
+.rep-tag{font-size:10.5px;font-weight:900;text-transform:uppercase;letter-spacing:.05em;border-radius:999px;padding:2px 9px;border:1.5px solid currentColor;display:inline-flex;gap:6px;align-items:center}
+.rep-tag.real{color:var(--ok)}.rep-tag.real::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.rep-pick{display:flex;gap:6px;flex-wrap:wrap}
+.rep-pick button{font:800 12px var(--body);color:var(--ink);background:var(--bg-2);border:1.5px solid var(--line);border-radius:999px;padding:4px 11px;cursor:pointer}
+.rep-pick button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.rep-pick button:focus-visible{outline:2px solid var(--meta);outline-offset:2px}
+.rep-card{background:var(--bg-2);border:1.5px solid var(--line);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.rep-card h4{margin:0;font-size:18px;line-height:1.25;font-weight:900;overflow-wrap:anywhere}
+.rep-card .sub2{font-size:12.5px;color:var(--muted);font-weight:700}
+.rep-card h5{margin:0;font-size:11.5px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;color:var(--meta)}
+.rep-dec{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;counter-reset:d}
+.rep-dec li{counter-increment:d;display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;font-size:14px;font-weight:600;line-height:1.4}
+.rep-dec li::before{content:counter(d);width:22px;height:22px;border-radius:50%;background:var(--meta);color:#140f22;font-weight:900;font-size:12px;display:grid;place-items:center}
+.rep-intro{margin:0;font-size:14px;line-height:1.5;overflow-wrap:anywhere}
+.rep-more{align-self:flex-start;font:800 12.5px var(--body);color:var(--ink);background:transparent;border:1.5px solid var(--line);border-radius:999px;padding:5px 12px;cursor:pointer}
+.rep-more:hover,.rep-more:focus-visible{border-color:var(--meta);outline:0}
+.rep-empty{border:2px dashed var(--line);border-radius:16px;padding:18px;color:var(--muted);font-size:13.5px}
+.rep-empty b{display:block;color:var(--ink);font-size:15px;margin-bottom:2px}
+.md{font-size:14px;line-height:1.55;overflow-wrap:anywhere;border-top:1px solid var(--line);padding-top:10px;display:flex;flex-direction:column;gap:8px}
+.md h4,.md h5{margin:6px 0 0;font-size:15px;font-weight:900;color:var(--ink);text-transform:none;letter-spacing:0}
+.md h5{font-size:13px;color:var(--meta);text-transform:uppercase;letter-spacing:.05em}
+.md p{margin:0}.md ol,.md ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:3px}
+.md .tw{overflow-x:auto}.md table{border-collapse:collapse;font-size:12.5px;min-width:100%}
+.md th,.md td{border:1px solid var(--line);padding:4px 8px;text-align:left;white-space:nowrap}.md th{background:#1d1a27;font-weight:800}
+/* cerebro del CEO */
+.btabs{display:flex;gap:4px;overflow-x:auto;border-bottom:1px solid var(--line);scrollbar-width:none}
+.btabs button{flex:none;font:800 13px var(--body);color:var(--muted);background:none;border:0;border-bottom:3px solid transparent;padding:8px 12px 7px;cursor:pointer}
+.btabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--c)}
+.btabs button:focus-visible{outline:2px solid var(--c);outline-offset:-2px}
+.bpane{display:flex;flex-direction:column;gap:12px;max-height:min(62vh,560px);overflow:auto;padding-right:2px;scrollbar-width:thin}
+.bk{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+@media (max-width:620px){.bk{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.bk-i{background:var(--bg-2);border:1.5px solid var(--line);border-radius:14px;padding:8px 12px;display:flex;flex-direction:column;min-width:0}
+.bk-i small{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.bk-i b{font-size:22px;font-weight:900;line-height:1.2;overflow-wrap:anywhere}
+.bk-i span{font-size:12px;color:var(--muted);font-weight:700}
+.bsec{display:flex;flex-direction:column;gap:8px}
+.bsec h5{margin:0!important}
+.bsearch{width:100%;box-sizing:border-box;font:600 13px var(--body);color:var(--ink);background:var(--bg-2);border:1.5px solid var(--line);border-radius:10px;padding:8px 10px}
+.bsearch:focus{outline:0;border-color:var(--c)}
+.rule{background:var(--bg-2);border:1.5px solid var(--line);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:6px}
+.rule h4{margin:0;font-size:16px;font-weight:900}
+.rule small{font-size:11.5px;color:var(--muted);font-weight:700}
+.rule p{margin:0;font-size:13.5px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}
+.rule .lab{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.05em;color:var(--c);margin-top:4px}
+.rule button{align-self:flex-start;font:800 12px var(--body);color:var(--ink);background:transparent;border:1.5px solid var(--line);border-radius:999px;padding:3px 11px;cursor:pointer}
+.rule button:hover,.rule button:focus-visible{border-color:var(--c);outline:0}
+.learn{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;background:var(--bg-2);border:1.5px solid var(--line);border-radius:14px;padding:10px 12px;font-size:13.5px;line-height:1.5}
+.learn time{font-size:11.5px;font-weight:900;color:#0d2a18;background:var(--ceo);border-radius:8px;padding:2px 8px;height:fit-content;white-space:nowrap}
+.learn span{overflow-wrap:anywhere}
 @media (prefers-reduced-motion:reduce){.pill.working::before,.tag.working i{animation:none}.card{transition:none}.rm-btn .chev{transition:none}}
 </style>
 
@@ -303,7 +377,7 @@ dialog::backdrop{background:rgba(3,2,8,.65)}
         <button type="button" data-v="datos">Pantalla grande</button>
       </div>
       <div class="hud" id="hud">Arrastra para girar · rueda para acercar · clic derecho para moverte · toca a alguien para ver su ficha</div>
-      <div class="tools" role="group" aria-label="Opciones de la oficina"><button type="button" id="bSnd" aria-pressed="false" title="Sonido suave cuando llega un correo">🔔 Sonido</button><button type="button" id="bAuto" aria-pressed="true" title="El CEO dirige solo cuando no hay actividad real">🤖 CEO auto</button></div>
+      <div class="tools" role="group" aria-label="Opciones de la oficina"><button type="button" id="bSnd" aria-pressed="false" title="Sonido suave cuando llega un correo">🔔 Sonido</button><button type="button" id="bBrain" title="Reglas, aprendizajes e informes del CEO">🧠 Cerebro</button><button type="button" id="bAuto" aria-pressed="true" title="El CEO dirige solo cuando no hay actividad real">🤖 CEO auto</button></div>
     </div>
 
     <aside class="rail side" aria-label="Hoja de ruta y paneles en vivo">
@@ -328,14 +402,6 @@ dialog::backdrop{background:rgba(3,2,8,.65)}
         <div class="next" id="agNext"><span>Siguiente</span><b>—</b></div>
         <ul class="ag" id="ag"><li><span class="h">—</span><span></span><span class="t">Se rellena cuando la rutina de la mañana prepara el día.</span></li></ul>
       </section>
-      <section class="box">
-        <h3>Salud de las rutinas</h3>
-        <ul class="hl" id="hl"></ul>
-      </section>
-      <section class="box wk">
-        <h3>Rendimiento de la semana <em id="wkSum"></em></h3>
-        <div id="wk"><p class="empty">Las barras salen cuando Lupa mide las primeras piezas (20:35).</p></div>
-      </section>
     </aside>
   </div>
 
@@ -347,6 +413,21 @@ dialog::backdrop{background:rgba(3,2,8,.65)}
       <div class="kpi" style="--c:var(--meta)"><small>Instagram · alcance 14 días</small><b id="kAlc">—</b><span id="kAlcS">Envíos y guardados: —</span></div>
       <div class="kpi" style="--c:var(--yt)"><small>YouTube · vídeos esta semana</small><b id="kYt">—</b><span id="kYtS">Publicados y programados</span></div>
       <div class="kpi" style="--c:var(--shop)"><small>Tienda online</small><b id="kShop">Fase 1/4</b><span>Prueba de venta a los 5.000 seguidores · tienda a los 10.000</span><div class="bar"><i id="kShopB" style="width:1%"></i></div></div>
+    </div>
+    <div class="ops">
+      <section class="panel" style="--c:var(--meta)" aria-labelledby="repH">
+        <h3 id="repH">Informes <em id="repN"></em></h3>
+        <div class="rep-box" id="repBox"></div>
+      </section>
+      <section class="panel" style="--c:var(--ok)" aria-labelledby="hlH">
+        <h3 id="hlH">Salud de las rutinas <em id="hlSum"></em></h3>
+        <ul class="hl" id="hl"></ul>
+        <p class="legend">Verde: hecha. Gris: aún no toca. Amarillo: en curso. Rojo: falló o no ha dado señales.</p>
+      </section>
+      <section class="panel" style="--c:var(--yt)" aria-labelledby="wkH">
+        <h3 id="wkH">Rendimiento de la semana <em id="wkSum"></em></h3>
+        <div id="wk"></div>
+      </section>
     </div>
     <div class="charts">
       <div class="panel chart" style="--c:var(--meta)"><h3>Seguidores de Instagram <em id="cLast"></em></h3><div id="chart"></div><p class="note">Un punto por noche: lo apunta Lupa a las 20:35.</p></div>
@@ -368,6 +449,7 @@ dialog::backdrop{background:rgba(3,2,8,.65)}
 
 <dialog id="dlg" aria-labelledby="dName"><div class="dl" id="dBody"></div></dialog>
 <dialog id="mdlg" aria-labelledby="mSubj" style="width:min(820px,calc(100% - 32px))"><div id="mBody"></div></dialog>
+<dialog id="bdlg" aria-labelledby="bTitle" style="width:min(900px,calc(100% - 32px))"><div class="dl" id="bBody"></div></dialog>
 
 <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
@@ -416,7 +498,7 @@ const AG=[
  {id:'bruno',dept:'shop',area:'Finanzas y legal',name:'Bruno',role:'Alta fiscal, IVA y cuentas',ropa:'suit',shirt:'#3b3f58',skin:'#d9a07a',hair:'#bdbdbd',hs:'bald',acc:'glasses',desk:[19.93,9,-H],kit:['laptop','papers','calc'],phase:4,
   does:['Alta de autónomo o sociedad cuando toque','IVA, facturas y márgenes','Condiciones de venta y privacidad'],first:'En pausa hasta la fase 4'},
  {id:'ceo',dept:'dir',area:'Dirección',name:'CEO',role:'Despacho de dirección',ropa:'suit',shirt:'#1f1f27',skin:'#e8b88f',hair:'#24180f',hs:'short',acc:'',desk:[-21,-13.6,0],kit:['imac','mug','frame'],
-  does:['Dirige a todos los departamentos: reparte las órdenes y las manda por correo','Convoca reuniones de dirección en la sala de reuniones','Recibe los informes de cada persona','Escríbele en el panel «Orden al CEO»'],first:'Revisando la planta'},
+  does:['Dirige a todos los departamentos: reparte las órdenes y las manda por correo','Convoca reuniones de dirección en la sala de reuniones','Es el cerebro de la oficina: guarda reglas, aprendizajes e informes (pulsa en él para abrirlo)','Escríbele en el panel «Orden al CEO»'],first:'Revisando la planta'},
  {id:'vera',dept:'dir',area:'Recepción',name:'Vera',role:'Recepción de la planta 42',ropa:'jacket',shirt:'#5fd394',skin:'#f4cfae',hair:'#7a3b1e',hs:'long',acc:'phones',desk:[4.6,3,-H],kit:['monitor','phone'],decor:true,
   does:['Recibe a las visitas junto a los ascensores del puente'],first:'Recepción abierta'}];
 const SPARE=[[-19.05,6.43,P],[-13.95,7.9,H],[-13.05,7.9,-H]]; // mesas libres
@@ -424,7 +506,7 @@ const byId=Object.fromEntries(AG.map(a=>[a.id,a]));
 const deptOf=id=>DEPTS.find(d=>d.id===byId[id].dept);
 const STATUS_TXT={working:'Trabajando',done:'Hecho',idle:'En espera',paused:'En pausa',decor:'Decorativo'};
 const state={};AG.forEach(a=>state[a.id]={status:a.decor?'decor':a.phase?'paused':'idle',task:a.first,updated:null});
-const DATA={metricas:null,cuenta:{seguidores:6,publicaciones:16,meta:100},posts:[],serie:[],yt:null,plan:null,correo:[],rutinas:{}};
+const DATA={metricas:null,cuenta:{seguidores:6,publicaciones:16,meta:100},posts:[],serie:[],yt:null,plan:null,correo:[],rutinas:{},informes:[],cerebro:{}};
 const PHASES=[
   {n:1,name:'Entrada',from:0,to:1000,does:'2 reels al día en dos golpes, 3 carruseles de colección y definir la voz.',sig:[['Algún reel con más de 1.000 de alcance',s=>s.maxReelReach>1000],['1–2 envíos por cada 100 de alcance',s=>s.sendRate>=1]]},
   {n:2,name:'Comunidad',from:1000,to:5000,does:'Reels de prueba, un carrusel al día, Threads y canal de difusión.',sig:[['Carruseles con más de 300 guardados',s=>s.maxCarSaved>300]]},
@@ -460,6 +542,7 @@ function renderDepts(){
 }
 const dlg=document.getElementById('dlg');dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
 function openAgent(id){
+  if(id==='ceo'){openBrain();focusAgent(id);return}
   const a=byId[id],d=deptOf(id),s=state[id]||{},st=stOf(id),b=document.getElementById('dBody');b.innerHTML='';b.style.setProperty('--c',d.c);
   const top=el('div','top');const t=el('div');const h=el('h2',null,a.name);h.id='dName';t.append(h,el('div','role',d.name+' · '+a.area+' · '+a.role));
   const x=el('button','x','Cerrar');x.type='button';x.onclick=()=>dlg.close();top.append(avatar(a),t,x);
@@ -559,7 +642,7 @@ const ROUT=[
   {id:'yt-shorts',name:'YouTube · shorts',h:8.7,days:[1,3,5,0],yt:'Tanda'},
   {id:'yt-largo',name:'YouTube · vídeo largo',h:10.12,days:[2,4],yt:'largo'}];
 function madridParts(){const p=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Madrid',hour:'2-digit',minute:'2-digit',weekday:'short',hour12:false}).formatToParts(new Date());const g=k=>p.find(x=>x.type===k).value;return {h:(+g('hour')%24)+(+g('minute'))/60,wd:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(g('weekday'))}}
-function renderHealth(){const {h,wd}=madridParts(),today=dayMadrid(new Date()),ul=document.getElementById('hl');ul.innerHTML='';
+function renderHealthOld(){const {h,wd}=madridParts(),today=dayMadrid(new Date()),ul=document.getElementById('hl');ul.innerHTML='';
   ROUT.forEach(r=>{let last=null,estado=null,res='';
     if(r.yt){const runs=(DATA.yt&&DATA.yt.runs)||[];const f=runs.filter(x=>r.yt==='largo'?/largo/i.test(x.label||''):!/largo/i.test(x.label||'')).sort((a,b)=>String(b.date).localeCompare(String(a.date)))[0];if(f){last=f.date;estado=(f.shorts||[]).some(s=>/error/i.test(s.privacy||''))?'error':'ok';res=(f.shorts||[]).length+' vídeo(s)'}}
     else{const d=DATA.rutinas[r.id];if(d){last=d.ultima?dayMadrid(new Date(d.ultima)):null;estado=d.estado;res=d.resumen||''}}
@@ -574,7 +657,7 @@ function renderHealth(){const {h,wd}=madridParts(),today=dayMadrid(new Date()),u
   const fresh=DATA.yt&&DATA.yt.updated&&Date.now()-new Date(DATA.yt.updated).getTime()<9*36e5;li.append(s,el('span','st '+(fresh?'ok':'none'),fresh?'Al día':'Atrasada'));ul.append(li)}
 
 /* ---------- rendimiento de la semana ---------- */
-function renderWeek(){const days=[];for(let i=6;i>=0;i--){const d=new Date(Date.now()-i*864e5);days.push({k:dayMadrid(d),lab:new Intl.DateTimeFormat('es-ES',{timeZone:'Europe/Madrid',weekday:'narrow'}).format(d),reach:0,eng:0,n:0})}
+function renderWeekOld(){const days=[];for(let i=6;i>=0;i--){const d=new Date(Date.now()-i*864e5);days.push({k:dayMadrid(d),lab:new Intl.DateTimeFormat('es-ES',{timeZone:'Europe/Madrid',weekday:'narrow'}).format(d),reach:0,eng:0,n:0})}
   const map=Object.fromEntries(days.map(d=>[d.k,d]));let any=false;
   metricPosts().forEach(p=>{const m=p.metricas;if(!m||!p.fecha)return;const d=map[dayMadrid(new Date(p.fecha))];if(!d)return;any=true;d.reach+=+m.reach||0;d.eng+=(+m.shares||0)+(+m.saved||0);d.n++});
   const box=document.getElementById('wk');if(!any){box.innerHTML='';box.append(el('p','empty','Las barras salen cuando Lupa mide las primeras piezas (20:35).'));document.getElementById('wkSum').textContent='';return}
@@ -1198,7 +1281,6 @@ if(document.fonts)document.fonts.ready.then(()=>drawScreens()).catch(()=>{});
 window.__hq={scene,camera,controls,earth,tex:window.__tex,chars,SPOTS,grid,gi,free,astar,standOf,seatOf,AG};
 }
 
-renderDepts();renderDash();renderMail();
 
 /* ---------- flujo de correos, órdenes al CEO y chat ---------- */
 function mkEv(o){return Object.assign({id:'f'+Date.now().toString(36)+Math.random().toString(36).slice(2,5),t:new Date().toISOString()},o)}
@@ -1264,6 +1346,131 @@ function chatBox(id){const w=el('div','chat');w.append(el('h5',null,'Chat direct
   f.onsubmit=async e=>{e.preventDefault();const t=inp.value.trim().slice(0,200);if(!t)return;inp.value='';await chatSend(id,t);draw()};return w}
 renderFlow();renderOrders();
 
+/* ---------- informes, salud, rendimiento y cerebro del CEO ---------- */
+const DN=['dom','lun','mar','mié','jue','vie','sáb'];
+const REP={sel:null,open:false};
+function ago(d){if(!d||isNaN(d))return'';const s=(Date.now()-d.getTime())/1000;if(s<90)return'ahora';if(s<3600)return'hace '+Math.round(s/60)+' min';if(s<86400)return'hace '+Math.round(s/3600)+' h';const n=Math.round(s/86400);return n===1?'ayer':'hace '+n+' días'}
+function mdInline(parent,s){String(s).split(/(\*\*[^*]+\*\*)/).forEach(p=>{if(/^\*\*[^*]+\*\*$/.test(p))parent.append(el('strong',null,p.slice(2,-2)));else if(p)parent.append(document.createTextNode(p))})}
+function renderMd(text){const box=el('div','md');const L=String(text||'').split('\n');let i=0;
+  while(i<L.length){const ln=L[i];if(/^\s*$/.test(ln)){i++;continue}
+    const hm=/^(#{1,3})\s+(.*)$/.exec(ln);if(hm){const h=el(hm[1].length===1?'h4':'h5');mdInline(h,hm[2]);box.append(h);i++;continue}
+    if(/^\|/.test(ln)){const rows=[];while(i<L.length&&/^\|/.test(L[i])){rows.push(L[i]);i++}
+      const cells=r=>r.replace(/^\||\|\s*$/g,'').split('|').map(c=>c.trim());const tb=el('table');
+      rows.filter(r=>!/^\|\s*:?-{2,}/.test(r)).forEach((r,k)=>{const tr=el('tr');cells(r).forEach(c=>{const td=el(k?'td':'th');mdInline(td,c);tr.append(td)});tb.append(tr)});
+      const w=el('div','tw');w.append(tb);box.append(w);continue}
+    if(/^\s*(\d+\.|-)\s+/.test(ln)){const ul=el(/^\s*\d+\./.test(ln)?'ol':'ul');while(i<L.length&&/^\s*(\d+\.|-)\s+/.test(L[i])){const li=el('li');mdInline(li,L[i].replace(/^\s*(\d+\.|-)\s+/,''));ul.append(li);i++}box.append(ul);continue}
+    const p=el('p');mdInline(p,ln);box.append(p);i++}
+  return box}
+function repInfo(r){const t=String(r.texto||''),L=t.split('\n');const h=L.find(l=>/^#\s+/.test(l));
+  const title=h?h.replace(/^#+\s*/,''):(t.split(/[.:]\s/)[0]||'Informe').slice(0,100);
+  const decs=[];let on=false;for(const l of L){if(/^#{1,3}\s/.test(l)){on=/decision/i.test(l);continue}if(on){const m=/^\s*(\d+\.|-)\s+(.*)$/.exec(l);if(m)decs.push(m[2])}}
+  const intro=(L.find(l=>l.trim()&&!/^#/.test(l)&&!/^\|/.test(l)&&!/^\s*(\d+\.|-)\s/.test(l))||'').replace(/\*\*/g,'').trim();
+  const intro2=intro.length>240?intro.slice(0,intro.lastIndexOf(' ',240))+'…':intro;
+  const f=String(r.fecha||r._id||'');const d=new Date(f.length===10?f+'T12:00:00':f);
+  return {title,decs,intro:intro2,date:isNaN(d)?null:d,tipo:/informe semanal/i.test(t)?'Semanal':'Diagnóstico'}}
+function drawReports(box,full){box.innerHTML='';const L=DATA.informes,sem=(DATA.rutinas||{}).semanal;
+  if(!L.length){const e=el('div','rep-empty');e.append(el('b',null,'Todavía no hay informes'),document.createTextNode('Lupa escribe el informe semanal los domingos a las 7:15 y aparecerá aquí.'));box.append(e);return}
+  const meta=el('div','rep-meta');meta.append(el('span','rep-tag real','Real · guardado en la oficina'));
+  if(sem&&sem.ultima)meta.append(el('span',null,'Rutina semanal: '+(sem.estado==='ok'?'bien':sem.estado||'—')+' · '+ago(new Date(sem.ultima))));box.append(meta);
+  const cur=L.find(x=>x._id===REP.sel)||L[0];
+  if(L.length>1){const pick=el('div','rep-pick');pick.setAttribute('role','group');pick.setAttribute('aria-label','Informes guardados');
+    L.slice(0,8).forEach(x=>{const i=repInfo(x);const b=el('button',null,(i.date?new Intl.DateTimeFormat('es-ES',{timeZone:'Europe/Madrid',day:'numeric',month:'short'}).format(i.date):x._id)+' · '+i.tipo);b.type='button';b.setAttribute('aria-pressed',String(x===cur));b.onclick=()=>{REP.sel=x._id;REP.open=false;renderReports()};pick.append(b)});box.append(pick)}
+  const i=repInfo(cur);const card=el('div','rep-card');card.append(el('h4',null,i.title),el('div','sub2',i.tipo+(i.date?' · '+fmtDate(i.date.toISOString()).replace(/, \d\d:\d\d$/,'')+' · '+ago(i.date):'')));
+  if(i.decs.length){card.append(el('h5',null,'Decisiones'));const ol=el('ol','rep-dec');i.decs.forEach(d=>{const li=el('li');mdInline(li,d);ol.append(li)});card.append(ol)}else if(i.intro&&!full)card.append(el('p','rep-intro',i.intro));
+  const open=full||REP.open;const more=el('button','rep-more',open?'Ocultar informe completo':'Leer informe completo');more.type='button';more.setAttribute('aria-expanded',String(open));
+  if(!full){more.onclick=()=>{REP.open=!REP.open;renderReports()};card.append(more)}
+  if(open)card.append(renderMd(cur.texto));box.append(card)}
+let brainTab='resumen',brainQ='';
+const bdlg=document.getElementById('bdlg');bdlg.addEventListener('click',e=>{if(e.target===bdlg)bdlg.close()});
+function renderReports(){drawReports(document.getElementById('repBox'),false);document.getElementById('repN').textContent=DATA.informes.length?DATA.informes.length+' guardados':'';if(bdlg.open&&brainTab==='informes')drawBrain()}
+function healthRows(){const {h,wd}=madridParts(),today=dayMadrid(new Date()),rows=[];
+  ROUT.forEach(r=>{let last=null,lastAt=null,estado=null,res='';
+    if(r.yt){const runs=(DATA.yt&&DATA.yt.runs)||[];const f=runs.filter(x=>r.yt==='largo'?/largo/i.test(x.label||''):!/largo/i.test(x.label||'')).sort((a,b)=>String(b.date).localeCompare(String(a.date)))[0];if(f){last=f.date;estado=(f.shorts||[]).some(s=>/error/i.test(s.privacy||''))?'error':'ok';res=(f.shorts||[]).length+' vídeo(s)'}}
+    else{const d=DATA.rutinas[r.id];if(d){lastAt=d.ultima?new Date(d.ultima):null;last=lastAt?dayMadrid(lastAt):null;estado=d.estado;res=d.resumen||''}}
+    const hm=String(Math.floor(r.h)).padStart(2,'0')+':'+String(Math.round(r.h%1*60)).padStart(2,'0');let cls,txt;
+    if(!r.days.includes(wd)){cls='off';txt='Hoy no toca'}
+    else if(last===today){cls=estado==='error'?'error':'ok';txt=estado==='error'?'Con error':'Bien'}
+    else if(h<r.h){cls='pend';txt='A las '+hm}
+    else if(h<r.h+(r.yt?0.9:0.6)){cls='run';txt='En curso'}
+    else{cls='none';txt='Sin noticias'}
+    rows.push({r,hm,cls,txt,last,lastAt,res})});
+  const fresh=DATA.yt&&DATA.yt.updated&&Date.now()-new Date(DATA.yt.updated).getTime()<9*36e5;
+  rows.push({r:{id:'ytcopia',name:'Copia de YouTube',days:[0,1,2,3,4,5,6]},hm:'',cls:fresh?'ok':'none',txt:fresh?'Al día':'Atrasada',last:null,lastAt:DATA.yt&&DATA.yt.updated?new Date(DATA.yt.updated):null,res:'',copia:true});
+  return rows}
+function healthCount(rows){let ok=0,bad=0,wait=0;rows.forEach(x=>{if(x.cls==='ok')ok++;else if(x.cls==='error'||x.cls==='none')bad++;else if(x.cls==='pend'||x.cls==='run')wait++});return {ok,bad,wait}}
+function renderHealth(){const ul=document.getElementById('hl');if(!ul)return;const rows=healthRows();ul.innerHTML='';
+  rows.forEach(x=>{const li=el('li','hrow '+x.cls);const dot=el('span','hdot');dot.setAttribute('aria-hidden','true');const mid=el('span','hmid');mid.append(el('b',null,x.r.name));
+    const when=x.copia?'cada pocas horas':x.hm+' · '+(x.r.days.length===7?'cada día':x.r.days.map(d=>DN[d]).join(', '));
+    const lt=x.lastAt?'última '+ago(x.lastAt):(x.last?'última '+x.last.split('-').reverse().join('/'):'sin registros');
+    mid.append(el('small',null,when+' · '+lt+(x.res?' · '+x.res:'')));li.append(dot,mid,el('span','st '+x.cls,x.txt));ul.append(li)});
+  const c=healthCount(rows);document.getElementById('hlSum').textContent=(c.bad?c.bad+' con aviso · ':'')+c.ok+' bien'+(c.wait?' · '+c.wait+' por llegar':'')}
+function renderWeek(){const wdf=new Intl.DateTimeFormat('es-ES',{timeZone:'Europe/Madrid',weekday:'short'});const days=[];
+  for(let i=6;i>=0;i--){const d=new Date(Date.now()-i*864e5),k=dayMadrid(d);days.push({k,lab:wdf.format(d).replace('.','').slice(0,3),n:+k.slice(8),reach:0,eng:0,pieces:0,today:i===0})}
+  const map=Object.fromEntries(days.map(d=>[d.k,d]));let any=false,prev=0,best=null;const l7=Date.now()-7*864e5,l14=Date.now()-14*864e5;
+  metricPosts().forEach(p=>{const m=p.metricas;if(!m||!p.fecha)return;const t=new Date(p.fecha).getTime(),r=+m.reach||0,e=(+m.shares||0)+(+m.saved||0);
+    if(t<l7&&t>=l14)prev+=r;const d=map[dayMadrid(new Date(p.fecha))];if(!d)return;any=true;d.reach+=r;d.eng+=e;d.pieces++;if(!best||r>best.reach)best={titulo:p.titulo,reach:r}});
+  const box=document.getElementById('wk');box.innerHTML='';const sumEl=document.getElementById('wkSum');
+  if(!any){sumEl.textContent='';const e=el('div','wk-empty');e.append(el('b',null,'Aún no hay piezas medidas esta semana'),document.createTextNode('Lupa las mide cada noche a las 20:35 y aquí verás el alcance por día.'));box.append(e);return}
+  const tr=days.reduce((a,d)=>a+d.reach,0),te=days.reduce((a,d)=>a+d.eng,0),pc=days.reduce((a,d)=>a+d.pieces,0);sumEl.textContent=nf(tr)+' alcance';
+  const tiles=el('div','wk-tiles');const tile=(k,v,s,cls,small)=>{const t=el('div','wk-t');const b=el('b',small?'t2':null,v);if(cls)b.className+=' '+cls;t.append(el('small',null,k),b,el('span',null,s));tiles.append(t)};
+  const dl=prev?Math.round((tr-prev)/prev*100):null;
+  tile('Alcance 7 días',nf(tr),dl==null?'sin semana anterior para comparar':(dl>=0?'+':'')+dl+'% frente a la anterior',dl==null?'':dl>=0?'up':'down');
+  tile('Envíos + guardados',nf(te),tr?(te/tr*100).toFixed(1).replace('.',',')+' por cada 100 alcanzadas':'—');
+  tile('Piezas medidas',String(pc),'publicadas en 7 días');
+  tile('Mejor pieza',best?String(best.titulo||'—').slice(0,48):'—',best?nf(best.reach)+' de alcance':'',null,true);
+  box.append(tiles);
+  const cs=getComputedStyle(document.documentElement),mut=cs.getPropertyValue('--muted').trim(),ln=cs.getPropertyValue('--line').trim(),ac=cs.getPropertyValue('--yt').trim(),ok=cs.getPropertyValue('--ok').trim(),ink=cs.getPropertyValue('--ink').trim();
+  const Wd=320,Hd=170,T=20,B=34,mx=Math.max(1,...days.map(d=>d.reach)),bw=30,gap=(Wd-days.length*bw)/(days.length+1);
+  let s=`<svg viewBox="0 0 ${Wd} ${Hd}" role="img" aria-label="Alcance por día de publicación, últimos 7 días"><line x1="0" x2="${Wd}" y1="${Hd-B}" y2="${Hd-B}" stroke="${ln}"/>`;
+  days.forEach((d,i)=>{const x=gap+i*(bw+gap),h=(Hd-T-B)*d.reach/mx,y=Hd-B-h;
+    s+=`<rect x="${x}" y="${y}" width="${bw}" height="${Math.max(h,d.reach?3:0)}" rx="6" fill="${ac}" fill-opacity="${d.today?1:.85}"/>`;
+    if(d.eng)s+=`<circle cx="${x+bw/2}" cy="${Math.max(T-8,y-9)}" r="4.5" fill="${ok}"/>`;
+    if(d.reach)s+=`<text x="${x+bw/2}" y="${Math.max(11,y-(d.eng?17:6))}" text-anchor="middle" font-size="11" font-weight="800" fill="${ink}" font-family="Nunito">${d.reach>=1000?(d.reach/1000).toFixed(1)+'k':d.reach}</text>`;
+    s+=`<text x="${x+bw/2}" y="${Hd-18}" text-anchor="middle" font-size="12" font-weight="${d.today?900:700}" fill="${d.today?ink:mut}" font-family="Nunito">${d.lab}</text><text x="${x+bw/2}" y="${Hd-4}" text-anchor="middle" font-size="10.5" fill="${mut}" font-family="Nunito">${d.n}</text>`});
+  const wrap=el('div','chart');wrap.innerHTML=s+'</svg>';box.append(wrap,el('p','legend','Cada barra es el alcance de lo publicado ese día. Punto verde: hubo envíos o guardados.'))}
+/* cerebro del CEO: ficha, reglas, aprendizajes, informes y chat */
+const BTABS=[['resumen','Resumen'],['reglas','Reglas'],['aprendizajes','Aprendizajes'],['informes','Informes'],['chat','Hablar con el CEO']];
+const BTITLE={marca:'Marca y voz',estrategia:'Estrategia y calendario',publicar:'Cómo se publica',reels:'Reels (Clip)'};
+const BLAB={texto:'',caption:'Captions',carrusel:'Carruseles',positivas:'Frases que levantan',voz:'Voz'};
+function openBrain(tab){if(tab)brainTab=tab;drawBrain();if(!bdlg.open)bdlg.showModal()}
+function brainRefresh(){if(bdlg.open&&brainTab==='resumen')drawBrain()}
+function drawBrain(){const b=document.getElementById('bBody');b.innerHTML='';b.style.setProperty('--c','#5fd394');const a=byId.ceo;
+  const top=el('div','top');const t=el('div');const h=el('h2',null,'Cerebro del CEO');h.id='bTitle';t.append(h,el('div','role','Reglas, aprendizajes e informes de la oficina · en vivo'));
+  const x=el('button','x','Cerrar');x.type='button';x.onclick=()=>bdlg.close();top.append(avatar(a),t,x);
+  const tabs=el('div','btabs');tabs.setAttribute('role','tablist');BTABS.forEach(([k,l])=>{const bt=el('button',null,l);bt.type='button';bt.setAttribute('role','tab');bt.setAttribute('aria-selected',String(k===brainTab));bt.onclick=()=>{brainTab=k;brainQ='';drawBrain()};tabs.append(bt)});
+  const body=el('div','bpane');({resumen:paneResumen,reglas:paneReglas,aprendizajes:paneAprend,informes:paneInformes,chat:paneChat})[brainTab](body);b.append(top,tabs,body)}
+function bsec(p,title){const s=el('div','bsec');s.append(el('h5',null,title));p.append(s);return s}
+function paneResumen(p){const c=DATA.cuenta||{},seg=+c.seguidores||0,ph=phaseOf(seg),last=DATA.informes[0]&&repInfo(DATA.informes[0]),hc=healthCount(healthRows()),open=Object.values(ORD).filter(o=>o.estado!=='hecha').length;
+  const g=el('div','bk');[['Seguidores',nf(seg),'fase '+ph+' de 4'],['Último informe',last?ago(last.date)||'—':'—',last?last.tipo:'sin informes'],['Rutinas',hc.ok+' bien',(hc.bad?hc.bad+' con aviso':'sin avisos')+(hc.wait?' · '+hc.wait+' por llegar':'')],['Órdenes abiertas',String(open),'del panel «Orden al CEO»']].forEach(([k,v,s])=>{const d=el('div','bk-i');d.append(el('small',null,k),el('b',null,v),el('span',null,s));g.append(d)});p.append(g);
+  const wd=DATA.informes.map(repInfo).find(i=>i.decs.length);
+  const sd=bsec(p,'Decisiones de la semana'+(wd&&wd.date?' · informe del '+new Intl.DateTimeFormat('es-ES',{timeZone:'Europe/Madrid',day:'numeric',month:'short'}).format(wd.date):''));
+  if(wd){const ol=el('ol','rep-dec');wd.decs.forEach(d=>{const li=el('li');mdInline(li,d);ol.append(li)});sd.append(ol)}else sd.append(el('p','rep-intro','Cuando Lupa guarde el informe del domingo, sus 3 decisiones saldrán aquí.'));
+  if(last&&!last.decs.length){const sl=bsec(p,'Último informe · '+last.tipo.toLowerCase());sl.append(el('p','rep-intro',last.intro||last.title))}
+  const ap=parseLearn((DATA.cerebro.aprendizajes||{}).texto).slice(0,3);const sa=bsec(p,'Lo último que ha aprendido la oficina');
+  if(ap.length)ap.forEach(x=>{const d=el('div','learn');d.append(el('time',null,x.d||'—'),el('span',null,x.t));sa.append(d)});else sa.append(el('p','rep-intro','Todavía no hay aprendizajes guardados.'));
+  const sc=bsec(p,'Qué hace el CEO');const ul=el('ul');byId.ceo.does.forEach(t=>ul.append(el('li',null,t)));sc.append(ul)}
+function searchBox(p,onq){const i=el('input','bsearch');i.type='search';i.placeholder='Buscar en el cerebro…';i.setAttribute('aria-label','Buscar en el cerebro');i.value=brainQ;i.addEventListener('input',()=>{brainQ=i.value.trim().toLowerCase();onq()});p.append(i);return i}
+function paneReglas(p){const list=el('div','bsec');const draw=()=>{list.innerHTML='';const ids=Object.keys(DATA.cerebro).filter(k=>k!=='aprendizajes').sort();let n=0;
+    ids.forEach(id=>{const d=DATA.cerebro[id]||{};const title=BTITLE[id]||id;const all=Object.entries(d).filter(([k])=>k!=='actualizado'&&k!=='fuente');const hay=(title+' '+all.map(([,v])=>String(v)).join(' ')).toLowerCase();if(brainQ&&!hay.includes(brainQ))return;n++;
+      const card=el('article','rule');card.append(el('h4',null,title),el('small',null,'Actualizado '+(d.actualizado?ago(new Date(d.actualizado)):'—')+(d.fuente?' · '+d.fuente:'')));
+      const main=String(d.texto||all.map(([,v])=>v)[0]||'');const pv=el('p',null,main.length>300?main.slice(0,300)+'…':main);card.append(pv);const extra=el('div');extra.hidden=true;
+      all.forEach(([k,v])=>{if(k==='texto')return;extra.append(el('div','lab',BLAB[k]||k),el('p',null,String(v)))});
+      const full=el('div');full.hidden=true;full.append(el('p',null,main));const bt=el('button',null,'Ver todo');bt.type='button';bt.setAttribute('aria-expanded','false');
+      bt.onclick=()=>{const o=bt.getAttribute('aria-expanded')!=='true';bt.setAttribute('aria-expanded',String(o));bt.textContent=o?'Ver menos':'Ver todo';pv.textContent=o?main:(main.length>300?main.slice(0,300)+'…':main);extra.hidden=!o};
+      card.append(extra);if(main.length>300||extra.childNodes.length)card.append(bt);list.append(card)});
+    if(!n)list.append(el('p','rep-intro',ids.length?'Nada coincide con la búsqueda.':'El cerebro todavía no tiene reglas guardadas.'))};
+  searchBox(p,draw);p.append(list);draw()}
+function parseLearn(t){return String(t||'').split('\n').map(l=>l.trim()).filter(l=>/^-\s/.test(l)).map(l=>{const m=/^-\s*(\d{4}-\d{2}-\d{2}):\s*(.*)$/.exec(l);return m?{d:m[1].split('-').reverse().slice(0,2).join('/'),t:m[2]}:{d:'',t:l.replace(/^-\s*/,'')}})}
+function paneAprend(p){const doc=DATA.cerebro.aprendizajes||{};const all=parseLearn(doc.texto);const list=el('div','bsec');
+  const draw=()=>{list.innerHTML='';const q=all.filter(x=>!brainQ||x.t.toLowerCase().includes(brainQ));q.forEach(x=>{const d=el('div','learn');d.append(el('time',null,x.d||'—'),el('span',null,x.t));list.append(d)});
+    if(!q.length)list.append(el('p','rep-intro',all.length?'Nada coincide con la búsqueda.':'Todavía no hay aprendizajes. Lupa los guarda cada domingo.'))};
+  p.append(el('p','rep-intro',all.length?all.length+' aprendizajes · actualizado '+(doc.actualizado?ago(new Date(doc.actualizado)):'—')+'. Son las instrucciones que sigue Pluma al escribir.':'Aquí aparecerán los aprendizajes que Lupa saca de los datos.'));
+  searchBox(p,draw);p.append(list);draw()}
+function paneInformes(p){const b=el('div','rep-box');drawReports(b,true);p.append(b)}
+function paneChat(p){p.append(chatBox('ceo'))}
+{const bb=document.getElementById('bBrain');if(bb)bb.onclick=()=>openBrain('resumen')}
+renderDepts();renderDash();renderMail();renderReports();
+
 /* ---------- datos en vivo ---------- */
 const conn=document.getElementById('conn');
 (async()=>{
@@ -1277,7 +1484,9 @@ const conn=document.getElementById('conn');
   db.doc('plan/actual').onSnapshot(s=>{DATA.plan=s.data()||null;drawScreens()},()=>{});
   db.doc('yt/estado').onSnapshot(s=>{const v=s.data();if(!v)return;DATA.yt=v;Object.entries(v.agentes||{}).forEach(([k,a])=>{if(byId[k]&&byId[k].dept==='yt')setSt(k,a)});renderDepts();renderDash()},()=>{});
   db.collection('serie').onSnapshot(s=>{DATA.serie=s.docs.map(d=>Object.assign({fecha:d.id},d.data()||{}));renderDash()},()=>{});
-  db.collection('rutinas').onSnapshot(s=>{DATA.rutinas={};s.docs.forEach(d=>DATA.rutinas[d.id]=d.data()||{});renderHealth()},()=>{});
+  db.collection('rutinas').onSnapshot(s=>{DATA.rutinas={};s.docs.forEach(d=>DATA.rutinas[d.id]=d.data()||{});renderHealth();renderReports();brainRefresh()},()=>{});
+  db.collection('informes').onSnapshot(s=>{DATA.informes=s.docs.map(d=>Object.assign({_id:d.id},d.data()||{})).sort((a,b)=>String(b.fecha||b._id).localeCompare(String(a.fecha||a._id)));renderReports();brainRefresh()},()=>{});
+  db.collection('cerebro').onSnapshot(s=>{DATA.cerebro={};s.docs.forEach(d=>{DATA.cerebro[d.id]=d.data()||{}});brainRefresh();if(bdlg.open&&brainTab!=='chat'&&brainTab!=='resumen'&&!brainQ)drawBrain()},()=>{});
   let mailInit=false;
   db.collection('correo').onSnapshot(s=>{{const first=!mailInit;mailInit=true;if(!first&&boot)s.docChanges().forEach(ch=>{if(ch.type==='added'){const m=ch.doc.data()||{};if(!m.leido)realMail(m)}})}DATA.correo=s.docs.map(d=>Object.assign({_id:d.id},d.data()||{}));renderMail();drawScreens()},()=>{});
   db.collection('log').orderBy('t','desc').limit(12).onSnapshot(s=>renderLog(s.docs.map(d=>d.data()||{})),()=>{});

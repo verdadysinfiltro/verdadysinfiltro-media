@@ -17,13 +17,14 @@ Una sola persona, sin nombre, de unos treinta años, que ya pasó por eso y lo c
 - Nunca insulta a la otra persona, nunca promete que todo irá bien, nunca dice "debes" ni "tienes que".
 - Sin signos de exclamación, sin emojis, sin palabras de autoayuda (vibrar, manifestar, tóxico, energía, universo).
 - Si una frase podría estar en una taza, se descarta.
-- Temas (rotar, no repetir tema en dos reels seguidos): desamor, amor propio, soltar, cansancio emocional, superación, decepciones, relaciones que no te eligen.
+- Temas (rotar, no repetir tema en dos reels seguidos): ánimo y esperanza, amor propio, superación, volver a empezar, gratitud por lo pequeño, desamor, soltar, cansancio emocional, decepciones, relaciones que no te eligen.
+- **La mitad de lo que se publica levanta el ánimo.** Positivo pero profundo: ver "Frases que levantan".
 - Fuera: política, religión, insultos, nombres reales.
 
 ## Cómo se escribe una frase de reel (Pluma)
 Cada reel es una frase en **dos golpes**, 14 palabras como máximo entre los dos:
 - **Golpe 1** (máx. 7 palabras): se entiende solo y deja una pregunta abierta. Es lo único que se ve el primer segundo y medio.
-- **Golpe 2** (máx. 8 palabras): el remate. Tiene que cambiar el sentido del golpe 1 o doler un poco.
+- **Golpe 2** (máx. 8 palabras): el remate. Tiene que cambiar el sentido del golpe 1: o duele un poco, o levanta.
 - Ejemplos: "No eras demasiado." / "Ellos eran poco." · "Sigues mirando si está en línea." / "Y nunca era para escribirte a ti." · "Aprendiste a callar para no perder." / "Y perdiste igual."
 
 Reglas:
@@ -31,8 +32,17 @@ Reglas:
 2. **Prueba del envío.** Antes de aceptar una frase, responde: ¿a quién se la mandaría alguien y qué le estaría diciendo con ella? Si no hay respuesta clara, se descarta.
 3. **Moldes gastados** (máximo 1 por semana cada uno): "X no es Y, es Z", "también es una forma de…", "mereces a alguien que…", "a veces…", "hay personas que…". Palabras a dosificar: sanar, soltar, proceso, merecer.
 4. Nunca repetir una frase ni una idea casi igual a `docs/historial.md`, ni el mismo molde en los dos reels del mismo día.
-5. Reel de mediodía: amor propio, cansancio, superación (tono que levanta). Reel de noche: desamor, ausencias, decepción (tono que duele). Viernes y sábado de noche: frases para quien está a punto de escribirle.
+5. **Reel de mediodía: siempre una frase que levanta** (ánimo, amor propio, superación, volver a empezar). Reel de noche: desamor, ausencias, decepción (tono que duele), salvo **martes y domingo de noche, que también levanta** (consuelo para acabar el día). Viernes y sábado de noche: frases para quien está a punto de escribirle.
 6. Aplicar `cerebro/aprendizajes`: más de lo que tuvo envíos y guardados, menos de lo que no.
+
+## Frases que levantan (positivas pero profundas)
+El ánimo sale de una verdad, no de un eslogan. La frase reconoce primero lo que costó y después enseña lo que ya hay: el que la lee tiene que pensar "es verdad", no "qué bonito".
+- **Parte de la herida o del cansancio y remata con una prueba de fuerza real**: algo que la persona ya hizo, no algo que se le promete.
+- Ejemplos: "Hoy también te has levantado." / "Eso ya cuenta, aunque nadie lo vea." · "Sobreviviste a días que juraste que no." / "Mírate ahora, aquí sigues." · "No vas tarde." / "Vas a tu ritmo, y llegas." · "Lo que hoy te pesa" / "un día lo contarás tranquila."
+- Sigue prohibido: prometer que todo irá bien, "debes", "tienes que", exclamaciones, "tú puedes con todo", "sonríe", "todo pasa por algo", "el universo", y cualquier frase de taza.
+- Prueba del envío igual: ¿a qué amiga que lo está pasando mal se la mandarías para decirle "estoy orgullosa de ti"?
+- En el carrusel: el del **lunes** es siempre una colección que levanta ("Frases para empezar la semana con otra cara", "Siete cosas que ya has hecho bien"); en los demás, al menos 2 de las 5 frases levantan y la última siempre deja esperanza.
+- Story de noche: alterna, un día consuelo y otro día ánimo.
 
 ## Carrusel (3 por semana): una colección con título
 7 diapositivas:

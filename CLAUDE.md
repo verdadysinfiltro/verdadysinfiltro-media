@@ -9,6 +9,7 @@ Antes de crear contenido, leer:
 - `docs/estrategia.md`: frecuencia, horarios, formatos y flujo de trabajo.
 - `docs/historial.md`: todo lo publicado. No leerlo entero: comprobar frases con `python3 tools/historial.py check "frase" …`.
 - `docs/oficina.md`: agentes, calendario, rutinas y esquema de la base de datos de la oficina Sin Filtro HQ.
+- `docs/ordenes.md`: órdenes que Rodrigo da al CEO desde la oficina y cómo las atiende cada rutina (`tools/ordenes.py`).
 
 Imágenes: `tools/generar.py` (carrusel, story y `--reel` para las dos imágenes de un reel en dos golpes; JPEG para publicar). Reels (agente Clip): `tools/piano.py` + `tools/reel.sh` (6,5 s, golpe 2 a los 1,5 s, variante de movimiento por semilla, grano, portada `-cover.jpg`); locución de los dos reels con `tools/voz.py` (alternando mujer y hombre) (Supertonic 3, voces F5 y M5; el caption debe decir "Voz generada con IA."). Publicar: `tools/publicar.py` (token inyectado por el proxy en graph.facebook.com, necesita `IG_USER_ID`; recorta el caption a 5 hashtags). Todo va en `posts/AAAA-MM-DD/`, con caption en un `.txt` del mismo nombre.
 

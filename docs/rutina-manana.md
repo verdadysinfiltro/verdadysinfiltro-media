@@ -5,7 +5,7 @@ Vigente desde el 2026-11-12. Sustituye a cualquier lista anterior. Nadie mira: d
 Las frases, captions y hashtags de la semana los escribe Pluma el domingo en `plan/actual`. Esta rutina solo produce, revisa y publica.
 
 1. `cd /home/user/verdadysinfiltro-media && git checkout -q main && git pull -q --rebase origin main`; `HOY=$(TZ=Europe/Madrid date +%F)`.
-2. Oficina (ArtifactData, https://claude.ai/artifact/MsamUDTLQzWhcwz7qg2d2x), a la vez y con `out_dir: "/tmp/of"`: "get" de `plan/actual` y de `rutinas/manana`, y "list" de `agents`. Apunta las versiones que da el listado (sirven para `if_version`).
+2. Oficina (ArtifactData, https://claude.ai/artifact/MsamUDTLQzWhcwz7qg2d2x), a la vez y con `out_dir: "/tmp/of"`: "get" de `plan/actual` y de `rutinas/manana`, y "list" de `agents` y de `ordenes`, y "get" de `flujo/actual`. Apunta las versiones que da el listado (sirven para `if_version`).
 3. `python3 tools/dia.py preparar /tmp/of/plan/actual.json $HOY | tail -1` (unos 2 min: imágenes, voces alternas, piano, reels y captions en `posts/$HOY/`).
    - Si dice "Faltan campos": escribe solo lo que falta en `/tmp/of/plan/actual.json` siguiendo `docs/marca.md` (lee solo las secciones necesarias) y repite.
    - Si trae "repetidas": cambia esas frases en el JSON por otras nuevas siguiendo `docs/marca.md` y repite.
@@ -18,5 +18,7 @@ Las frases, captions y hashtags de la semana los escribe Pluma el domingo en `pl
    - pluma, tinta y clip con "update" {status: "done", task: resumen de una línea, updated}.
    - Una entrada en `log` {t, agente: "clip", msg}, con id = la hora.
    - Si `errores` no está vacío, un documento nuevo en `correo` {t, de: "clip", tipo: "error", asunto, texto: qué falló y qué se hizo, leido: false}, con id = la hora cambiando ":" por "-" y "-error" al final.
+
+7. Órdenes del CEO: sigue `docs/ordenes.md` con agentes `pluma,tinta,clip` (los ficheros ya están en `/tmp/of`) y añade sus documentos a un segundo batch.
 
 Nunca muestres tokens. Termina con una sola línea: qué quedó listo y qué se publicó.

@@ -12,7 +12,7 @@ Decidida el 2026-11-10 con los datos reales de la cuenta (6 seguidores): los ree
 - 6,5 s, 1080×1920, frase en dos golpes: el golpe 1 se ve desde el primer fotograma; a los 1,5 s aparece el golpe 2 y, debajo, "Una frase cada noche. Sígueme.".
 - `tools/generar.py --reel` + `tools/piano.py` + `tools/reel.sh` (ver `docs/oficina.md`).
 - Portada: la frase entera (`-cover.jpg`).
-- **Prueba de voz (2026-11-11 → 2026-11-25):** el reel de noche lleva locución (`tools/voz.py`, Supertonic 3; mujer F5 los días pares del año, hombre M5 los impares) y el de mediodía no. El golpe 2 aparece cuando lo dice la voz. El caption de los reels con voz lleva la línea "Voz generada con IA." (condición de la licencia OpenRAIL del modelo). Lupa compara reels con y sin voz, y mujer contra hombre, por alcance, tiempo de visionado y nota; el domingo 22 y el 29 decide si la voz se queda, se amplía o se quita.
+- **Voz (desde el 2026-11-12):** los dos reels llevan locución (`tools/voz.py`, Supertonic 3) y alternan entre mujer F5 y hombre M5: los días pares del año, mediodía M5 y noche F5; los impares, al revés. El golpe 2 aparece cuando lo dice la voz. El caption lleva la línea "Voz generada con IA." (condición de la licencia OpenRAIL del modelo). Lupa compara mujer contra hombre por alcance, tiempo de visionado y nota, y lo cuenta en el informe del domingo.
 
 ## Qué se mide (Lupa)
 - Por pieza: alcance, visualizaciones, envíos, guardados, likes, comentarios y, en reels, tiempo medio de visionado.

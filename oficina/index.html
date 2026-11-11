@@ -34,7 +34,7 @@ h1 span{color:var(--muted)}
 /* tres columnas */
 .layout{display:grid;gap:14px;grid-template-columns:minmax(0,1fr);grid-template-areas:"office" "side" "mail"}
 @media (min-width:760px){.layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"office office" "side mail"}}
-@media (min-width:1240px){.layout{grid-template-columns:300px minmax(0,1fr) 310px;grid-template-areas:"mail office side"}.office{height:760px;aspect-ratio:auto!important}.rail{height:760px;overflow:auto}}
+@media (min-width:1240px){.layout{grid-template-columns:350px minmax(0,1fr) 310px;grid-template-areas:"mail office side"}.office{height:760px;aspect-ratio:auto!important}.rail{height:760px;overflow:auto}}
 .rail{display:flex;flex-direction:column;gap:12px;min-width:0;scrollbar-width:thin}
 .rail.mail{grid-area:mail}.rail.side{grid-area:side}
 .box{background:var(--card);border:2px solid var(--line);border-radius:20px;padding:14px;display:flex;flex-direction:column;gap:10px;min-width:0}
@@ -43,22 +43,49 @@ h1 span{color:var(--muted)}
 .badge{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 7px;border-radius:999px;background:var(--bad);color:#160a0a;font-size:12px;font-weight:900;letter-spacing:0}
 .badge[hidden]{display:none}
 
-/* correo */
-.chips{display:flex;gap:6px;flex-wrap:wrap}
-.chips button{font:800 11.5px var(--body);color:var(--muted);background:var(--bg-2);border:1.5px solid var(--line);border-radius:999px;padding:3px 10px;cursor:pointer}
-.chips button[aria-pressed="true"]{color:var(--bg);background:var(--ink);border-color:var(--ink)}
-.chips button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
-.mails{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
-.mail-it{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:start;width:100%;text-align:left;font:inherit;color:inherit;background:var(--bg-2);border:1.5px solid var(--line);border-radius:14px;padding:9px 10px;cursor:pointer}
-.mail-it:hover,.mail-it:focus-visible{border-color:var(--muted);outline:0}
-.mail-it .ic{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;font-size:12px;font-weight:900;color:#100e16;background:var(--c)}
-.mail-it .who{font-size:11.5px;font-weight:800;color:var(--muted);display:flex;gap:6px;align-items:center;flex-wrap:wrap}
-.mail-it .subj{font-size:13.5px;font-weight:700;line-height:1.3;overflow-wrap:anywhere}
-.mail-it.unread .subj{font-weight:900}
-.mail-it .tm{font-size:11px;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums;display:flex;flex-direction:column;align-items:flex-end;gap:4px}
-.mail-it .dot{width:9px;height:9px;border-radius:50%;background:var(--meta)}
-.kind{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.05em;border-radius:6px;padding:0 6px;color:#120f18}
+/* correo, estilo Outlook con los colores de la empresa */
+.rail.mail{gap:0}
+.ol{flex:1;min-height:0;display:flex;flex-direction:column;background:var(--card);border:2px solid var(--line);border-radius:20px;overflow:hidden}
+@media (max-width:1239px){.ol{height:620px}}
+.ol-top{display:flex;align-items:center;gap:10px;padding:12px 14px;background:linear-gradient(90deg,#241a3d,#14121c);border-bottom:1px solid var(--line)}
+.ol-ic{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:var(--meta);color:#140f22;font-weight:900;font-size:15px;flex:none}
+.ol-top b{font-size:15px;font-weight:900}
+.ol-top small{display:block;font-size:11.5px;color:var(--muted);font-weight:700}
+.ol-top .badge{margin-left:auto}
+.ol-search{padding:10px 12px 6px}
+.ol-search input{width:100%;box-sizing:border-box;font:600 13px var(--body);color:var(--ink);background:var(--bg-2);border:1.5px solid var(--line);border-radius:10px;padding:7px 10px}
+.ol-search input:focus{outline:0;border-color:var(--meta)}
+.ol-tabs{display:flex;gap:2px;padding:0 8px;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+.ol-tabs button{flex:none;font:800 12.5px var(--body);color:var(--muted);background:none;border:0;border-bottom:2.5px solid transparent;padding:8px 8px 7px;cursor:pointer;display:flex;gap:5px;align-items:center}
+.ol-tabs button[aria-pressed="true"]{color:var(--ink);border-bottom-color:var(--meta)}
+.ol-tabs button:focus-visible{outline:2px solid var(--meta);outline-offset:-2px}
+.ol-tabs i{font-style:normal;font-size:10.5px;font-weight:900;color:#0d2a18;background:#39ff88;border-radius:99px;padding:0 6px}
+.ol-list{list-style:none;margin:0;padding:8px;display:flex;flex-direction:column;gap:6px;overflow:auto;flex:1;min-height:0;scrollbar-width:thin}
+.ol-it{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;width:100%;text-align:left;font:inherit;color:inherit;background:var(--bg-2);border:1px solid var(--line);border-radius:12px;padding:9px 10px;cursor:pointer}
+.ol-it:hover,.ol-it:focus-visible{background:#1d1a27;outline:0}
+.ol-it.unread{border-color:#39ff88;box-shadow:0 0 0 .5px #39ff88,0 0 9px rgba(57,255,136,.45),inset 0 0 6px rgba(57,255,136,.08)}
+.ol-av{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:900;color:#110e18;background:var(--c);flex:none}
+.ol-row{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.ol-from{font-size:13px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ol-it.unread .ol-from,.ol-it.unread .ol-subj{font-weight:900;color:var(--ink)}
+.ol-tm{font-size:11px;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+.ol-it.unread .ol-tm{color:#39ff88;font-weight:800}
+.ol-subj{font-size:13px;font-weight:600;color:#d8d4e4;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:flex;gap:6px;align-items:center}
+.ol-prev{font-size:12px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kind{font-size:9.5px;font-weight:900;text-transform:uppercase;letter-spacing:.05em;border-radius:5px;padding:0 5px;color:#120f18;flex:none}
 .kind.error{background:var(--bad)}.kind.hito{background:var(--ok)}.kind.informe{background:var(--common)}.kind.tarea{background:var(--warn)}
+.ol-read{flex:1;min-height:0;display:flex;flex-direction:column}
+.ol-bar{display:flex;gap:6px;align-items:center;padding:8px 10px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.ol-bar button{font:800 12px var(--body);color:var(--ink);background:var(--bg-2);border:1.5px solid var(--line);border-radius:9px;padding:5px 10px;cursor:pointer}
+.ol-bar button:hover,.ol-bar button:focus-visible{border-color:var(--meta);outline:0}
+.ol-bar .sp{flex:1}
+.ol-head{padding:14px 16px 10px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:10px}
+.ol-head h3{margin:0;font-size:19px;line-height:1.25;font-weight:900;text-wrap:balance;overflow-wrap:anywhere}
+.ol-who{display:flex;gap:10px;align-items:center;min-width:0}
+.ol-who b{font-size:13.5px;display:block}
+.ol-who small{font-size:12px;color:var(--muted);font-weight:700}
+.ol-body{flex:1;min-height:0;overflow:auto;padding:14px 16px 18px;white-space:pre-wrap;font-size:14.5px;line-height:1.6;overflow-wrap:anywhere;scrollbar-width:thin}
+.ol-empty{padding:18px;color:var(--muted);font-size:13.5px}
 .linkbtn{font:800 12px var(--body);background:transparent;color:var(--muted);border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
 .linkbtn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 
@@ -203,18 +230,22 @@ dialog::backdrop{background:rgba(3,2,8,.65)}
   </header>
 
   <div class="layout">
-    <aside class="rail mail" aria-label="Correo de la planta">
-      <section class="box">
-        <h3>Correo <span class="badge" id="mBadge" hidden>0</span></h3>
-        <div class="chips" role="group" aria-label="Filtrar correo">
-          <button type="button" data-f="all" aria-pressed="true">Todo</button>
-          <button type="button" data-f="error" aria-pressed="false">Errores</button>
-          <button type="button" data-f="hito" aria-pressed="false">Hitos</button>
-          <button type="button" data-f="informe" aria-pressed="false">Informes</button>
-          <button type="button" data-f="tarea" aria-pressed="false">Para ti</button>
+    <aside class="rail mail" aria-label="Correo del equipo">
+      <section class="ol" id="ol">
+        <div class="ol-top"><span class="ol-ic" aria-hidden="true">✉</span><div><b>Correo</b><small>Grupo Iberu · avisos del equipo</small></div><span class="badge" id="mBadge" hidden>0</span></div>
+        <div id="olList" style="display:flex;flex-direction:column;flex:1;min-height:0">
+          <div class="ol-search"><input id="mq" type="search" placeholder="Buscar en el correo" aria-label="Buscar en el correo"></div>
+          <div class="ol-tabs" role="group" aria-label="Carpetas">
+            <button type="button" data-f="all" aria-pressed="true">Bandeja de entrada</button>
+            <button type="button" data-f="tarea" aria-pressed="false">Para ti</button>
+            <button type="button" data-f="error" aria-pressed="false">Errores</button>
+            <button type="button" data-f="hito" aria-pressed="false">Hitos</button>
+            <button type="button" data-f="informe" aria-pressed="false">Informes</button>
+          </div>
+          <ul class="ol-list" id="mails"><li class="ol-empty">Aquí llegan los avisos importantes del equipo: errores, hitos, el informe del domingo y lo que tienes que hacer tú.</li></ul>
+          <div style="padding:6px 12px 10px"><button type="button" class="linkbtn" id="mAll" hidden>Marcar todo como leído</button></div>
         </div>
-        <ul class="mails" id="mails"><li><p class="empty">Aquí llegan los avisos importantes del equipo: errores, hitos, el informe del domingo y lo que tienes que hacer tú.</p></li></ul>
-        <button type="button" class="linkbtn" id="mAll" hidden>Marcar todo como leído</button>
+        <div class="ol-read" id="olRead" hidden></div>
       </section>
     </aside>
 
@@ -252,7 +283,7 @@ dialog::backdrop{background:rgba(3,2,8,.65)}
     </aside>
   </div>
 
-  <p class="note" style="margin-top:-8px">Texturas: Poly Haven (CC0). Tierra y Luna: imágenes de la NASA incluidas en los ejemplos de Three.js.</p>
+  <p class="note" style="margin-top:-8px">Texturas, muebles 3D y cielo de reflejos: Poly Haven (CC0). Tierra y Luna: imágenes de la NASA incluidas en los ejemplos de Three.js.</p>
   <section class="sec" aria-labelledby="hDash">
     <div class="sec-h"><h2 id="hDash">Dashboards en vivo</h2><p>Se actualizan a las 7:45, 13:35 y 20:35</p></div>
     <div class="dash">
@@ -280,10 +311,11 @@ dialog::backdrop{background:rgba(3,2,8,.65)}
 </div>
 
 <dialog id="dlg" aria-labelledby="dName"><div class="dl" id="dBody"></div></dialog>
-<dialog id="mdlg" aria-labelledby="mSubj"><div class="dl" id="mBody"></div></dialog>
+<dialog id="mdlg" aria-labelledby="mSubj" style="width:min(820px,calc(100% - 32px))"><div id="mBody"></div></dialog>
 
 <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/loaders/GLTFLoader.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/environments/RoomEnvironment.js"></script>
 <script>
 /* ================= la empresa ================= */
@@ -382,26 +414,40 @@ function openAgent(id){
 
 /* ---------- correo ---------- */
 const KIND={error:'Error',hito:'Hito',informe:'Informe',tarea:'Para ti'};
-let mFilter='all';
+let mFilter='all',mQuery='',mOpen=null;
 const mdlg=document.getElementById('mdlg');mdlg.addEventListener('click',e=>{if(e.target===mdlg)mdlg.close()});
-document.querySelectorAll('.chips button').forEach(b=>b.onclick=()=>{mFilter=b.dataset.f;document.querySelectorAll('.chips button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));renderMail()});
-function senderOf(m){const a=byId[m.de];return a?{name:a.name,c:deptOf(a.id).c,ini:a.name.slice(0,2)}:{name:m.de||'Planta',c:'#7fb7e8',ini:'42'}}
+document.querySelectorAll('.ol-tabs button').forEach(b=>b.onclick=()=>{mFilter=b.dataset.f;document.querySelectorAll('.ol-tabs button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));renderMail()});
+document.getElementById('mq').addEventListener('input',e=>{mQuery=e.target.value.trim().toLowerCase();renderMail()});
+function senderOf(m){const a=byId[m.de];return a?{name:a.name,role:deptOf(a.id).name+' · '+a.role,c:deptOf(a.id).c,ini:a.name.slice(0,2).toUpperCase()}:{name:m.de||'Grupo Iberu',role:'Nave Iberu',c:'#7fb7e8',ini:'GI'}}
+const shortTime=iso=>{if(!iso)return'';const d=new Date(iso);return dayMadrid(d)===dayMadrid(new Date())?fmtHM(d):new Intl.DateTimeFormat('es-ES',{timeZone:'Europe/Madrid',day:'numeric',month:'short'}).format(d)};
 function renderMail(){
   const list=DATA.correo.slice().sort((a,b)=>String(b.t||'').localeCompare(String(a.t||'')));
-  const unread=list.filter(m=>!m.leido).length;const bd=document.getElementById('mBadge');bd.hidden=!unread;bd.textContent=unread;document.getElementById('sMail').textContent=unread;
-  document.getElementById('mAll').hidden=!unread;
-  const ul=document.getElementById('mails');const shown=list.filter(m=>mFilter==='all'||m.tipo===mFilter);
-  if(!shown.length){ul.innerHTML='';const li=el('li');li.append(el('p','empty',list.length?'Nada en esta carpeta.':'Aquí llegan los avisos importantes del equipo: errores, hitos, el informe del domingo y lo que tienes que hacer tú.'));ul.append(li);return}
-  ul.innerHTML='';shown.slice(0,40).forEach(m=>{const s=senderOf(m);const li=el('li');const b=el('button','mail-it'+(m.leido?'':' unread'));b.type='button';b.style.setProperty('--c',s.c);
-    const ic=el('span','ic',s.ini);const mid=el('span');const who=el('span','who');who.append(el('span','kind '+(KIND[m.tipo]?m.tipo:'informe'),KIND[m.tipo]||'Aviso'),document.createTextNode(s.name));mid.append(who,el('span','subj',m.asunto||'(sin asunto)'));
-    const tm=el('span','tm',m.t?fmtDate(m.t):'');if(!m.leido)tm.append(el('span','dot'));b.append(ic,mid,tm);b.onclick=()=>openMail(m);li.append(b);ul.append(li)});
+  const unread=list.filter(m=>!m.leido).length;const bd=document.getElementById('mBadge');bd.hidden=!unread;bd.textContent=unread;document.getElementById('sMail').textContent=unread;document.getElementById('mAll').hidden=!unread;
+  document.querySelectorAll('.ol-tabs button').forEach(b=>{const f=b.dataset.f;const n=list.filter(m=>!m.leido&&(f==='all'||m.tipo===f)).length;let i=b.querySelector('i');if(n){if(!i){i=document.createElement('i');b.append(i)}i.textContent=n}else if(i)i.remove()});
+  const ul=document.getElementById('mails');const shown=list.filter(m=>(mFilter==='all'||m.tipo===mFilter)&&(!mQuery||((m.asunto||'')+' '+(m.texto||'')+' '+senderOf(m).name).toLowerCase().includes(mQuery)));
+  ul.innerHTML='';
+  if(!shown.length){ul.append(el('li','ol-empty',list.length?(mQuery?'Ningún correo coincide con la búsqueda.':'Nada en esta carpeta.'):'Aquí llegan los avisos importantes del equipo: errores, hitos, el informe del domingo y lo que tienes que hacer tú.'))}
+  shown.slice(0,60).forEach(m=>{const s=senderOf(m);const li=el('li');const b=el('button','ol-it'+(m.leido?'':' unread'));b.type='button';b.style.setProperty('--c',s.c);
+    const av=el('span','ol-av',s.ini);const mid=el('span');mid.style.minWidth='0';
+    const r1=el('span','ol-row');r1.append(el('span','ol-from',s.name),el('span','ol-tm',shortTime(m.t)));
+    const sj=el('span','ol-subj');sj.append(el('span','kind '+(KIND[m.tipo]?m.tipo:'informe'),KIND[m.tipo]||'Aviso'),el('span',null,m.asunto||'(sin asunto)'));sj.lastChild.style.cssText='overflow:hidden;text-overflow:ellipsis';
+    mid.append(r1,sj,el('span','ol-prev',(m.texto||'').replace(/\s+/g,' ').slice(0,120)));
+    [r1,sj,mid.lastChild].forEach(x=>x.style.display=x.classList.contains('ol-row')?'flex':x===sj?'flex':'block');
+    b.append(av,mid);b.onclick=()=>openMail(m);li.append(b);ul.append(li)});
+  if(mOpen){const cur=DATA.correo.find(x=>x._id===mOpen._id);if(cur)mOpen=cur}
 }
-function openMail(m){const s=senderOf(m),b=document.getElementById('mBody');b.innerHTML='';b.style.setProperty('--c',s.c);
-  const top=el('div','top');const t=el('div');t.style.minWidth='0';const h=el('h2',null,m.asunto||'(sin asunto)');h.id='mSubj';h.style.fontSize='26px';
-  const meta=el('div','role');meta.append(el('span','kind '+(KIND[m.tipo]?m.tipo:'informe'),KIND[m.tipo]||'Aviso'),document.createTextNode(' '+s.name+' · '+fmtDate(m.t)));t.append(h,meta);
-  const x=el('button','x','Cerrar');x.type='button';x.onclick=()=>mdlg.close();top.append(t,x);
-  const un=el('button','linkbtn','Marcar como no leído');un.type='button';un.onclick=()=>{setRead(m,false);mdlg.close()};
-  b.append(top,el('div','msg',m.texto||''),un);mdlg.showModal();if(!m.leido)setRead(m,true)}
+function readView(m,box,big){const s=senderOf(m);box.innerHTML='';box.style.setProperty('--c',s.c);
+  const bar=el('div','ol-bar');
+  if(!big){const back=el('button',null,'← Bandeja');back.type='button';back.onclick=closeMail;bar.append(back)}
+  const un=el('button',null,m.leido?'Marcar como no leído':'Marcar como leído');un.type='button';un.onclick=()=>{setRead(m,!m.leido);un.textContent=m.leido?'Marcar como no leído':'Marcar como leído'};bar.append(un,el('span','sp'));
+  if(!big){const ex=el('button',null,'Ampliar');ex.type='button';ex.onclick=()=>{const b=document.getElementById('mBody');b.className='ol-read';b.style.height='min(80vh,720px)';readView(m,b,true);mdlg.showModal()};bar.append(ex)}
+  else{const x=el('button',null,'Cerrar');x.type='button';x.onclick=()=>mdlg.close();bar.append(x)}
+  const head=el('div','ol-head');const h=el('h3',null,m.asunto||'(sin asunto)');if(big)h.id='mSubj';
+  const who=el('div','ol-who');const av=el('span','ol-av',s.ini);av.style.setProperty('--c',s.c);const wt=el('div');wt.style.minWidth='0';wt.append(el('b',null,s.name),el('small',null,s.role+' · '+fmtDate(m.t)));
+  const k=el('span','kind '+(KIND[m.tipo]?m.tipo:'informe'),KIND[m.tipo]||'Aviso');k.style.marginLeft='auto';who.append(av,wt,k);head.append(h,who);
+  box.append(bar,head,el('div','ol-body',m.texto||''))}
+function openMail(m){mOpen=m;const box=document.getElementById('olRead');document.getElementById('olList').hidden=true;box.hidden=false;readView(m,box,false);if(!m.leido)setRead(m,true)}
+function closeMail(){mOpen=null;document.getElementById('olRead').hidden=true;document.getElementById('olList').hidden=false;renderMail()}
 function setRead(m,v){m.leido=v;renderMail();if(DB&&m._id)DB.doc('correo/'+m._id).update({leido:v}).catch(()=>{})}
 document.getElementById('mAll').onclick=async()=>{for(const m of DATA.correo.filter(x=>!x.leido)){m.leido=true;if(DB&&m._id){try{await DB.doc('correo/'+m._id).update({leido:true})}catch(e){}}}renderMail()};
 
@@ -558,6 +604,15 @@ const pc={};
 function pbr(name,rep,color='#ffffff',metal=0,rough=1,nScale=1){const k=name+rep+color+metal;if(pc[k])return pc[k];
   return pc[k]=new THREE.MeshStandardMaterial({map:ld(name+'_diff.jpg',rep,true),normalMap:ld(name+'_nor.jpg',rep),roughnessMap:ld(name+'_rough.jpg',rep),color,metalness:metal,roughness:rough,normalScale:new THREE.Vector2(nScale,nScale),envMapIntensity:.7})}
 
+/* ---- cielo HDR real para los reflejos y modelos 3D (Poly Haven, CC0) ---- */
+TL.load('assets/studio_env.jpg',t=>{t.mapping=THREE.EquirectangularReflectionMapping;t.encoding=THREE.sRGBEncoding;const pm=new THREE.PMREMGenerator(renderer);scene.environment=pm.fromEquirectangular(t).texture;t.dispose();pm.dispose()});
+const GL=THREE.GLTFLoader?new THREE.GLTFLoader(_tm):null;const gcache={};
+function model(id,{x=0,y=0,z=0,rot=0,size=1,axis='y',parent=scene,onload}={}){const h=new THREE.Group();h.position.set(x,y,z);h.rotation.y=rot;parent.add(h);if(!GL)return h;
+  (gcache[id]||(gcache[id]=new Promise((res,rej)=>GL.load('assets/models/'+id+'/'+id+'.json',g=>res(g.scene),undefined,rej)))).then(sc=>{const o=sc.clone(true);
+    const sz=new THREE.Box3().setFromObject(o).getSize(new THREE.Vector3());o.scale.setScalar(size/Math.max(.001,axis==='x'?sz.x:axis==='z'?sz.z:sz.y));
+    const bb=new THREE.Box3().setFromObject(o),c=bb.getCenter(new THREE.Vector3());o.position.set(-c.x,-bb.min.y,-c.z);
+    o.traverse(m=>{if(m.isMesh){m.castShadow=true;m.receiveShadow=true;if(m.material)m.material.envMapIntensity=.8}});h.add(o);if(onload)onload()}).catch(()=>{});
+  return h}
 /* ---- navegación: rejilla de 0,5 con obstáculos ---- */
 const CS=.5,GX=W/CS,GZ=D/CS,grid=new Uint8Array(GX*GZ);
 const gi=(x,z)=>{const i=Math.floor((x+W/2)/CS),j=Math.floor((z+D/2)/CS);return(i<0||j<0||i>=GX||j>=GZ)?-1:j*GX+i};
@@ -708,11 +763,13 @@ function monitor(p,x,on,w=.9){const g=new THREE.Group();g.position.set(x,0,.22);
   B(w,.52,.04,'#111116',0,1.2,0,{parent:g,r:.3,m:.3});const s=mesh(new THREE.PlaneGeometry(w-.06,.46),null,{y:1.2,z:-.022,parent:g,cast:false,mat:on});s.rotation.y=Math.PI;return g}
 function laptop(p,x,on){const g=new THREE.Group();g.position.set(x,0,0);p.add(g);B(.56,.025,.38,'#a9adb6',0,.77,-.05,{parent:g,r:.3,m:.85});
   const lid=new THREE.Group();lid.position.set(0,.785,.14);lid.rotation.x=-.28;g.add(lid);B(.56,.36,.02,'#a9adb6',0,.18,0,{parent:lid,r:.3,m:.85});const s=mesh(new THREE.PlaneGeometry(.5,.3),null,{y:.18,z:-.012,parent:lid,cast:false,mat:on});s.rotation.y=Math.PI;return g}
-function plant(p,x,y,z,s=1,blk=true){const g=new THREE.Group();g.position.set(x,y,z);g.scale.setScalar(s);p.add(g);mesh(cyl(.2,.15,.36,16),'#2a2a30',{y:.18,parent:g,r:.4,m:.5});
+function plant(p,x,y,z,s=1,blk=true){if(p===scene&&GL){const id='potted_plant_04';let fb;const h=model(id,{x,y,z,size:1.2*s,onload:()=>{if(fb)h.remove(fb)}});fb=procPlant(h,0,0,0,s);if(blk)block(x-.3*s,z-.3*s,x+.3*s,z+.3*s,.25);return h}return procPlant(p,x,y,z,s)}
+function procPlant(p,x,y,z,s=1){const g=new THREE.Group();g.position.set(x,y,z);g.scale.setScalar(s);p.add(g);mesh(cyl(.2,.15,.36,16),'#2a2a30',{y:.18,parent:g,r:.4,m:.5});
   const lf=['#2f6e3c','#3f8a4c','#4f9e5a','#2a5f36'];for(let k=0;k<8;k++){const a=k/8*Math.PI*2;const m=mesh(sph(.2,10,8),lf[k%4],{x:Math.cos(a)*.16,y:.6+Math.random()*.32,z:Math.sin(a)*.16,parent:g,r:.75});m.scale.set(.75,1.35,.75)}
-  if(blk&&p===scene)block(x-.25*s,z-.25*s,x+.25*s,z+.25*s,.25);return g}
-function sofa(x,z,len,rot,col){const g=new THREE.Group();g.position.set(x,0,z);g.rotation.y=rot;scene.add(g);const lm=col?pbr('fabric_leather_02',[1,1],col,0,.9,.6):leather;
-  mesh(bx(len,.42,.8),null,{y:.26,parent:g,mat:lm});mesh(bx(len,.55,.2),null,{y:.7,z:-.32,parent:g,mat:lm});mesh(bx(.2,.4,.8),null,{x:-len/2,y:.55,parent:g,mat:lm});mesh(bx(.2,.4,.8),null,{x:len/2,y:.55,parent:g,mat:lm});
+  return g}
+function sofa(x,z,len,rot,col){const g=new THREE.Group();g.position.set(x,0,z);g.rotation.y=rot;scene.add(g);const lm=col?pbr('fabric_leather_02',[1,1],col,0,.9,.6):leather;const fb=new THREE.Group();g.add(fb);
+  mesh(bx(len,.42,.8),null,{y:.26,parent:fb,mat:lm});mesh(bx(len,.55,.2),null,{y:.7,z:-.32,parent:fb,mat:lm});mesh(bx(.2,.4,.8),null,{x:-len/2,y:.55,parent:fb,mat:lm});mesh(bx(.2,.4,.8),null,{x:len/2,y:.55,parent:fb,mat:lm});
+  if(GL)model('sofa_02',{parent:g,size:len,axis:'x',onload:()=>g.remove(fb)});
   rotRect(x,z,rot,-len/2-.1,-.45,len/2+.1,.45,.25);return g}
 const screens={};
 function desk(a,spare){
@@ -760,7 +817,7 @@ sign('PUENTE 42','Grupo Iberu','#ffffff',0,4.6,-4,.8);
 sign('Cafetería',null,'#7fb7e8',0,3.3,11.8,.6);
 mesh(new THREE.CircleGeometry(5.2,48),null,{x:0,y:.015,z:12,cast:false,recv:true,mat:woodMat(3,3)}).rotation.x=-Math.PI/2;
 B(6,1.05,.7,'#1e1f26',0,.52,7.3,{r:.4,m:.4});mesh(bx(6.1,.06,.8),null,{x:0,y:1.07,z:7.3,mat:marble});B(.5,.6,.45,'#1b1b1f',-2,1.4,7.25,{r:.3,m:.6});B(.8,.5,.4,'#2a2b33',1.8,1.35,7.25,{r:.3,m:.7});
-B(6,.04,.04,null,0,.2,7.66,{mat:BM(0x7fb7ff),cast:false});block(-3.1,6.9,3.1,7.7,.3);
+B(6,.04,.04,null,0,.2,7.66,{mat:BM(0x7fb7ff),cast:false});block(-3.1,6.9,3.1,8.3,.3);[-2.2,-.7,.8,2.3].forEach(x=>model('bar_chair_round_01',{x,z:8.05,rot:Math.PI,size:.95}));
 [[-3.4,11],[.4,12.3],[3.8,10.6],[-1.6,15.2],[3.2,15]].forEach(([x,z])=>{mesh(cyl(.55,.55,.04,32),null,{x,y:.75,z,mat:marble});mesh(cyl(.05,.05,.72,8),'#444',{x,y:.37,z,m:.8});
   for(let k=0;k<3;k++){const a=k/3*Math.PI*2+.5;mesh(cyl(.21,.21,.07,16),null,{x:x+Math.cos(a)*.9,y:.47,z:z+Math.sin(a)*.9,mat:leather});mesh(cyl(.03,.03,.45,6),'#555',{x:x+Math.cos(a)*.9,y:.22,z:z+Math.sin(a)*.9,m:.8})}block(x-1.05,z-1.05,x+1.05,z+1.05,.2)});
 plant(scene,-5.4,0,16.3,1.2);plant(scene,5.4,0,16.3,1.2);plant(scene,-5.4,0,6.8,1);plant(scene,5.4,0,2.5,1);
@@ -775,7 +832,7 @@ sofa(-24.2,-12.6,3.2,Math.PI/2);B(4.6,2.4,.42,'#2a1d16',-20.5,1.2,-16.55,{r:.6})
 mesh(sph(.35,24,16),'#3f7fb0',{x:-17,y:1.2,z:-16,r:.4});mesh(cyl(.04,.18,.8,10),'#2a1d16',{x:-17,y:.4,z:-16});block(-17.3,-16.3,-16.7,-15.7,.2);
 plant(scene,-24.2,0,-16.2,1.4);plant(scene,-16.6,0,-9.6,1.1);
 mesh(new THREE.CircleGeometry(2.2,40),'#3b2a2e',{x:-21.2,y:.02,z:-11.4,cast:false,recv:true,r:.95}).rotation.x=-Math.PI/2;
-B(1.4,.42,.8,'#15151a',-22,.22,-11.4,{r:.3,m:.3});block(-22.7,-11.8,-21.3,-11,.2);
+model('modern_coffee_table_01',{x:-22,z:-11.4,size:1.4,axis:'x'});block(-22.8,-11.9,-21.2,-10.9,.2);model('modern_arm_chair_01',{x:-22,z:-9.9,rot:Math.PI,size:.85,axis:'x'});block(-22.5,-10.4,-21.5,-9.3,.15);model('desk_lamp_arm_01',{x:-22.05,y:.755,z:-13.35,rot:.6,size:.55});
 B(.06,1.7,.06,'#222',-17,.85,-12,{m:.6});mesh(cyl(.25,.18,.25,14),null,{x:-17,y:1.8,z:-12,mat:new THREE.MeshStandardMaterial({color:0xfff1d0,emissive:0xffd590,emissiveIntensity:.8})});block(-17.2,-12.2,-16.8,-11.8,.2);
 
 /* ---- sala de reuniones ---- */
@@ -786,7 +843,7 @@ B(3.8,2,.08,'#0b0b10',-11,1.75,-16.75);const planTex=screenPlane(3.6,1.8,1024,51
 /* ---- departamento Meta ---- */
 B(.1,2.25,4.35,'#e8e8ee',-24.75,1.5,8,{r:.3});const boardTex=screenPlane(4.2,2.1,1024,512,-24.68,1.5,8,Math.PI/2);
 B(.1,2.7,6.2,'#0b0b10',-24.75,1.75,13.6);const lupaTex=screenPlane(6,2.5,1536,640,-24.68,1.75,13.6,Math.PI/2);
-sofa(-12.5,16,3,Math.PI,'#4a3d6e');B(1.2,.4,.6,'#15151a',-12.5,.2,14.8,{r:.3,m:.3});block(-13.1,14.5,-11.9,15.1,.2);
+sofa(-12.5,16,3,Math.PI,'#4a3d6e');model('modern_coffee_table_01',{x:-12.5,z:14.7,size:1.2,axis:'x'});block(-13.2,14.3,-11.8,15.1,.2);
 B(.9,1.05,.7,'#d8d8de',-9,.53,12.5,{r:.4});B(.86,.05,.66,'#444',-9,1.08,12.5);block(-9.45,12.15,-8.55,12.85,.28);
 plant(scene,-24.2,0,2.6,1.1);plant(scene,-8.6,0,16.3,1.1);plant(scene,-8.6,0,2.6,1);
 const pl=new THREE.PointLight(0xe6dcff,1.6,26,1.6);pl.position.set(-16,4,9);scene.add(pl);
@@ -809,7 +866,7 @@ B(6.2,2.4,.12,'#1e1f26',18,1.2,14.8,{r:.5,m:.4});block(14.9,14.7,21.1,14.9,.25);
   const m2=m.clone();m2.position.z=14.88;m2.rotation.y=0;scene.add(m2);B(1.15,1.42,.06,'#b48a4f',15.75+i*1.5,1.45,14.88,{r:.5})});
 B(3.2,1.7,.1,'#0b0b10',22.4,1.4,5.1);const shopTex=screenPlane(3,1.5,1024,512,22.4,1.4,5.16);B(.12,.6,.12,'#555',22.4,.3,5.05,{m:.6});block(20.8,4.9,24,5.3,.25);
 B(2.4,.85,1.1,'#5a4630',22.6,.43,12,{r:.7});for(let k=0;k<5;k++)B(.5,.35,.4,'#c99a5b',21.7+k*.45,1.03+(k%2)*.36,11.9,{r:.95});block(21.4,11.45,23.8,12.55,.28);
-B(.6,2.2,3,'#2a2b33',24.4,1.1,8.6,{r:.5,m:.5});for(let j=0;j<4;j++)for(let k=0;k<4;k++)mesh(cyl(.07,.07,.5,10),'#e8e0cf',{x:24.3,y:.4+j*.5,z:7.5+k*.7}).rotation.x=Math.PI/2;block(24.1,7.1,24.7,10.1,.25);
+model('steel_frame_shelves_01',{x:24.15,z:8.6,rot:-Math.PI/2,size:2.6,axis:'x'});block(23.7,7.2,24.7,10,.25);
 plant(scene,8.6,0,16.3,1.1);plant(scene,24.3,0,16.3,1.1);plant(scene,8.6,0,4.6,1);
 const pl3=new THREE.PointLight(0xffeccc,1.5,26,1.6);[[0,12],[0,-12],[-20,-13]].forEach(([x,z])=>{const l=new THREE.PointLight(0xfff0dd,1.2,20,1.6);l.position.set(x,4,z);scene.add(l)});pl3.position.set(16,4,10);scene.add(pl3);
 
@@ -856,7 +913,7 @@ function pawn(a){
 
 /* ---- sitios donde ir (cada uno lo ocupa una sola persona) ---- */
 const SPOTS=[
- {d:'all',p:[-3.4,9.6]},{d:'all',p:[-1.9,11.6]},{d:'all',p:[.4,10.8]},{d:'all',p:[1.9,13]},{d:'all',p:[3.8,9.1]},{d:'all',p:[-1.6,13.7]},{d:'all',p:[3.2,13.5]},{d:'all',p:[-2,8.4]},{d:'all',p:[1,8.4]},
+ {d:'all',p:[-3.4,9.6]},{d:'all',p:[-1.9,11.6]},{d:'all',p:[.4,10.8]},{d:'all',p:[1.9,13]},{d:'all',p:[3.8,9.1]},{d:'all',p:[-1.6,13.7]},{d:'all',p:[3.2,13.5]},{d:'all',p:[-2.9,9.2]},{d:'all',p:[3,9.6]},
  {d:'all',p:[-3.2,-14.4]},{d:'all',p:[1.2,-14.4]},{d:'all',p:[-6,-.6]},
  {d:'meta',p:[-12.5,13.8]},{d:'meta',p:[-9,13.6]},{d:'meta',p:[-23.4,9.6]},{d:'meta',p:[-23.2,11.8]},
  {d:'yt',p:[17.5,-8.2]},{d:'yt',p:[9.5,-15.4]},{d:'yt',p:[15.4,-15.2]},
@@ -1002,7 +1059,7 @@ function loop(){const dt=Math.min(clock.getDelta(),.05),t=clock.elapsedTime;
   controls.update();renderer.render(scene,camera);placeTags();requestAnimationFrame(loop)}
 updateWorld();loop();
 if(document.fonts)document.fonts.ready.then(()=>drawScreens()).catch(()=>{});
-window.__hq={camera,controls,earth,tex:window.__tex,chars,SPOTS,grid,gi,free,astar,standOf,seatOf,AG};
+window.__hq={scene,camera,controls,earth,tex:window.__tex,chars,SPOTS,grid,gi,free,astar,standOf,seatOf,AG};
 }
 
 renderDepts();renderDash();renderMail();

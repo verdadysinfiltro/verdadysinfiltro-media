@@ -29,7 +29,8 @@ MOV="scale=2160:3840,zoompan=z='$Z':x='$X':y='$Y':d=1:s=1080x1920:fps=30,noise=a
 ENT=(-loop 1 -framerate 30 -t "$DUR" -i "$IN")
 if [ -n "$B" ]; then
   ENT+=(-loop 1 -framerate 30 -t "$DUR" -i "$B")
-  FC="[1:v]format=yuva420p,fade=t=in:st=$T2:d=0.3:alpha=1[b];[0:v][b]overlay=shortest=1,$MOV[v]"
+  # En RGB para que el negro no cambie al aparecer el golpe 2 (en YUV el fundido lo volvía gris).
+  FC="[0:v]format=rgba[a];[1:v]format=rgba,fade=t=in:st=$T2:d=0.3:alpha=1[b];[a][b]overlay=shortest=1:format=rgb,$MOV[v]"
   PORTADA=$B; AI=2
 else
   FC="[0:v]$MOV[v]"

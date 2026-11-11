@@ -51,9 +51,10 @@ tools/reel.sh /tmp/r1-a.jpg posts/$HOY/reel-1335.mp4 /tmp/p1.wav auto $HOY-1335 
 - `cuenta/perfil`: {seguidores, publicaciones, cuadros, meta}.
 - `log/<id>`: {t (ISO UTC), agente, msg}; id = hora.
 - `cerebro/marca`, `cerebro/estrategia`, `cerebro/publicar`, `cerebro/reels`, `cerebro/aprendizajes`: reglas (mandan sobre lo demás si chocan; `aprendizajes` lo actualiza Lupa).
-- `yt/estado`: copia de solo lectura de la oficina de YouTube (https://claude.ai/artifact/AuYQ4RurWfo27vi7K6vSSE): {agentes: {organizador|guionista|miniaturista|analista: {status, task, updated}}, runs: [últimas 10 tandas {date, label, shorts: [{title, tipo, format, privacy, url, topic}]}], updated, fuente}. La reescriben con "set" las rutinas de la mañana, mediodía y noche. Nunca se escribe en la oficina de YouTube.
+- `yt/estado`: copia de solo lectura de la oficina de YouTube (https://claude.ai/artifact/AuYQ4RurWfo27vi7K6vSSE): {agentes: {organizador|guionista|miniaturista|analista: {status, task, updated}}, runs: [últimas 10 tandas {date, label, shorts: [{title, tipo, format, privacy, url, topic}]}], updated, fuente}. La reescribe con "set" la rutina de la noche (`tools/ytcopia.py`). Nunca se escribe en la oficina de YouTube.
 - `correo/<hora-con-guiones>-<palabra>`: {t, de (id del agente), tipo: error|hito|informe|tarea, asunto, texto, leido}. Lo escriben las rutinas solo cuando hay algo importante (errores, hitos, informe del domingo, tareas para Rodrigo); la página marca `leido`.
 - `rutinas/{manana|mediodia|noche|semanal}`: {ultima (ISO UTC), estado: ok|error, resumen}. Cada rutina lo reescribe al terminar; la salud de YouTube se deduce de `yt/estado`.
+- `metricas/actual`: {items: [{id, permalink, tipo, titulo, fecha, reach, views, shares, saved, likes, comments, avg_watch_ms, nota}] de las piezas de 14 días, records: {reach, shares}, medido}. Lo reescribe `tools/noche.py metricas` cada noche (sustituye a guardar métricas post por post).
 - `serie/AAAA-MM-DD`: {seguidores, publicaciones}; un punto por noche (rutina de noche) para la gráfica de seguidores.
 - `plan/actual`: {week (domingo AAAA-MM-DD), dias: {AAAA-MM-DD: {carrusel?: [7 frases], reels: [{g1, g2, tema}, {g1, g2, tema}] (mediodía, noche), story: frase, done: []}}}.
 

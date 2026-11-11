@@ -1,29 +1,22 @@
 # Rutina de la mañana (7:45, hora de Madrid)
 
-Procedimiento vigente desde el 2026-11-10. **Sustituye a cualquier lista de pasos anterior** (ya no hay imagen suelta ni stories de mañana y mediodía; son 2 reels en dos golpes, 1 story de noche y carrusel lunes, miércoles y domingo). Nadie está mirando: decide tú, no hagas preguntas, sé breve y no lances subagentes.
+Vigente desde el 2026-11-12. Sustituye a cualquier lista anterior. Nadie mira: decide tú, no preguntes, no lances subagentes y gasta poco: no leas documentación salvo que un paso lo pida, y muestra solo el final de las salidas largas (`| tail -3`).
 
-## Preparación
-1. `cd /home/user/verdadysinfiltro-media && git checkout -q main && git pull -q --rebase origin main`.
-2. Lee `docs/marca.md`, `docs/oficina.md` y `docs/historial.md`.
-3. Oficina (ArtifactData, https://claude.ai/artifact/MsamUDTLQzWhcwz7qg2d2x): a la vez, "get" de `cerebro/aprendizajes` y `plan/actual`, y "list" de `agents`. Pasa siempre `if_version` al escribir documentos existentes.
-4. `HOY=$(TZ=Europe/Madrid date +%F)`, `DIA=$(TZ=Europe/Madrid date +%u)`. Horas de registro SIEMPRE con `date -u +%Y-%m-%dT%H:%M:%SZ`. Hora UTC de una hora de Madrid: `date -u -d "TZ=\"Europe/Madrid\" $HOY 20:35" +%Y-%m-%dT%H:%M:%SZ`.
+Las frases, captions y hashtags de la semana los escribe Pluma el domingo en `plan/actual`. Esta rutina solo produce, revisa y publica.
 
-## Pasos
-a) **Oficina:** UN batch con pluma, tinta y clip en working.
-b) **Pluma:** piezas de hoy = 2 reels (mediodía y noche, cada uno `{g1, g2, tema}`), 1 story de noche y, si DIA es 1, 3 o 7, un carrusel de 7 diapositivas (colección con título, ver "Carrusel" en `docs/marca.md`; si el del plan empieza con "Léelo si…" o parecido, conviértelo en título de colección). Usa lo que haya en `plan/actual.dias[HOY]` que no esté en `done`; lo que falte, escríbelo siguiendo "Quién habla" y "Cómo se escribe una frase de reel" de `docs/marca.md`. Comprueba cada frase contra `docs/historial.md`: ni repetida ni casi igual. Si una frase del plan incumple las reglas, mejórala. Aplica `cerebro/aprendizajes`.
-c) **Tinta:** en `posts/$HOY/`: `carrusel/` si toca (`python3 tools/generar.py --carrusel posts/$HOY/carrusel "f1" … "f7"`), `story-2035.jpg` (`--story`) y las bases de los reels: `python3 tools/generar.py --reel /tmp/r1 "g1" "g2"` y lo mismo con `/tmp/r2`.
-d) **Clip**:
-   - **Los dos reels llevan voz y alternan** (F5 = mujer, M5 = hombre): `PAR=$(( 10#$(TZ=Europe/Madrid date +%j) % 2 ))`; `VOZ_1335=$([ $PAR -eq 0 ] && echo M5 || echo F5)`; `VOZ_2035=$([ $PAR -eq 0 ] && echo F5 || echo M5)`. Así, si el de mediodía es de hombre, el de noche es de mujer, y al día siguiente al revés.
-   - Reel de mediodía: `J=$(python3 tools/voz.py /tmp/v1.wav $VOZ_1335 "g1" "g2")` devuelve `{"t2": …, "dur": …}` (la primera vez descarga el modelo, ~1 min). Después `python3 tools/piano.py /tmp/p1.wav 7 $HOY-1335` y `VOZ=/tmp/v1.wav T2=<t2> DUR=<dur> tools/reel.sh /tmp/r1-a.jpg posts/$HOY/reel-1335.mp4 /tmp/p1.wav auto $HOY-1335 /tmp/r1-b.jpg`.
-   - Reel de noche: igual con `$VOZ_2035`: `python3 tools/voz.py /tmp/v2.wav $VOZ_2035 "g1" "g2"`, `python3 tools/piano.py /tmp/p2.wav 11 $HOY-2035` y `VOZ=/tmp/v2.wav T2=<t2> DUR=<dur> tools/reel.sh /tmp/r2-a.jpg posts/$HOY/reel-2035.mp4 /tmp/p2.wav auto $HOY-2035 /tmp/r2-b.jpg`.
-   - Escribe en `voz.py` las cifras con letra si la frase lleva números. Si `voz.py` falla dos veces con un reel, móntalo sin voz (`tools/reel.sh /tmp/rN-a.jpg posts/$HOY/reel-XXXX.mp4 /tmp/pN.wav auto $HOY-XXXX /tmp/rN-b.jpg`, 6,5 s), quita "Voz generada con IA." de su caption, anótalo en `log` y manda un correo de tipo "error".
-   - Los dos dejan `reel-XXXX-cover.jpg`.
-e) **Revisión**, una sola ronda: UN mosaico con las cuatro bases de reel, la story y las diapositivas. En `-a` solo el golpe 1; en `-b` la frase entera y "Una frase cada noche. Sígueme." sin pisar la firma; texto legible, sin cortes, máximo 6 líneas. Corrige lo que falle (acorta la frase si hace falta).
-f) **Eco:** captions `carrusel.txt`, `reel-1335.txt` y `reel-2035.txt` siguiendo "Caption (Eco)" de `docs/marca.md`: en reels, 2–4 frases que amplían la idea en la voz de la cuenta (40–70 palabras, sin repetir la frase) + a quién enviárselo; en carrusel, el título de la colección + 1–2 frases. Línea en blanco y 3–5 hashtags del tema. Nunca #verdadysinfiltro. **Los reels llevan voz: añade antes de los hashtags una línea sola: "Voz generada con IA."** (salvo si uno salió sin voz) (lo exige la licencia de la voz).
-g) Añade las piezas a `docs/historial.md` (reels como `reel 13:35 | g1 / g2`), commit y `git push origin HEAD:main` (`git pull --rebase` si falla). Espera 20 s.
-h) Si hay carrusel: `python3 tools/publicar.py carrusel posts/$HOY/carrusel posts/$HOY/carrusel.txt`. Si falla, reintenta una vez y anota el error.
-h2) **Copia de YouTube** (solo lectura): en la oficina de YouTube https://claude.ai/artifact/AuYQ4RurWfo27vi7K6vSSE haz un "query" de `runs` con limit 10 y order_by date desc y un "list" de `agents`, y un "get" de `yt/estado` en esta oficina para su if_version. Nunca escribas en la oficina de YouTube.
-
-i) **Oficina**, UN batch final (haz antes un "get" de `rutinas/manana` para su if_version): `rutinas/manana` con "set" {ultima: hora real, estado: "ok" o "error", resumen: una línea}; un documento nuevo en `correo` solo si algo falló (tipo "error": qué falló y qué se hizo, p. ej. la voz no se generó, falta una imagen, el carrusel no se publicó) o si hay algo que solo puede hacer Rodrigo (tipo "tarea"), con id = hora real cambiando ":" por "-" más "-" y una palabra, y datos {t, de: id del agente, tipo, asunto, texto, leido: false}; `yt/estado` con "set" {agentes: {<id>: {status, task, updated}}, runs: [{date, label, shorts: [{title, tipo, format, privacy, url, topic}]}], updated: hora real, fuente: url de la oficina de YouTube}; `posts/<id>` (ids: `HOY-carrusel`, `HOY-reel-1335`, `HOY-reel-2035`, `HOY-story-2035`) con `{titulo (reels: "g1 g2"), tipo, tema, voz ("F5", "M5" o "no", solo en reels), fecha UTC de su hora, estado ("publicado" con permalink para el carrusel; "programado" lo demás; "error" si falló), archivo, orden = 2000000000 − epoch de su fecha}`; `plan/actual` con las piezas hechas en `done`; una entrada en `log` por agente `{t, agente, msg}`; pluma, tinta y clip en done con resumen de una línea; eco en idle con "Siguiente: reel 13:35"; luna y lupa en idle con "Siguiente: 20:35".
+1. `cd /home/user/verdadysinfiltro-media && git checkout -q main && git pull -q --rebase origin main`; `HOY=$(TZ=Europe/Madrid date +%F)`.
+2. Oficina (ArtifactData, https://claude.ai/artifact/MsamUDTLQzWhcwz7qg2d2x), a la vez y con `out_dir: "/tmp/of"`: "get" de `plan/actual` y de `rutinas/manana`, y "list" de `agents`. Apunta las versiones que da el listado (sirven para `if_version`).
+3. `python3 tools/dia.py preparar /tmp/of/plan/actual.json $HOY | tail -1` (unos 2 min: imágenes, voces alternas, piano, reels y captions en `posts/$HOY/`).
+   - Si dice "Faltan campos": escribe solo lo que falta en `/tmp/of/plan/actual.json` siguiendo `docs/marca.md` (lee solo las secciones necesarias) y repite.
+   - Si trae "repetidas": cambia esas frases en el JSON por otras nuevas siguiendo `docs/marca.md` y repite.
+4. Mira `/tmp/dia/mosaico.jpg` una sola vez. En las imágenes `-a` solo tiene que verse el golpe 1; en `-b`, la frase entera y "Una frase cada noche. Sígueme." sin pisar la firma; nada cortado y como mucho 6 líneas. Si algo falla, acorta la frase en el JSON y repite el paso 3 (una vez como mucho).
+5. `python3 tools/dia.py publicar /tmp/of/plan/actual.json $HOY | tail -1`. Añade al historial, sube al repositorio, publica el carrusel si toca y deja los documentos en `/tmp/dia/batch/`.
+6. UN batch final:
+   - Cada `posts/<doc_id>` con `file_path` de `batch.posts` (son nuevos: sin `if_version`).
+   - `plan/actual` con "set" y `file_path` = `batch.plan`.
+   - `rutinas/manana` con "set" {ultima: `date -u +%Y-%m-%dT%H:%M:%SZ`, estado: "ok" (o "error" si `errores` no está vacío), resumen: una línea}.
+   - pluma, tinta y clip con "update" {status: "done", task: resumen de una línea, updated}.
+   - Una entrada en `log` {t, agente: "clip", msg}, con id = la hora.
+   - Si `errores` no está vacío, un documento nuevo en `correo` {t, de: "clip", tipo: "error", asunto, texto: qué falló y qué se hizo, leido: false}, con id = la hora cambiando ":" por "-" y "-error" al final.
 
 Nunca muestres tokens. Termina con una sola línea: qué quedó listo y qué se publicó.

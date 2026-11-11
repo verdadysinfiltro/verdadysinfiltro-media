@@ -10,8 +10,13 @@
 - Estrellas arriba-izquierda y abajo-derecha, firma "- @verdadysinfiltro" (ya en `brand/plantilla.png`).
 - Sin emojis ni imágenes dentro del diseño.
 
-## Voz
-- Segunda persona ("tú"), directa, sin moralina ni cursilería. Suena a amiga que te dice la verdad, no a libro de autoayuda.
+## Quién habla (la voz de la cuenta)
+Una sola persona, sin nombre, de unos treinta años, que ya pasó por eso y lo cuenta bajito, de noche, a alguien a quien quiere. No es coach ni poeta.
+- Habla de tú, en presente, con palabras de todos los días. Frases cortas.
+- Dice lo que duele sin adornarlo, y se queda al lado: nunca regaña ni da lecciones.
+- Nunca insulta a la otra persona, nunca promete que todo irá bien, nunca dice "debes" ni "tienes que".
+- Sin signos de exclamación, sin emojis, sin palabras de autoayuda (vibrar, manifestar, tóxico, energía, universo).
+- Si una frase podría estar en una taza, se descarta.
 - Temas (rotar, no repetir tema en dos reels seguidos): desamor, amor propio, soltar, cansancio emocional, superación, decepciones, relaciones que no te eligen.
 - Fuera: política, religión, insultos, nombres reales.
 
@@ -29,10 +34,15 @@ Reglas:
 5. Reel de mediodía: amor propio, cansancio, superación (tono que levanta). Reel de noche: desamor, ausencias, decepción (tono que duele). Viernes y sábado de noche: frases para quien está a punto de escribirle.
 6. Aplicar `cerebro/aprendizajes`: más de lo que tuvo envíos y guardados, menos de lo que no.
 
-## Carrusel (3 por semana)
-7 diapositivas: gancho que nombra a quién va dirigido ("Léelo si…", "Para quien…") + 5 frases que avanzan (no 5 sinónimos) + cierre que pide enviar o guardar.
+## Carrusel (3 por semana): una colección con título
+7 diapositivas:
+1. **Título de colección ligado al momento o a una situación**, como hacen las cuentas grandes del nicho: "Frases para el domingo por la noche", "Frases para empezar noviembre", "Frases para cuando te deja en visto", "Siete cosas que nadie te dijo sobre echar de menos". Nada de "léelo si…" a secas.
+2. a 6. **Cinco frases que se sostienen solas**: cada diapositiva debe poder guardarse o enviarse por separado. No son cinco sinónimos: cada una mira el tema desde otro lado.
+7. Cierre: "Guarda la que necesitabas leer. Envíasela a quien le haga falta."
+El título del lunes mira a la semana, el del miércoles a una situación concreta y el del domingo a la noche del domingo o al mes.
 
 ## Caption (Eco)
-- Línea 1: a quién enviárselo, concreto ("Envíaselo a quien sigue esperando ese mensaje."). Línea 2 opcional: "Guárdalo para cuando dudes."
-- No repetir la frase del reel en el caption.
-- **3 a 5 hashtags**, de frases y del tema concreto (#frasesdedesamor #amorpropio #frasesparapensar…). Nunca #verdadysinfiltro (`publicar.py` recorta a 5 y lo quita por si acaso).
+- **Reels:** 2 a 4 frases que amplían la idea del reel con otras palabras (no repetir la frase), en la voz de la cuenta, con las palabras que alguien buscaría (desamor, echar de menos, amor propio…): Instagram lee este texto para las búsquedas. Después, una línea que dice a quién enviárselo. Entre 40 y 70 palabras en total.
+- **Carruseles:** primera línea = el título de la colección. Después 1 o 2 frases y "Guarda la que necesitabas leer."
+- Línea en blanco y **3 a 5 hashtags** de frases y del tema concreto (#frasesdedesamor #amorpropio #frasesparapensar…). Nunca #verdadysinfiltro (`publicar.py` recorta a 5 y lo quita por si acaso).
+- Ejemplo de reel ("No eras demasiado." / "Ellos eran poco."): "Te hicieron creer que sentías de más, que pedías de más, que hablabas de más. Y no. Lo que pasaba es que al otro lado no había sitio para tanto. Envíaselo a quien le dijeron que era demasiado.\n\n#amorpropio #frasesdedesamor #desamor #frasesparapensar"

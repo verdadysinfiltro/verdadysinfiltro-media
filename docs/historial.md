@@ -31,3 +31,7 @@ Comprobar aquí antes de crear contenido: no repetir frases ni ideas casi iguale
 | 2026-11-10 | story 13:35 | Lo que te duele hoy ya te está enseñando a elegirte. | posts/2026-11-10/story-1335.jpg |
 | 2026-11-10 | reel 20:35 | No eras demasiado intenso, ellos eran poco para tanto. | posts/2026-11-10/reel-2035.mp4 |
 | 2026-11-10 | story 20:35 | Esta noche, mejor tú en paz que ellos con razón. | posts/2026-11-10/story-2035.jpg |
+| 2026-11-11 | carrusel 7:45 | Frases para cuando estás cansado de fingir que estás bien. → Dices que todo va bien con la misma voz con la que antes pedías ayuda. / Aguantaste tanto que ya nadie se pregunta si puedes más. / No tienes que ser el fuerte de todos todo el tiempo. / Pedir ayuda no te quita valor. Te devuelve aire. / Hoy puedes parar sin deberle una explicación a nadie. | posts/2026-11-11/carrusel/ |
+| 2026-11-11 | reel 13:35 | Dices que estás bien tan rápido / que ya nadie pregunta dos veces. | posts/2026-11-11/reel-1335.mp4 |
+| 2026-11-11 | reel 20:35 (voz M5) | Sigues mirando si está en línea. / Y nunca era para escribirte a ti. | posts/2026-11-11/reel-2035.mp4 |
+| 2026-11-11 | story 20:35 | Antes de dormir, perdónate por lo que no pudiste. | posts/2026-11-11/story-2035.jpg |

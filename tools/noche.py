@@ -82,13 +82,13 @@ def publicar(hoy, solo1335=False):
     print(json.dumps(res, ensure_ascii=False))
 
 
-def medios(n=40):
+def listar_medios(n=40):
     return api(f"{IG}/media", fields="id,timestamp,media_product_type,media_type,permalink,caption", limit=n).get("data", [])
 
 
 def comentarios():
     pend = []
-    for m in medios(15):
+    for m in listar_medios(15):
         for c in api(f"{m['id']}/comments", fields="id,text,username,timestamp,replies{username}").get("data", []):
             if c.get("username") == CUENTA:
                 continue
@@ -168,7 +168,7 @@ def metricas(perfil_f, metr_f, hoy):
     lim = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=14)
     items = []
     tipos = {"REELS": "reel", "CAROUSEL_ALBUM": "carrusel", "IMAGE": "imagen", "VIDEO": "reel"}
-    for m in medios(40):
+    for m in listar_medios(40):
         t = datetime.datetime.strptime(m["timestamp"][:19], "%Y-%m-%dT%H:%M:%S").replace(tzinfo=datetime.timezone.utc)
         if t < lim or m.get("media_product_type") == "STORY":
             continue

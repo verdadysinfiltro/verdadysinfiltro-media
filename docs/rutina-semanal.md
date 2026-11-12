@@ -1,5 +1,7 @@
 # Rutina semanal (domingo 7:15, hora de Madrid, antes de la de la mañana)
 
+> Los comandos `git clone` y `python3 tools/…` de este documento están también escritos en la tarea programada "Sin Filtro · semanal" y se ejecutan desde allí (si solo estuvieran aquí, el sistema los bloquearía). Si cambias uno, cámbialo en los dos sitios.
+
 Procedimiento completo de la tarea programada "Sin Filtro · semanal". Nadie mira: no preguntes, no narres, no lances subagentes y muestra solo el final de las salidas largas. Nunca muestres tokens.
 
 ## Preparación

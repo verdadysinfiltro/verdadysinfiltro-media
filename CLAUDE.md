@@ -2,7 +2,7 @@
 
 Repo de la cuenta de Instagram @verdadysinfiltro: marca, estrategia, generador de imágenes e imágenes publicadas (URLs públicas raw).
 
-**Una sola fuente de reglas.** Cada rutina tiene su procedimiento completo en `docs/`: `rutina-manana.md`, `rutina-mediodia.md`, `rutina-noche.md` y `rutina-semanal.md`. Las tareas programadas solo dicen "clona el repo y sigue tu documento"; si algo cambia, se cambia en el documento, no en la tarea. Lo que debe cumplirse siempre (límite de palabras, carruseles en pausa) lo hace cumplir el código (`tools/dia.py`).
+**Una sola fuente de reglas.** Cada rutina tiene su procedimiento completo en `docs/`: `rutina-manana.md`, `rutina-mediodia.md`, `rutina-noche.md` y `rutina-semanal.md`. **Pero los comandos `python3 tools/…` (y el `git clone`) tienen que estar escritos en la propia tarea programada**: si solo están en `docs/`, el sistema los bloquea como código externo y la rutina no publica (pasó el 2026-11-12 a las 13:35). La tarea lleva los comandos; el documento, el resto (oficina, batch, correos, criterios). Si cambia un comando, se cambia en los dos sitios. Lo que debe cumplirse siempre (límite de palabras, carruseles en pausa) lo hace cumplir el código (`tools/dia.py`).
 
 Antes de crear contenido, leer:
 - `docs/marca.md`: estética, voz, hashtags y caption.

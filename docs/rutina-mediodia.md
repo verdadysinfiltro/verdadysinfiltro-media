@@ -1,5 +1,7 @@
 # Rutina del mediodía (13:35, hora de Madrid)
 
+> Los comandos `git clone` y `python3 tools/…` de este documento están también escritos en la tarea programada "Sin Filtro · mediodía" y se ejecutan desde allí (si solo estuvieran aquí, el sistema los bloquearía). Si cambias uno, cámbialo en los dos sitios.
+
 Procedimiento completo de la tarea programada "Sin Filtro · mediodía". Nadie mira: no preguntes, no narres, no lances subagentes, no leas más documentación (salvo `docs/ordenes.md` en el paso 3b) y muestra solo el final de las salidas largas. Nunca muestres tokens.
 
 1. `HOY=$(TZ=Europe/Madrid date +%F)` (el repo ya está clonado en `/home/user/verdadysinfiltro-media`).

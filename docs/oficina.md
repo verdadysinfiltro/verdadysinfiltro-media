@@ -64,7 +64,7 @@ tools/reel.sh /tmp/r1-a.jpg posts/$HOY/reel-1335.mp4 /tmp/p1.wav auto $HOY-1335 
 
 ## Sesión de trabajo
 - **Sin Filtro · mañana** se ejecuta en la sesión fija "Sin Filtro · oficina (no borrar)" (`session_01THrf6QwLmYWXKRir16LpNz`), la única con permiso de push a `main` de este repo y de `assets-vs` (lo necesita para subir las imágenes del día y que tengan URL pública). No borrar ni archivar esa sesión.
-- Mediodía, noche y semanal abren una sesión nueva cada vez: clonan este repo y `tools/noche.py` clona `assets-vs` (público) por su cuenta; publican con lo ya subido y escriben en la oficina; no necesitan push.
+- **Desde el 2026-11-13, mediodía, noche y semanal también corren en esa sesión fija** (tareas "… (sesión fija)"), porque el repo pasa a ser privado y las sesiones nuevas no pueden clonarlo. Las tareas antiguas que abrían una sesión nueva están desactivadas, no borradas.
 
 ## Preferencia de Rodrigo
 Las rutinas trabajan en silencio: no responder con resúmenes, avisos ni mensajes finales (gastan tokens). Solo ejecutar y dejar el registro en la oficina (`log`, `agents`, `posts`).

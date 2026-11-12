@@ -166,6 +166,7 @@ def metricas(perfil_f, metr_f, hoy):
     yo = api(IG, fields="followers_count,follows_count,media_count")
     seg, pubs = yo.get("followers_count", 0), yo.get("media_count", 0)
     lim = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=14)
+    estilos_previos = {it.get("id"): it.get("estilo") for it in prev.get("items", []) if it.get("estilo")}
     items = []
     tipos = {"REELS": "reel", "CAROUSEL_ALBUM": "carrusel", "IMAGE": "imagen", "VIDEO": "reel"}
     for m in listar_medios(40):
@@ -181,7 +182,8 @@ def metricas(perfil_f, metr_f, hoy):
                       "comments": int(i.get("comments") or 0), "avg_watch_ms": int(i.get("ig_reels_avg_watch_time") or 0),
                       "nota": round((2 * sh + sv) / reach, 4) if reach else 0})
         if items[-1]["tipo"] == "reel":
-            items[-1]["estilo"] = estilo_de_fecha(m["timestamp"])
+            # Se respeta el estilo ya guardado (p. ej. corregido a mano si un reel salió fuera de hora).
+            items[-1]["estilo"] = estilos_previos.get(m["id"]) or estilo_de_fecha(m["timestamp"])
     rec = prev.get("records", {"reach": 0, "shares": 0})
     for it in prev.get("items", []):
         rec["reach"] = max(rec.get("reach", 0), it.get("reach", 0))

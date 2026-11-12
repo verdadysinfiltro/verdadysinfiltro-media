@@ -35,3 +35,6 @@ Comprobar aquí antes de crear contenido: no repetir frases ni ideas casi iguale
 | 2026-11-11 | reel 13:35 | Dices que estás bien tan rápido / que ya nadie pregunta dos veces. | posts/2026-11-11/reel-1335.mp4 |
 | 2026-11-11 | reel 20:35 (voz M5) | Sigues mirando si está en línea. / Y nunca era para escribirte a ti. | posts/2026-11-11/reel-2035.mp4 |
 | 2026-11-11 | story 20:35 | Antes de dormir, perdónate por lo que no pudiste. | posts/2026-11-11/story-2035.jpg |
+| 2026-11-12 | reel 13:35 (F5, cine) | Hoy también te has levantado. / Eso ya cuenta, aunque nadie lo vea. | posts/2026-11-12/reel-1335.mp4 |
+| 2026-11-12 | reel 20:35 (F5, clasico) | Escribiste el mensaje tres veces. / Borrarlo fue lo más valiente del día. | posts/2026-11-12/reel-2035.mp4 |
+| 2026-11-12 | story 20:35 | Lo que hoy te pesa, un día lo contarás tranquila. | posts/2026-11-12/story-2035.jpg |

@@ -38,3 +38,6 @@ Comprobar aquí antes de crear contenido: no repetir frases ni ideas casi iguale
 | 2026-11-12 | reel 13:35 (F5, cine) | Hoy también te has levantado. / Eso ya cuenta, aunque nadie lo vea. | posts/2026-11-12/reel-1335.mp4 |
 | 2026-11-12 | reel 20:35 (F5, clasico) | Escribiste el mensaje tres veces. / Borrarlo fue lo más valiente del día. | posts/2026-11-12/reel-2035.mp4 |
 | 2026-11-12 | story 20:35 | Lo que hoy te pesa, un día lo contarás tranquila. | posts/2026-11-12/story-2035.jpg |
+| 2026-11-13 | reel 13:35 (F5, cine) | Un día oirás su nombre / y no se te moverá nada por dentro. | posts/2026-11-13/reel-1335.mp4 |
+| 2026-11-13 | reel 20:35 (F5, clasico) | Te prometieron mucho / y lo justo para que no te fueras. | posts/2026-11-13/reel-2035.mp4 |
+| 2026-11-13 | story 20:35 | Cierra la semana agradeciéndote por seguir aquí. | posts/2026-11-13/story-2035.jpg |

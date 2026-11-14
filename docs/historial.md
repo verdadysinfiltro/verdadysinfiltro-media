@@ -41,3 +41,6 @@ Comprobar aquí antes de crear contenido: no repetir frases ni ideas casi iguale
 | 2026-11-13 | reel 13:35 (F5, cine) | Un día oirás su nombre / y no se te moverá nada por dentro. | posts/2026-11-13/reel-1335.mp4 |
 | 2026-11-13 | reel 20:35 (F5, clasico) | Te prometieron mucho / y lo justo para que no te fueras. | posts/2026-11-13/reel-2035.mp4 |
 | 2026-11-13 | story 20:35 | Cierra la semana agradeciéndote por seguir aquí. | posts/2026-11-13/story-2035.jpg |
+| 2026-11-14 | reel 13:35 (F5, clasico) | Sobreviviste a días que juraste que no. / Mírate ahora, aquí sigues. | posts/2026-11-14/reel-1335.mp4 |
+| 2026-11-14 | reel 20:35 (F5, cine) | Sábado por la noche. / No le escribas. Mañana te lo agradeces. | posts/2026-11-14/reel-2035.mp4 |
+| 2026-11-14 | story 20:35 | Mañana será otro día. Esta noche solo descansa. | posts/2026-11-14/story-2035.jpg |

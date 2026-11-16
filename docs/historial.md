@@ -47,3 +47,6 @@ Comprobar aquí antes de crear contenido: no repetir frases ni ideas casi iguale
 | 2026-11-15 | reel 13:35 (F5, clasico) | Llevas meses aguantando. / Y hoy has llegado hasta aquí igual. | posts/2026-11-15/reel-1335.mp4 |
 | 2026-11-15 | reel 20:35 (F5, cine) | Mañana es lunes. / Ya has podido con peores. | posts/2026-11-15/reel-2035.mp4 |
 | 2026-11-15 | story 20:35 | Esta noche no repases el día entero. Ya pasó, y tú sigues aquí. | posts/2026-11-15/story-2035.jpg |
+| 2026-11-16 | reel 13:35 (F5, cine) | Ayer lloraste en la ducha. / Hoy has salido a la calle igual. | posts/2026-11-16/reel-1335.mp4 |
+| 2026-11-16 | reel 20:35 (F5, clasico) | Te dejó en visto. / Y aun así lo defiendes. | posts/2026-11-16/reel-2035.mp4 |
+| 2026-11-16 | story 20:35 | Empezaste la semana, y eso ya es más de lo que pensabas esta mañana. | posts/2026-11-16/story-2035.jpg |

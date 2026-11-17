@@ -50,3 +50,6 @@ Comprobar aquí antes de crear contenido: no repetir frases ni ideas casi iguale
 | 2026-11-16 | reel 13:35 (F5, cine) | Ayer lloraste en la ducha. / Hoy has salido a la calle igual. | posts/2026-11-16/reel-1335.mp4 |
 | 2026-11-16 | reel 20:35 (F5, clasico) | Te dejó en visto. / Y aun así lo defiendes. | posts/2026-11-16/reel-2035.mp4 |
 | 2026-11-16 | story 20:35 | Empezaste la semana, y eso ya es más de lo que pensabas esta mañana. | posts/2026-11-16/story-2035.jpg |
+| 2026-11-17 | reel 13:35 (F5, cine) | Nadie vio cuánto te costó. / Pero tú lo hiciste igual. | posts/2026-11-17/reel-1335.mp4 |
+| 2026-11-17 | reel 20:35 (F5, clasico) | Qué día más largo. / Descansa. Hoy ya hiciste bastante. | posts/2026-11-17/reel-2035.mp4 |
+| 2026-11-17 | story 20:35 | Si hoy fue mucho, déjalo aquí. Mañana se ve distinto. | posts/2026-11-17/story-2035.jpg |

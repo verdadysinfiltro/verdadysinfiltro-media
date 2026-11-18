@@ -53,3 +53,6 @@ Comprobar aquí antes de crear contenido: no repetir frases ni ideas casi iguale
 | 2026-11-17 | reel 13:35 (F5, cine) | Nadie vio cuánto te costó. / Pero tú lo hiciste igual. | posts/2026-11-17/reel-1335.mp4 |
 | 2026-11-17 | reel 20:35 (F5, clasico) | Qué día más largo. / Descansa. Hoy ya hiciste bastante. | posts/2026-11-17/reel-2035.mp4 |
 | 2026-11-17 | story 20:35 | Si hoy fue mucho, déjalo aquí. Mañana se ve distinto. | posts/2026-11-17/story-2035.jpg |
+| 2026-11-18 | reel 13:35 (F5, clasico) | Hoy dijiste que no a algo. / Hace un año habrías dicho que sí. | posts/2026-11-18/reel-1335.mp4 |
+| 2026-11-18 | reel 20:35 (F5, cine) | Contestaste en dos minutos. / Y tardó tres días en leerte. | posts/2026-11-18/reel-2035.mp4 |
+| 2026-11-18 | story 20:35 | A mitad de semana, mírate: vas mejor de lo que crees. | posts/2026-11-18/story-2035.jpg |

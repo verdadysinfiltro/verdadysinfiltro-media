@@ -59,3 +59,6 @@ Comprobar aquí antes de crear contenido: no repetir frases ni ideas casi iguale
 | 2026-11-19 | reel 13:35 (F5, clasico) | Antes te quedabas en silencio. / Hoy ya dices lo que piensas. | posts/2026-11-19/reel-1335.mp4 |
 | 2026-11-19 | reel 20:35 (F5, cine) | Sigues guardando sus fotos. / Por si algún día vuelve. | posts/2026-11-19/reel-2035.mp4 |
 | 2026-11-19 | story 20:35 | Respira. Lo que no hiciste hoy puede esperar a mañana. | posts/2026-11-19/story-2035.jpg |
+| 2026-11-20 | reel 13:35 (F5, cine) | Lo que dijiste que no podías, / esta semana lo hiciste dos veces. | posts/2026-11-20/reel-1335.mp4 |
+| 2026-11-20 | reel 20:35 (F5, clasico) | Escribes, borras, escribes. / Esta noche, mejor no mandarlo. | posts/2026-11-20/reel-2035.mp4 |
+| 2026-11-20 | story 20:35 | Cierra la semana con algo bueno: tú, en paz, en el sofá. | posts/2026-11-20/story-2035.jpg |

@@ -62,3 +62,6 @@ Comprobar aquí antes de crear contenido: no repetir frases ni ideas casi iguale
 | 2026-11-20 | reel 13:35 (F5, cine) | Lo que dijiste que no podías, / esta semana lo hiciste dos veces. | posts/2026-11-20/reel-1335.mp4 |
 | 2026-11-20 | reel 20:35 (F5, clasico) | Escribes, borras, escribes. / Esta noche, mejor no mandarlo. | posts/2026-11-20/reel-2035.mp4 |
 | 2026-11-20 | story 20:35 | Cierra la semana con algo bueno: tú, en paz, en el sofá. | posts/2026-11-20/story-2035.jpg |
+| 2026-11-21 | reel 13:35 (F5, cine) | Sábado sin planes. / Quedar contigo ya es un plan. | posts/2026-11-21/reel-1335.mp4 |
+| 2026-11-21 | reel 20:35 (F5, clasico) | Hoy sonó su canción. / Y aguantaste sin escribirle. | posts/2026-11-21/reel-2035.mp4 |
+| 2026-11-21 | story 20:35 | No le escribas esta noche. Mañana, con calma, decides tú. | posts/2026-11-21/story-2035.jpg |

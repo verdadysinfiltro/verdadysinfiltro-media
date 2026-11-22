@@ -65,3 +65,6 @@ Comprobar aquí antes de crear contenido: no repetir frases ni ideas casi iguale
 | 2026-11-21 | reel 13:35 (F5, cine) | Sábado sin planes. / Quedar contigo ya es un plan. | posts/2026-11-21/reel-1335.mp4 |
 | 2026-11-21 | reel 20:35 (F5, clasico) | Hoy sonó su canción. / Y aguantaste sin escribirle. | posts/2026-11-21/reel-2035.mp4 |
 | 2026-11-21 | story 20:35 | No le escribas esta noche. Mañana, con calma, decides tú. | posts/2026-11-21/story-2035.jpg |
+| 2026-11-22 | reel 13:35 (F5, clasico) | Te cuidaste hoy. / Sin que nadie te lo pidiera. | posts/2026-11-22/reel-1335.mp4 |
+| 2026-11-22 | reel 20:35 (F5, cine) | Hoy dolió menos. / Anótalo, aunque sea poco. | posts/2026-11-22/reel-2035.mp4 |
+| 2026-11-22 | story 20:35 | Antes de dormir, apunta una cosa buena de esta semana. Aunque sea pequeña. | posts/2026-11-22/story-2035.jpg |

@@ -71,3 +71,6 @@ Comprobar aquí antes de crear contenido: no repetir frases ni ideas casi iguale
 | 2026-11-23 | reel 13:35 (F5, clasico) | Empezar duele. / Pero ya lo hiciste otras veces. | posts/2026-11-23/reel-1335.mp4 |
 | 2026-11-23 | reel 20:35 (F5, cine) | Cambió de foto. / Y aun así la miraste. | posts/2026-11-23/reel-2035.mp4 |
 | 2026-11-23 | story 20:35 | Si hoy se te hizo cuesta arriba, duerme. Mañana pesa menos. | posts/2026-11-23/story-2035.jpg |
+| 2026-11-24 | reel 13:35 (F5, cine) | Pediste ayuda hoy. / Antes lo habrías aguantado todo. | posts/2026-11-24/reel-1335.mp4 |
+| 2026-11-24 | reel 20:35 (F5, clasico) | Cena algo rico. / Hoy te lo has ganado. | posts/2026-11-24/reel-2035.mp4 |
+| 2026-11-24 | story 20:35 | Mira todo lo que hiciste esta semana sin que te lo agradecieran. | posts/2026-11-24/story-2035.jpg |

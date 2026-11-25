@@ -74,3 +74,6 @@ Comprobar aquí antes de crear contenido: no repetir frases ni ideas casi iguale
 | 2026-11-24 | reel 13:35 (F5, cine) | Pediste ayuda hoy. / Antes lo habrías aguantado todo. | posts/2026-11-24/reel-1335.mp4 |
 | 2026-11-24 | reel 20:35 (F5, clasico) | Cena algo rico. / Hoy te lo has ganado. | posts/2026-11-24/reel-2035.mp4 |
 | 2026-11-24 | story 20:35 | Mira todo lo que hiciste esta semana sin que te lo agradecieran. | posts/2026-11-24/story-2035.jpg |
+| 2026-11-25 | reel 13:35 (F5, cine) | Te perdonaste hoy. / Por fin, después de tanto. | posts/2026-11-25/reel-1335.mp4 |
+| 2026-11-25 | reel 20:35 (F5, clasico) | Borraste su número. / Pero te lo sabes de memoria. | posts/2026-11-25/reel-2035.mp4 |
+| 2026-11-25 | story 20:35 | Mitad de semana. Si no te ha salido nada, el cansancio también habla. | posts/2026-11-25/story-2035.jpg |

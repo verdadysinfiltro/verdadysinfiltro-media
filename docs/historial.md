@@ -83,3 +83,6 @@ Comprobar aquí antes de crear contenido: no repetir frases ni ideas casi iguale
 | 2026-11-26 | reel 13:35 (F5, clasico) | Respiraste hondo. / Y no contestaste con rabia. | posts/2026-11-26/reel-1335.mp4 |
 | 2026-11-26 | reel 20:35 (F5, cine) | Te dijo luego. / Y luego nunca llegó. | posts/2026-11-26/reel-2035.mp4 |
 | 2026-11-26 | story 20:35 | Hoy cuenta aunque no hayas hecho nada especial. Estar ya es bastante. | posts/2026-11-26/story-2035.jpg |
+| 2026-11-27 | reel 13:35 (F5, clasico) | Viernes otra vez. / Y ya no cargas lo mismo. | posts/2026-11-27/reel-1335.mp4 |
+| 2026-11-27 | reel 20:35 (F5, cine) | Tres borradores. / Ninguno va a cambiar lo que pasó. | posts/2026-11-27/reel-2035.mp4 |
+| 2026-11-27 | story 20:35 | Antes de dormir, escribe a alguien que te quiera bien. | posts/2026-11-27/story-2035.jpg |

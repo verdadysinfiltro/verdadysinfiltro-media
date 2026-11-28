@@ -86,3 +86,6 @@ Comprobar aquí antes de crear contenido: no repetir frases ni ideas casi iguale
 | 2026-11-27 | reel 13:35 (F5, clasico) | Viernes otra vez. / Y ya no cargas lo mismo. | posts/2026-11-27/reel-1335.mp4 |
 | 2026-11-27 | reel 20:35 (F5, cine) | Tres borradores. / Ninguno va a cambiar lo que pasó. | posts/2026-11-27/reel-2035.mp4 |
 | 2026-11-27 | story 20:35 | Antes de dormir, escribe a alguien que te quiera bien. | posts/2026-11-27/story-2035.jpg |
+| 2026-11-28 | reel 13:35 (F5, cine) | Hoy sin prisa. / Tu paz también necesita tiempo. | posts/2026-11-28/reel-1335.mp4 |
+| 2026-11-28 | reel 20:35 (F5, clasico) | Es de madrugada. / Nada de lo que escribas ahora sale bien. | posts/2026-11-28/reel-2035.mp4 |
+| 2026-11-28 | story 20:35 | Este sábado cuídate tú primero. El resto puede esperar. | posts/2026-11-28/story-2035.jpg |
